@@ -1,0 +1,42 @@
+
+
+#shopify-section-template--26045660496137__main .m-sign-up {
+    
+    background-color: #FBF8F4;
+    border: 1px solid #CD0221;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#shopify-section-template--26045660496137__main .m-login-form {
+    
+    background-color: #FBF8F4;
+    border: 1px solid #CD0221;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#shopify-section-template--26045660496137__main button.m-button.m-button--primary {
+    border-radius: 5px;
+}
+
+#shopify-section-template--26045660496137__main a.m-button.m-button--primary {
+    border-radius: 5px;
+}
+
+.template-product #MainContent {
+    padding-bottom: 0px;
+}
+
+/*a.m-menu__link.m-menu__link--main.active {
+    color: #ffffff !important;
+}*/
+ul li:nth-child(5) a.m-menu__link.m-menu__link--main {
+  color: #ffffff !important;
+}
+
+@media (max-width: 768px){
+    .section-template--26045660725513__hero_structured_method_cLH7me {
+    padding-bottom: 40px !important;
+  }
+}
