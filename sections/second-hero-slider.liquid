@@ -1,0 +1,302 @@
+{%- style -%}
+  .custom-slider-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    position: relative;
+    overflow: hidden;
+  }
+  .slider-container-{{ section.id }} {
+    position: relative;
+    height: clamp(420px, 60vw, 720px);
+    overflow: hidden;
+  }
+  .slide-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .slide-item.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+  }
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.75) 0%, transparent 55%);
+  }
+  .slider-content {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    padding: 0 clamp(24px, 6vw, 80px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  .slider-text-info {
+    max-width: 520px;
+  }
+  .slider-badge {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .slider-title {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    color: #ffffff;
+    font-style: italic;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .slider-nav {
+    display: flex;
+    gap: 10px;
+    margin-left: 24px;
+  }
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: 0.3s;
+  }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .dots-container {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .dot.active {
+    width: 28px;
+    background: {{ section.settings.accent_color }};
+  }
+  .progress-bar-wrap {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: {{ section.settings.accent_color }};
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+{%- endstyle -%}
+
+<section class="custom-slider-{{ section.id }}"
+ data-aos="fade-up"
+ data-aos-duration="900"
+ data-aos-easing="ease-out-cubic" id="slider-{{ section.id }}">
+  <div class="slider-container-{{ section.id }}">
+    
+    <div class="dots-container">
+      {% for block in section.blocks %}
+        <button class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+      {% endfor %}
+    </div>
+
+    {% for block in section.blocks %}
+      <div class="slide-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <img class="slide-img" src="{{ block.settings.image | image_url: width: 2000 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'slide-img' }}
+        {% endif %}
+        <div class="slide-overlay"></div>
+      </div>
+    {% endfor %}
+
+    <div class="slider-content" data-aos="fade-up" data-aos-delay="100">
+      <div class="slider-text-info">
+        <div class="slider-badge" id="badge-{{ section.id }}">
+          {{ section.blocks[0].settings.badge }}
+        </div>
+        <p class="slider-title" id="title-{{ section.id }}">
+          "{{ section.blocks[0].settings.title }}"
+        </p>
+      </div>
+
+      <div class="slider-nav" data-aos="fade-up" data-aos-delay="150">
+        <button class="nav-btn prev-btn">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="nav-btn next-btn">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-{{ section.id }}"></div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('slider-{{ section.id }}');
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.slide-item');
+  const dots = container.querySelectorAll('.dot');
+  const badge = container.querySelector('#badge-{{ section.id }}');
+  const title = container.querySelector('#title-{{ section.id }}');
+  const progress = container.querySelector('#progress-{{ section.id }}');
+  
+  const slideData = [
+    {% for block in section.blocks %}
+      { badge: {{ block.settings.badge | json }}, title: {{ block.settings.title | json }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  let currentIndex = 0;
+  let autoplayTimer;
+
+  function updateSlider(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    
+    if(badge) badge.textContent = slideData[index].badge;
+    if(title) title.textContent = `"${slideData[index].title}"`;
+    
+    if(progress) {
+      const progWidth = ((index + 1) / slides.length) * 100;
+      progress.style.width = progWidth + '%';
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlider(currentIndex);
+    }, 4000); // ৪ সেকেন্ড পর পর পরিবর্তন
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+  }
+
+  container.querySelector('.next-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider(currentIndex);
+    startAutoplay(); // ক্লিক করলে টাইমার রিসেট হবে
+  });
+
+  container.querySelector('.prev-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider(currentIndex);
+    startAutoplay(); // ক্লিক করলে টাইমার রিসেট হবে
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      currentIndex = parseInt(dot.dataset.index);
+      updateSlider(currentIndex);
+      startAutoplay(); // ক্লিক করলে টাইমার রিসেট হবে
+    });
+  });
+
+  // ইনিশিয়াল কল
+  updateSlider(0);
+  startAutoplay();
+
+  // মাউস স্লাইডারের উপর থাকলে অটো-প্লে বন্ধ থাকবে (ঐচ্ছিক, ভালো ইউজার এক্সপেরিয়েন্সের জন্য)
+  container.addEventListener('mouseenter', stopAutoplay);
+  container.addEventListener('mouseleave', startAutoplay);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hero Moodboard Slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1c1610"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e4032b"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text",
+          "default": "Le cadre"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Quote / Title",
+          "default": "Un espace pour respirer et refaire le plein d'énergie"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Moodboard Slider",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

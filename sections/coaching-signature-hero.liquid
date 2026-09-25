@@ -1,0 +1,478 @@
+{%- style -%}
+/* Toggle mobile / desktop footer text */
+.mobile-only-{{ section.id }} {
+  display: none;
+}
+
+.desktop-only-{{ section.id }} {
+  display: inline;
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-only-{{ section.id }} {
+    display: none;
+  }
+  .mobile-only-{{ section.id }} {
+    display: inline;
+  }
+  .footer-stats-{{ section.id }} {
+    font-size: 13px !important;
+    white-space: nowrap;
+  }
+}
+
+.section-{{ section.id }} {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  background: {{ section.settings.bg_color }};
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glow effect (desktop only) */
+.bg-glow-{{ section.id }} {
+  position: absolute;
+  top: -30%;
+  left: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, {{ section.settings.accent_color }} 0%, transparent 70%);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container-{{ section.id }} {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.grid-{{ section.id }} {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+/* Content side */
+.content-side-{{ section.id }} {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.subtitle-{{ section.id }} {
+  font-family: 'Caveat', cursive;
+  color: {{ section.settings.accent_color }};
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.title-{{ section.id }} {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #0A0A0A;
+  margin-bottom: 24px;
+}
+
+.title-{{ section.id }} em {
+  font-style: italic !important;
+  color: {{ section.settings.accent_color }} !important;
+}
+
+.desc-{{ section.id }} {
+  font-size: 17px;
+  color: #5C564F;
+  max-width: 460px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+
+.price-{{ section.id }} {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 400;
+  color: {{ section.settings.accent_color }};
+  line-height: 1;
+  margin-bottom: 28px;
+}
+
+.btn-{{ section.id }} {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: {{ section.settings.accent_color }};
+  color: #ffffff;
+  padding: 18px 44px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-{{ section.id }}:hover {
+  text-decoration: none;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: rgba(228, 3, 43, 0.4) 0px 8px 28px;
+}
+
+/* Image Wrapper */
+.img-wrapper-{{ section.id }} {
+  position: relative;
+}
+
+.img-box-{{ section.id }} {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: auto; 
+}
+
+.img-box-{{ section.id }} img {
+  width: 100%;
+  height: auto;
+  max-height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Floating badge */
+.badge-{{ section.id }} {
+  position: absolute;
+  bottom: 40px;
+  left: -24px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.badge-icon-{{ section.id }} {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: {{ section.settings.accent_color }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-highlight-{{ section.id }} {
+  color: {{ section.settings.accent_color }};
+  font-weight: 700;
+}
+
+.footer-stats-{{ section.id }} {
+  font-size: 13px;
+  color: #8A8178;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+  .section-{{ section.id }} {
+    padding-top: 0 !important;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
+  }
+  .badge-{{ section.id }} {
+    display: none !important;
+  }
+  .grid-{{ section.id }} {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .img-wrapper-{{ section.id }} {
+    order: 1;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+  .content-side-{{ section.id }} {
+    order: 2;
+    padding-top: 0;
+  }
+  .img-box-{{ section.id }} {
+    height: 280px;
+    border-radius: 0;
+  }
+  .img-box-{{ section.id }} img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+  .img-box-{{ section.id }}::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, {{ section.settings.bg_color }} 100%);
+  }
+}
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="bg-glow-{{ section.id }}"></div>
+
+  <div class="container-{{ section.id }}">
+    <div class="grid-{{ section.id }}">
+      
+      <div class="content-side-{{ section.id }}" data-aos="fade-up">
+        <div class="subtitle-{{ section.id }}" data-aos="fade-up">{{ section.settings.subtitle }}</div>
+        
+        <h1 class="title-{{ section.id }}" data-aos="fade-up">
+          {{ section.settings.title }}
+        </h1>
+        
+        <div class="desc-{{ section.id }}" data-aos="fade-up">{{ section.settings.description }}</div>
+        
+        <div class="price-{{ section.id }}">{{ section.settings.price }}</div>
+        
+        {%- if section.settings.product != blank -%}
+          {%- assign variant_id = section.settings.product.selected_or_first_available_variant.id -%}
+          <button 
+            class="btn-{{ section.id }} coaching-atc-btn" 
+            data-variant-id="{{ variant_id }}"
+            type="button"
+            data-aos="fade-up"
+          >
+            {{ section.settings.btn_label }}
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        {%- else -%}
+          <a href="{{ section.settings.btn_link }}" class="btn-{{ section.id }}" data-aos="fade-up">
+            {{ section.settings.btn_label }}
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        {%- endif -%}
+        
+        <p class="footer-stats-{{ section.id }}" data-aos="fade-up">
+          <span class="desktop-only-{{ section.id }}">
+            {{ section.settings.footer_text }}
+          </span>
+          <span class="mobile-only-{{ section.id }}">
+            Accès immédiat · À vie · 
+            <span class="stat-highlight-{{ section.id }}">{{ section.settings.badge_title }}</span> ont rejoint
+          </span>
+        </p>
+      </div>
+
+      <div class="img-wrapper-{{ section.id }}" data-aos="fade-up">
+        <div class="img-box-{{ section.id }}">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | default: 'Coaching' }}" loading="eager">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+
+        <div class="badge-{{ section.id }}">
+          <div class="badge-icon-{{ section.id }}">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: #0A0A0A;">{{ section.settings.badge_title }}</div>
+            <div style="font-size: 11px; color: #8A8178; margin-top: 1px;">{{ section.settings.badge_desc }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const atcButton = document.querySelector('.coaching-atc-btn');
+  if (atcButton) {
+    atcButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      const variantId = this.getAttribute('data-variant-id');
+      
+      const formData = {
+        'items': [{
+          'id': variantId,
+          'quantity': 1
+        }]
+      };
+
+      this.innerHTML = "Ajout en cours..."; // loading text
+      this.style.opacity = "0.7";
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        window.location.href = '/cart'; // Redirect to cart page
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        window.location.href = '/cart'; // Fallback redirect
+      });
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Coaching Signature Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#E4032B"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Programme Signature"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Le Coaching Structurée",
+      "info": "Use line breaks (press Enter) for multi-line titles. Do not use HTML tags."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "La méthode d'organisation complète..."
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "349€"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Rejoindre le programme"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link (Fallback)"
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "Accès immédiat · À vie +500 femmes l'ont rejoint"
+    },
+    {
+      "type": "header",
+      "content": "Floating Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_title",
+      "label": "Badge Title",
+      "default": "+500 femmes"
+    },
+    {
+      "type": "text",
+      "id": "badge_desc",
+      "label": "Badge Description",
+      "default": "ont déjà rejoint la méthode"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coaching Signature Hero"
+    }
+  ]
+}
+{% endschema %}

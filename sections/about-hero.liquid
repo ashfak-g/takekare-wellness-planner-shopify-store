@@ -1,0 +1,343 @@
+{%- style -%}
+  .about-hero-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    min-height: calc(100vh - {{ section.settings.padding_top }}px);
+    display: flex;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-hero-image-wrapper {
+    flex: 0 0 48%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-hero-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .about-hero-content-wrapper {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: center;
+    padding: clamp(48px, 6vw, 80px) clamp(40px, 5vw, 80px);
+  }
+
+  .about-hero-container {
+    max-width: 540px;
+    width: 100%;
+  }
+
+  .mobile-image-only {
+    display: none;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+  }
+
+  .stat-item {
+    text-align: left;
+    flex: 0 0 auto;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: {{ section.settings.accent_color }};
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.25s;
+    text-decoration: none;
+  }
+  .btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 24px;
+  }
+
+  .btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    color: #0a0a0a;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.25s;
+    text-decoration: none;
+  }
+  .btn-secondary-custom:hover{
+    border: 2px solid rgb(228, 3, 43);
+    color: rgb(228, 3, 43);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .max-lg-hidden { display: none; }
+    .mobile-image-only { display: block; }
+    .about-hero-{{ section.id }} { flex-direction: column; height: auto; }
+  }
+
+@media (max-width: 768px){
+  .hero-title {
+  font-size: 30px;
+  margin-bottom: 16px;
+  }
+}
+
+{%- endstyle -%}
+
+<section class="about-hero-{{ section.id }}">
+  <div class="about-hero-image-wrapper max-lg-hidden">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1000 | image_tag: alt: section.settings.image.alt }}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag }}
+    {% endif %}
+  </div>
+
+  <div class="about-hero-content-wrapper" data-aos="fade-up">
+    <div class="about-hero-container">
+      
+      <div class="mobile-image-only">
+        {% if section.settings.image != blank %}
+           {{ section.settings.image | image_url: width: 800 | image_tag }}
+        {% endif %}
+      </div>
+
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #8a8178; text-transform: uppercase; margin-bottom: 24px;"
+     data-aos="fade-up">
+        {{ section.settings.subtitle }}
+      </div>
+
+      <h1 class="hero-title"
+     data-aos="fade-up">
+  Salut, je suis Léa — <br>
+  je t’aide à reprendre le contrôle de 
+  <em class="em-hover">
+    ton quotidien.
+  </em>
+</h1>
+
+<style>
+.hero-title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(34px, 4.5vw, 58px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #0a0a0a;
+  margin-bottom: 28px;
+}
+
+.em-hover {
+  font-style: italic;
+  color: rgb(228, 3, 43);
+  text-decoration: underline 3px rgba(228, 3, 43, 0.3);
+  text-underline-offset: 6px;
+  transition: all 0.3s ease;
+}
+
+.em-hover:hover {
+    font-style: italic;
+    color: rgb(246, 186, 203);
+    text-decoration: underline 3px rgba(228, 3, 43, 0.25);
+    text-underline-offset: 6px;
+    transition: color 0.2s;
+}
+</style>
+
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: {{ section.settings.accent_color }}; text-transform: uppercase; margin-bottom: 14px;"
+     data-aos="fade-up">
+        {{ section.settings.intro_line }}
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; font-size: 15px; line-height: 1.8; color: #5c564f;"
+     data-aos="fade-up">
+        {{ section.settings.description }}
+      </div>
+
+      <div style="display: flex; gap: 32px; margin-bottom: 36px; flex-wrap: nowrap; justify-content: flex-start;"
+     data-aos="fade-up">
+        {% for block in section.blocks %}
+          <div class="stat-item">
+            <div style="font-family: Instrument Serif, Georgia, serif; font-size: 28px; font-weight: 400; color: {{ section.settings.accent_color }}; line-height: 1;">{{ block.settings.stat_number }}</div>
+            <div style="font-size: 10px; color: #8a8178; margin-top: 4px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">{{ block.settings.stat_label }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="social-links" data-aos="fade-up">
+  {% if section.settings.insta_link != blank %}
+    <a href="{{ section.settings.insta_link }}" class="btn-primary-custom" target="_blank">
+      
+      <!-- Instagram Icon -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.5 5.5 0 0 0 12 7.5zm0 9A3.5 3.5 0 1 1 15.5 13 3.5 3.5 0 0 1 12 16.5zm4.8-9.3a1.3 1.3 0 1 0-1.3-1.3 1.3 1.3 0 0 0 1.3 1.3z"/>
+      </svg>
+
+      {{ section.settings.insta_label }}
+    </a>
+  {% endif %}
+
+  {% if section.settings.linkedin_link != blank %}
+    <a href="{{ section.settings.linkedin_link }}" class="btn-secondary-custom" target="_blank">
+      
+      <!-- LinkedIn Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" 
+     width="16" 
+     height="16" 
+     viewBox="0 0 24 24" 
+     fill="none" 
+     stroke="currentColor" 
+     stroke-width="1.8" 
+     stroke-linecap="round" 
+     stroke-linejoin="round">
+  
+  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"></path>
+
+</svg>
+
+      {{ section.settings.linkedin_label }}
+    </a>
+  {% endif %}
+</div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Founder Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Top Subtitle",
+      "default": "La fondatrice de Take Kare"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Main Title",
+      "default": "<p>Salut, je suis Léa — et je vais changer ton quotidien pour toujours.</p>"
+    },
+    {
+      "type": "text",
+      "id": "intro_line",
+      "label": "Red Intro Line",
+      "default": "Je n'ai pas toujours eu tout sous contrôle…"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description Paragraphs"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 68
+    },
+    {
+      "type": "header",
+      "content": "Social Media Buttons"
+    },
+    {
+      "type": "text",
+      "id": "insta_label",
+      "label": "Instagram Button Label",
+      "default": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "insta_link",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "linkedin_label",
+      "label": "LinkedIn Button Label",
+      "default": "LinkedIn"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_link",
+      "label": "LinkedIn URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "stat_number", "label": "Number (e.g. 3,5M)", "default": "0" },
+        { "type": "text", "id": "stat_label", "label": "Label", "default": "Label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero Section",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "stat" }
+      ]
+    }
+  ]
+}
+{% endschema %}

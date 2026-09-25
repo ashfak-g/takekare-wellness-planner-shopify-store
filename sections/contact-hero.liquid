@@ -1,0 +1,364 @@
+{%- style -%}
+  .contact-section-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .contact-container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: clamp(440px, 55vw, 640px);
+    align-items: center;
+    gap: clamp(40px, 6vw, 80px);
+  }
+
+  @media screen and (max-width: 768px) {
+    .contact-container-{{ section.id }} {
+      grid-template-columns: 1fr;
+      /* remove top/bottom padding from container so image can be edge-to-edge */
+      padding: 0;
+      gap: 0;
+      min-height: auto; /* allow natural height on mobile */
+    }
+
+    /* reverse order: image first, then content below */
+    .contact-container-{{ section.id }} > .image-wrapper-{{ section.id }} {
+      order: 1;
+    }
+
+    .contact-container-{{ section.id }} > .contact-content-{{ section.id }} {
+      order: 2;
+      padding: 40px 24px 48px 24px; /* internal padding for text content */
+    }
+  }
+
+  .contact-content-{{ section.id }} {
+    padding: clamp(20px, 4vw, 100px) 0;
+  }
+
+  .subtitle-{{ section.id }} {
+    display: inline-block;
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .title-{{ section.id }} {
+    font-size: clamp(34px, 4vw, 58px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #0a0a0a;
+    margin-bottom: 24px;
+  }
+
+  .title-{{ section.id }} em {
+    font-style: italic;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .desc-{{ section.id }} {
+    font-size: 16px;
+    color: #5c564f;
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 36px;
+  }
+
+  .info-list-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-item-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #5c564f;
+  }
+
+  /* Image side */
+  .image-wrapper-{{ section.id }} {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Desktop border box */
+  .border-box-{{ section.id }} {
+    position: absolute;
+    top: 40px;
+    right: -24px;
+    width: calc(100% - 20px);
+    height: calc(100% - 80px);
+    border: 2px solid {{ section.settings.accent_color | color_modify: 'alpha', 0.15 }};
+    border-radius: 20px;
+    z-index: 0;
+  }
+
+  /* common image container */
+  .img-container-{{ section.id }} {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: clamp(380px, 48vw, 580px);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .img-container-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* floating badge remains as is */
+  .floating-badge-{{ section.id }} {
+    position: absolute;
+    bottom: 36px;
+    left: -20px;
+    z-index: 2;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* ----- MOBILE SPECIFIC OVERRIDES (image full width, white shadow gradient, image up top) ----- */
+  @media screen and (max-width: 768px) {
+    .image-wrapper-{{ section.id }} {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      /* remove any alignment constraints */
+      align-items: flex-start;
+    }
+
+    /* hide decorative border box on mobile */
+    .border-box-{{ section.id }} {
+      display: none;
+    }
+
+    .img-container-{{ section.id }} {
+  width: 100%;
+  height: 260px; /* adjust if needed */
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+    .img-container-{{ section.id }} img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+    /* Add the white gradient shadow (half visible effect) using pseudo-element */
+    .img-container-{{ section.id }} {
+      position: relative;
+    }
+
+    .img-container-{{ section.id }}::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;              /* covers bottom half, creates the "half visible" transition */
+      background: linear-gradient(to top, 
+        {{ section.settings.bg_color | color_modify: 'alpha', 0.9 }}, 
+        transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Remove the previous inline gradient (the one inside image-wrapper) to avoid duplicate */
+    .img-container-{{ section.id }} > div[style*="background: linear-gradient"] {
+      display: none;
+    }
+
+    .floating-badge-{{ section.id }} {
+  display: none !important;
+}
+  }
+
+  /* Ensure no extra top padding on section for mobile */
+  @media screen and (max-width: 768px) {
+    .contact-section-{{ section.id }} {
+      padding-top: 0;           /* no padding top on mobile, image touches top edge */
+      padding-bottom: 0;       /* we control bottom via content spacing */
+    }
+  }
+{%- endstyle -%}
+
+<section class="contact-section-{{ section.id }}">
+  <div class="contact-container-{{ section.id }}">
+    
+    <div class="contact-content-{{ section.id }}">
+      {% if section.settings.subtitle != blank %}
+        <div class="subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      
+      <h1 class="title-{{ section.id }}">
+        {{ section.settings.title }}
+      </h1>
+      
+      <div class="desc-{{ section.id }}">
+        {{ section.settings.description }}
+      </div>
+
+      <div class="info-list-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="info-item-{{ section.id }}">
+            <span style="font-size: 16px;">{{ block.settings.icon }}</span>
+            {{ block.settings.text }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="image-wrapper-{{ section.id }}">
+      <div class="border-box-{{ section.id }}"></div>
+      <div class="img-container-{{ section.id }}">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+        <!-- desktop gradient overlay kept for consistency, but hidden on mobile via media query -->
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, {{ section.settings.bg_color | color_modify: 'alpha', 0.6 }}, transparent);"></div>
+      </div>
+
+      {% if section.settings.badge_text_1 != blank %}
+      <div class="floating-badge-{{ section.id }}">
+        <div style="color: {{ section.settings.accent_color }}; font-size: 13px; font-weight: 600; margin-bottom: 4px;">{{ section.settings.badge_text_1 }}</div>
+        <div style="font-size: 13px; color: #0a0a0a; font-weight: 600;">{{ section.settings.badge_text_2 }}</div>
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Hero Custom",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e4032b"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Contacte-moi"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Parlons de<br><em>ton projet</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Tu as une question, un projet particulier..."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "header",
+      "content": "Floating Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_text_1",
+      "label": "Badge Red Text",
+      "default": "Réponse garantie"
+    },
+    {
+      "type": "text",
+      "id": "badge_text_2",
+      "label": "Badge Black Text",
+      "default": "sous 72h ouvrées"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Info Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji Icon",
+          "default": "✉️"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Contact par formulaire uniquement"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Hero Custom",
+      "blocks": [
+        { "type": "info" },
+        { "type": "info" },
+        { "type": "info" }
+      ]
+    }
+  ]
+}
+{% endschema %}

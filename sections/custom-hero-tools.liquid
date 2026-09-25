@@ -1,0 +1,164 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #e4032b;
+  }
+
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  .container-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-align: center;
+  }
+
+  .subtitle-{{ section.id }} {
+    font-family: var(--font-accent-val);
+    color: var(--primary-red);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .title-{{ section.id }} {
+    font-family: var(--font-display-val);
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .title-{{ section.id }} em {
+    font-style: italic;
+    color: var(--primary-red);
+    text-decoration: underline 3px rgba(228, 3, 43, 0.25);
+    text-underline-offset: 6px;
+  }
+
+  .description-{{ section.id }} {
+    font-size: 17px;
+    color: #5c564f;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Simple Slide Up Animation */
+  .anim-up {
+    animation: slideUp 0.8s ease out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="container-{{ section.id }}">
+    
+    {% if section.settings.subtitle != blank %}
+      <div class="subtitle-{{ section.id }} anim-up delay-1">
+        {{ section.settings.subtitle }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.title != blank %}
+      <h1 class="title-{{ section.id }} anim-up delay-2">
+        {{ section.settings.title }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="description-{{ section.id }} anim-up delay-3">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Tools Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "La boutique"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Heading",
+      "default": "Les Outils de la <em>Méthode</em>",
+      "info": "Use <em>text</em> for the red italic style. Use <br> for line breaks."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Shop les produits et outils digitaux pour appliquer la Méthode Structurée au quotidien."
+    },
+    {
+      "type": "header",
+      "content": "Section Styling"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 132
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Tools Hero"
+    }
+  ]
+}
+{% endschema %}

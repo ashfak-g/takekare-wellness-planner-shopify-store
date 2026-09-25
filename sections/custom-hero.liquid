@@ -1,0 +1,175 @@
+{%- style -%}
+  .custom-hero-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  .custom-hero-{{ section.id }} .sub-heading {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    /*font-family: serif;  You can link your specific theme font here */
+  }
+
+  .custom-hero-{{ section.id }} h1 {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 16px;
+  }
+
+  .custom-hero-{{ section.id }} h1 em {
+    font-family: Instrument Serif, Georgia, serif;
+    font-style: italic;
+    color: {{ section.settings.accent_color }};
+    text-decoration: underline 3px rgba(228, 3, 43, 0.25);
+    text-underline-offset: 6px;
+  }
+  .custom-hero-{{ section.id }} h1 em:hover {
+    color: rgb(246, 186, 203);
+  }
+
+  .custom-hero-{{ section.id }} .description {
+    font-size: 17px;
+    color: rgb(92, 86, 79);
+    max-width: 540px;
+    margin: 0px auto;
+    line-height: 1.7;
+  }
+  
+  @media (max-width: 768px) {
+    .custom-hero-{{ section.id }} .sub-heading {
+    font-size: 18px;
+    margin-bottom: 10px;/
+  }
+
+  .custom-hero-{{ section.id }} h1 {
+    font-size: 34px;
+    margin-bottom: 16px;
+  }
+
+  .custom-hero-{{ section.id }} .description {
+    font-size: 14px;
+  }
+
+  .custom-hero-{{ section.id }} {
+    padding-top: 32px;
+    padding-bottom: 32px !important;
+  }
+  }
+
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .text-center { text-align: center; }
+  .max-w-860 { max-width: 860px; }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+{%- endstyle -%}
+
+<section class="custom-hero-{{ section.id }}">
+  <div class="max-w-860 mx-auto px-6 text-center"
+ data-aos="fade-up"
+ data-aos-duration="900"
+ data-aos-easing="ease-out-cubic">
+    
+    {% if section.settings.sub_title != blank %}
+      <div class="sub-heading" data-aos="fade-up" data-aos-delay="50">{{ section.settings.sub_title }}</div>
+    {% endif %}
+
+    <h1 data-aos="fade-up" data-aos-delay="120">
+      {{ section.settings.title_main }} 
+      <em>{{ section.settings.title_italic }}</em>
+    </h1>
+
+    {% if section.settings.desc != blank %}
+      <p class="description" data-aos="fade-up" data-aos-delay="180">{{ section.settings.desc }}</p>
+    {% endif %}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Hero Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub-heading",
+      "default": "Sur mesure"
+    },
+    {
+      "type": "text",
+      "id": "title_main",
+      "label": "Main Title",
+      "default": "Accompagnement"
+    },
+    {
+      "type": "text",
+      "id": "title_italic",
+      "label": "Italic Title (Red)",
+      "default": "personnalisé"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description",
+      "default": "Conseil, développement sur mesure, interventions et conférences."
+    },
+    {
+      "type": "header",
+      "content": "Styling & Spacing"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 132
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero Section"
+    }
+  ]
+}
+{% endschema %}
