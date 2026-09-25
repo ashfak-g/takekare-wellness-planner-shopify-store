@@ -1,0 +1,227 @@
+{%- style -%}
+  .cta-section-{{ section.id }} {
+    position: relative;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background-color: #0a0a0a;
+  }
+
+  .cta-bg-image-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .cta-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+
+  .cta-container-{{ section.id }} {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .cta-subtitle-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #e4032b;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .cta-title-{{ section.id }} {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .cta-text-{{ section.id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .cta-button-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e4032b;
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+  }
+
+  .cta-button-{{ section.id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+
+  .cta-button-{{ section.id }} svg {
+    transition: transform 0.25s;
+  }
+
+  .cta-button-{{ section.id }}:hover svg {
+    transform: translateX(4px);
+  }
+{%- endstyle -%}
+
+<section class="cta-section-{{ section.id }}">
+  {%- comment -%} Assign image class to avoid syntax errors in image_tag {%- endcomment -%}
+  {%- assign image_class = 'cta-bg-image-' | append: section.id -%}
+
+  {% if section.settings.bg_image != blank %}
+    {{ section.settings.bg_image | image_url: width: 2000 | image_tag: class: image_class, loading: 'lazy' }}
+  {% else %}
+    {{ 'lifestyle-2' | placeholder_svg_tag: image_class }}
+  {% endif %}
+  
+  <div class="cta-overlay-{{ section.id }}"></div>
+
+  <div class="cta-container-{{ section.id }}" data-aos="fade-up">
+    {% if section.settings.subtitle != blank %}
+      <div class="cta-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+    {% endif %}
+    
+    {% if section.settings.title != blank %}
+      <h2 class="cta-title-{{ section.id }}">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="cta-text-{{ section.id }}">{{ section.settings.description }}</div>
+    {% endif %}
+    
+    {% if section.settings.selected_product != blank %}
+      {%- comment -%} Fetch product and variant ID for cart functionality {%- endcomment -%}
+      {%- assign product = all_products[section.settings.selected_product] -%}
+      {%- assign variant_id = product.selected_or_first_available_variant.id -%}
+      
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+        {%- comment -%} Input to add product to cart and redirect to cart page {%- endcomment -%}
+        <input type="hidden" name="id" value="{{ variant_id }}">
+        <input type="hidden" name="return_to" value="/cart">
+        
+        <button type="submit" class="cta-button-{{ section.id }}">
+          {{ section.settings.button_text }}
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Banner with Overlay",
+  "settings": [
+    {
+      "type": "product",
+      "id": "selected_product",
+      "label": "Select Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 62
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Prête ?"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Reprends le contrôle de ton quotidien"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Rejoins +500 femmes qui construisent, à leur rythme, un système pour reprendre la main sur leur quotidien."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Banner with Overlay"
+    }
+  ]
+}
+{% endschema %}

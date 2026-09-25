@@ -1,0 +1,253 @@
+{%- style -%}
+  /* Pulse Animation for Play Button */
+  @keyframes pulse-{{ section.id }} {
+    0% { box-shadow: 0 0 0 0 rgba(228, 3, 43, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(228, 3, 43, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(228, 3, 43, 0); }
+  }
+
+  .video-section-{{ section.id }} {
+    padding: clamp(80px, 10vw, 120px) 0 clamp(40px, 5vw, 56px);
+    background: {{ section.settings.bg_color }};
+    position: relative;
+    overflow: hidden;
+  }
+  .video-container-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .video-header-{{ section.id }} {
+    margin-bottom: 48px;
+  }
+  .video-badge-{{ section.id }} {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .video-title-{{ section.id }} {
+    font-size: clamp(26px, 3.5vw, 44px);
+    font-family: Instrument Serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+  }
+  .video-wrapper-{{ section.id }} {
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #111;
+    cursor: pointer;
+    display: block;
+  }
+  
+  /* Iframe styling */
+  .video-wrapper-{{ section.id }} iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .video-thumb-{{ section.id }}, .video-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: absolute;
+    z-index: 2;
+  }
+  .video-wrapper-{{ section.id }}:hover .video-thumb-{{ section.id }},
+  .video-wrapper-{{ section.id }}:hover .video-thumb-placeholder {
+    transform: scale(1.06);
+  }
+  .video-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 3;
+    transition: opacity 0.3s;
+  }
+  /* Hide overlay when video is playing */
+  .video-wrapper-{{ section.id }}.is-playing .video-overlay-{{ section.id }},
+  .video-wrapper-{{ section.id }}.is-playing .video-thumb-{{ section.id }},
+  .video-wrapper-{{ section.id }}.is-playing .video-thumb-placeholder {
+    display: none;
+  }
+
+  .play-button-{{ section.id }} {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse-{{ section.id }} 2s infinite;
+  }
+  .play-text-{{ section.id }} {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+{%- endstyle -%}
+
+<section class="video-section-{{ section.id }}">
+  <div class="video-container-{{ section.id }}">
+    
+    <div class="video-header-{{ section.id }}"
+ data-aos="fade-up">
+      {% if section.settings.badge != blank %}
+        <div class="video-badge-{{ section.id }}">{{ section.settings.badge }}</div>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h2 class="video-title-{{ section.id }}">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+  <div id="VideoWrapper-{{ section.id }}" class="video-wrapper-{{ section.id }}"
+ data-aos="fade-up" onclick="playVideo{{ section.id | replace: '-', '_' }}()">
+      
+      {% comment %} Thumbnail Area {% endcomment %}
+      {% if section.settings.thumbnail != blank %}
+        <img id="Thumb-{{ section.id }}" class="video-thumb-{{ section.id }}" 
+             src="{{ section.settings.thumbnail | image_url: width: 1400 }}" 
+             alt="{{ section.settings.title | escape }}" 
+             loading="lazy">
+      {% else %}
+        <div id="Thumb-{{ section.id }}" class="video-thumb-placeholder">
+           {{ 'lifestyle-2' | placeholder_svg_tag: 'video-thumb-placeholder' }}
+        </div>
+      {% endif %}
+
+      <div id="Overlay-{{ section.id }}" class="video-overlay-{{ section.id }}">
+        <div class="play-button-{{ section.id }}">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M8 5.14v14l11-7-11-7z" fill="#fff"></path>
+          </svg>
+        </div>
+        {% if section.settings.button_text != blank %}
+          <span class="play-text-{{ section.id }}"> {{ section.settings.button_text }}</span>
+        {% endif %}
+      </div>
+
+      {% comment %} Hidden Video Player Container {% endcomment %}
+      <div id="Player-{{ section.id }}"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function playVideo{{ section.id | replace: '-', '_' }}() {
+    const wrapper = document.getElementById('VideoWrapper-{{ section.id }}');
+    const playerDiv = document.getElementById('Player-{{ section.id }}');
+    
+    // Video ID extract from YouTube URL
+    const videoUrl = "{{ section.settings.video_url }}";
+    let videoId = "";
+    
+    if(videoUrl.includes('v=')) {
+      videoId = videoUrl.split('v=')[1].split('&')[0];
+    } else if(videoUrl.includes('youtu.be/')) {
+      videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+    }
+
+    // Add playing class to hide overlay/thumb
+    wrapper.classList.add('is-playing');
+
+    // Create Iframe
+    playerDiv.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Video Reveal Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (Small top text)",
+      "default": "Previous Editions"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading Title",
+      "default": "What our participants experience"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Play Button Label",
+      "default": "WATCH THE FILM"
+    },
+    {
+      "type": "header",
+      "content": "Video & Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumbnail",
+      "label": "Cover Image (Thumbnail)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video Link (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    },
+    {
+      "type": "header",
+      "content": "Colors & Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Badge/Play Button)",
+      "default": "#e4032b"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Reveal Banner"
+    }
+  ]
+}
+{% endschema %}
