@@ -1,0 +1,976 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+{% style %}
+  .ai-feature-section-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_bg_color }};
+    width: 100%;
+    display: block;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-feature-container-{{ ai_gen_id }} {
+    {% if block.settings.container_type == 'default' %}
+      max-width: 1280px;
+    {% elsif block.settings.container_type == 'full' %}
+      max-width: 100%;
+    {% elsif block.settings.container_type == 'custom' %}
+      max-width: {{ block.settings.custom_container_width }}px;
+    {% endif %}
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ai-feature-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .ai-feature-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-feature-subtitle-{{ ai_gen_id }} {
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+    color: {{ block.settings.subtitle_color }};
+    font-size: {{ block.settings.subtitle_size_desktop }}px;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px 0;
+  }
+
+  .ai-feature-heading-{{ ai_gen_id }} {
+    font-family: 'Instrument Serif', serif;
+    font-size: {{ block.settings.heading_size_desktop }}px;
+    line-height: 1.2;
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .ai-feature-description-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ block.settings.description_size_desktop }}px;
+    line-height: 1.6;
+    color: {{ block.settings.description_color }};
+    max-width: 500px;
+    margin: 18px 0 0 0;
+    font-weight: 400;
+  }
+
+  .ai-feature-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e30613;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 24px;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .ai-feature-button-{{ ai_gen_id }}:hover {
+    background-color: #b8050f;
+  }
+
+  .ai-feature-button-arrow-{{ ai_gen_id }} {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .ai-feature-list-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .ai-feature-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_bg_color }};
+    border: 1px solid {{ block.settings.card_border_color }};
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: border-color 0.3s ease;
+  }
+
+  .ai-feature-card-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.card_border_hover_color }};
+  }
+
+  .ai-feature-card-left-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .ai-feature-card-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    color: #333333;
+    margin-top: 2px;
+  }
+
+  .ai-feature-card-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-feature-card-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-feature-card-text-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-feature-card-title-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    color: {{ block.settings.card_title_color }};
+    font-size: {{ block.settings.card_title_size_desktop }}px;
+    margin: 0 0 4px 0;
+  }
+
+  .ai-feature-card-desc-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ block.settings.card_desc_size_desktop }}px;
+    color: {{ block.settings.card_desc_color }};
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .ai-feature-card-check-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: #e30613;
+    margin-top: 2px;
+  }
+
+  .ai-feature-card-check-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-feature-grid-{{ ai_gen_id }} {
+      gap: 50px;
+    }
+
+    .ai-feature-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size_tablet }}px;
+    }
+
+    .ai-feature-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size_tablet }}px;
+    }
+
+    .ai-feature-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size_tablet }}px;
+    }
+
+    .ai-feature-card-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.card_title_size_tablet }}px;
+    }
+
+    .ai-feature-card-desc-{{ ai_gen_id }} {
+      font-size: {{ block.settings.card_desc_size_tablet }}px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-feature-section-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top | divided_by: 1.5 }}px;
+      padding-bottom: {{ block.settings.padding_bottom | divided_by: 1.5 }}px;
+    }
+
+    .ai-feature-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-feature-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size_mobile }}px;
+    }
+
+    .ai-feature-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size_mobile }}px;
+    }
+
+    .ai-feature-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+
+    .ai-feature-card-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.card_title_size_mobile }}px;
+    }
+
+    .ai-feature-card-desc-{{ ai_gen_id }} {
+      font-size: {{ block.settings.card_desc_size_mobile }}px;
+    }
+
+    .ai-feature-button-{{ ai_gen_id }} {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ai-feature-list-{{ ai_gen_id }} {
+      gap: 16px;
+    }
+
+    .ai-feature-card-{{ ai_gen_id }} {
+      padding: 16px 18px;
+    }
+  }
+{% endstyle %}
+
+<feature-section-{{ ai_gen_id }} class="ai-feature-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-feature-container-{{ ai_gen_id }}">
+    <div class="ai-feature-grid-{{ ai_gen_id }}">
+      <div class="ai-feature-content-{{ ai_gen_id }}">
+        {% if block.settings.subtitle != blank %}
+          <div class="ai-feature-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+        {% endif %}
+
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-feature-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <p class="ai-feature-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+        {% endif %}
+
+        {% if block.settings.button_label != blank %}
+          <a href="{{ block.settings.button_link }}" class="ai-feature-button-{{ ai_gen_id }}">
+            {{ block.settings.button_label }}
+            <span class="ai-feature-button-arrow-{{ ai_gen_id }}">→</span>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="ai-feature-list-{{ ai_gen_id }}">
+        {% for i in (1..5) %}
+          {% liquid
+            assign title_key = 'feature_' | append: i | append: '_title'
+            assign desc_key = 'feature_' | append: i | append: '_description'
+            assign icon_key = 'feature_' | append: i | append: '_icon'
+            assign custom_icon_key = 'feature_' | append: i | append: '_custom_icon'
+            assign show_icon_key = 'feature_' | append: i | append: '_show_icon'
+            
+            assign feature_title = block.settings[title_key]
+            assign feature_desc = block.settings[desc_key]
+            assign feature_icon = block.settings[icon_key]
+            assign custom_icon = block.settings[custom_icon_key]
+            assign show_icon = block.settings[show_icon_key]
+          %}
+
+          {% if feature_title != blank %}
+            <div class="ai-feature-card-{{ ai_gen_id }}">
+              <div class="ai-feature-card-left-{{ ai_gen_id }}">
+                {% if show_icon %}
+                  <div class="ai-feature-card-icon-{{ ai_gen_id }}">
+                    {% if custom_icon != blank %}
+                      <img src="{{ custom_icon | image_url: width: 100 }}" alt="{{ feature_title }}" loading="lazy">
+                    {% else %}
+                      {% case feature_icon %}
+                        {% when 'target' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                          </svg>
+                        {% when 'video' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                          </svg>
+                        {% when 'document' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                          </svg>
+                        {% when 'chat' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                          </svg>
+                        {% when 'infinity' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18.178 8c1.654 0 2.822 1.166 2.822 2.82 0 1.655-1.168 2.82-2.822 2.82-1.653 0-2.821-1.165-2.821-2.82 0-.34.062-.665.177-.964l-2.688-1.548c-.697.794-1.722 1.319-2.846 1.319-1.124 0-2.149-.525-2.846-1.319L6.466 9.856c.115.299.177.624.177.964 0 1.655-1.168 2.82-2.821 2.82C2.168 13.64 1 12.475 1 10.82 1 9.166 2.168 8 3.822 8c1.124 0 2.149.525 2.846 1.319l2.688-1.548C9.241 7.472 9.179 7.147 9.179 6.807c0-1.654 1.168-2.82 2.821-2.82 1.654 0 2.822 1.166 2.822 2.82 0 .34-.062.665-.177.964l2.688 1.548C18.03 8.525 19.054 8 20.178 8z"></path>
+                          </svg>
+                      {% endcase %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                <div class="ai-feature-card-text-{{ ai_gen_id }}">
+                  <div class="ai-feature-card-title-{{ ai_gen_id }}">{{ feature_title }}</div>
+                  {% if feature_desc != blank %}
+                    <div class="ai-feature-card-desc-{{ ai_gen_id }}">{{ feature_desc }}</div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="ai-feature-card-check-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</feature-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FeatureSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('feature-section-{{ ai_gen_id }}', FeatureSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Feature section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "Container type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom container width",
+      "min": 1000,
+      "max": 1900,
+      "step": 10,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background color",
+      "default": "#f5f3ef"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Everything you need to grow your business</p>"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover the tools and features that will help you achieve your goals faster and more efficiently."
+    },
+    {
+      "type": "header",
+      "content": "Typography - Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Color",
+      "default": "#e30613"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Desktop size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_tablet",
+      "label": "Tablet size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Typography - Heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Desktop size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "heading_size_tablet",
+      "label": "Tablet size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Mobile size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Typography - Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Desktop size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_tablet",
+      "label": "Tablet size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "#ebe7e2"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#ebe7e2"
+    },
+    {
+      "type": "color",
+      "id": "card_border_hover_color",
+      "label": "Card border hover",
+      "default": "#e30613"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Typography - Card title"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "label": "Desktop size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_tablet",
+      "label": "Tablet size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Typography - Card description"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size_desktop",
+      "label": "Desktop size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size_tablet",
+      "label": "Tablet size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size_mobile",
+      "label": "Mobile size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Feature 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_1_show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_1_custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "select",
+      "id": "feature_1_icon",
+      "label": "Default icon",
+      "options": [
+        {
+          "value": "target",
+          "label": "Target"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
+        },
+        {
+          "value": "infinity",
+          "label": "Infinity"
+        }
+      ],
+      "default": "target"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Title",
+      "default": "Targeted Solutions"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_description",
+      "label": "Description",
+      "default": "Precision-focused tools for your needs"
+    },
+    {
+      "type": "header",
+      "content": "Feature 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_2_show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_2_custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "select",
+      "id": "feature_2_icon",
+      "label": "Default icon",
+      "options": [
+        {
+          "value": "target",
+          "label": "Target"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
+        },
+        {
+          "value": "infinity",
+          "label": "Infinity"
+        }
+      ],
+      "default": "video"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Title",
+      "default": "Video Tutorials"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_description",
+      "label": "Description",
+      "default": "Step-by-step guidance at your pace"
+    },
+    {
+      "type": "header",
+      "content": "Feature 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_3_show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_3_custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "select",
+      "id": "feature_3_icon",
+      "label": "Default icon",
+      "options": [
+        {
+          "value": "target",
+          "label": "Target"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
+        },
+        {
+          "value": "infinity",
+          "label": "Infinity"
+        }
+      ],
+      "default": "document"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Title",
+      "default": "Documentation"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_description",
+      "label": "Description",
+      "default": "Comprehensive guides and resources"
+    },
+    {
+      "type": "header",
+      "content": "Feature 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_4_show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_4_custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "select",
+      "id": "feature_4_icon",
+      "label": "Default icon",
+      "options": [
+        {
+          "value": "target",
+          "label": "Target"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
+        },
+        {
+          "value": "infinity",
+          "label": "Infinity"
+        }
+      ],
+      "default": "chat"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Title",
+      "default": "24/7 Support"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_description",
+      "label": "Description",
+      "default": "Always here when you need us"
+    },
+    {
+      "type": "header",
+      "content": "Feature 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_5_show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_5_custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "select",
+      "id": "feature_5_icon",
+      "label": "Default icon",
+      "options": [
+        {
+          "value": "target",
+          "label": "Target"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "document",
+          "label": "Document"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
+        },
+        {
+          "value": "infinity",
+          "label": "Infinity"
+        }
+      ],
+      "default": "infinity"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_title",
+      "label": "Title",
+      "default": "Unlimited Access"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_description",
+      "label": "Description",
+      "default": "No restrictions on your growth"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature section"
+    }
+  ]
+}
+{% endschema %}

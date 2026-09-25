@@ -1,0 +1,1037 @@
+{% comment %} 
+  Process Steps Section with Pure CSS Scroll-Triggered Fade-Up Animation
+  No external AOS library required. All animations are CSS-driven with Intersection Observer.
+{% endcomment %}
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+{% style %}
+/* ===== BASE STYLES ===== */
+.ai-process-section-{{ ai_gen_id }} {
+  display: block;
+  width: 100%;
+  background-color: {{ block.settings.section_background_color }};
+  padding-top: {{ block.settings.padding_top }}px;
+  padding-bottom: {{ block.settings.padding_bottom }}px;
+}
+
+.ai-process-container-{{ ai_gen_id }} {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  {% if block.settings.container_type == 'default' %}
+    max-width: 1280px;
+  {% elsif block.settings.container_type == 'full' %}
+    max-width: 100%;
+  {% elsif block.settings.container_type == 'custom' %}
+    max-width: {{ block.settings.custom_container_width }}px;
+  {% endif %}
+}
+
+.ai-process-header-{{ ai_gen_id }} {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.ai-process-subtitle-{{ ai_gen_id }} {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: {{ block.settings.subtitle_size_desktop }}px;
+  color: {{ block.settings.subtitle_color }};
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.ai-process-heading-{{ ai_gen_id }} {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: {{ block.settings.heading_size_desktop }}px;
+  line-height: 1.2;
+  color: {{ block.settings.heading_color }};
+  margin: 0 0 20px 0;
+}
+
+.ai-process-heading-{{ ai_gen_id }} h2,
+.ai-process-heading-{{ ai_gen_id }} h3,
+.ai-process-heading-{{ ai_gen_id }} p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+.ai-process-description-{{ ai_gen_id }} {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: {{ block.settings.description_size_desktop }}px;
+  line-height: 1.6;
+  color: {{ block.settings.description_color }};
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ai-process-grid-{{ ai_gen_id }} {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.ai-process-card-{{ ai_gen_id }} {
+  background-color: {{ block.settings.card_background }};
+  border-radius: 14px;
+  padding: 32px 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.ai-process-card-{{ ai_gen_id }}:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-color: {{ block.settings.card_border_hover_color }};
+}
+
+.ai-process-card-header-{{ ai_gen_id }} {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.ai-process-number-{{ ai_gen_id }} {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: {{ block.settings.number_background }};
+  color: {{ block.settings.number_color }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: {{ block.settings.card_number_size_desktop }}px;
+}
+
+.ai-process-card-title-{{ ai_gen_id }} {
+  flex: 1;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.ai-process-card-title-{{ ai_gen_id }} h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: {{ block.settings.card_title_size_desktop }}px;
+  line-height: 1.4;
+  color: {{ block.settings.card_title_color }};
+  margin: 0;
+}
+
+.ai-process-card-subtitle-{{ ai_gen_id }} {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: {{ block.settings.card_subtitle_size_desktop }}px;
+  color: {{ block.settings.card_subtitle_color }};
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.ai-process-card-description-{{ ai_gen_id }} {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: {{ block.settings.card_description_size_desktop }}px;
+  line-height: 1.7;
+  color: {{ block.settings.card_description_color }};
+  margin: 0;
+}
+
+.ai-process-cta-{{ ai_gen_id }} {
+  text-align: center;
+}
+
+.ai-process-button-{{ ai_gen_id }} {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: {{ block.settings.button_background }};
+  color: {{ block.settings.button_text_color }};
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 36px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-process-button-{{ ai_gen_id }}:hover {
+  background-color: {{ block.settings.button_hover_background }};
+  transform: scale(1.05);
+}
+
+.ai-process-button-icon-{{ ai_gen_id }} {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== PURE CSS SCROLL-TRIGGERED FADE-UP ANIMATION ===== */
+.ai-process-section-{{ ai_gen_id }} .anim {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ai-process-section-{{ ai_gen_id }} .anim.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay classes - applied after animation triggers */
+.ai-process-section-{{ ai_gen_id }} .delay-1.animated { transition-delay: 0.1s; }
+.ai-process-section-{{ ai_gen_id }} .delay-2.animated { transition-delay: 0.2s; }
+.ai-process-section-{{ ai_gen_id }} .delay-3.animated { transition-delay: 0.3s; }
+.ai-process-section-{{ ai_gen_id }} .delay-4.animated { transition-delay: 0.4s; }
+.ai-process-section-{{ ai_gen_id }} .delay-5.animated { transition-delay: 0.5s; }
+.ai-process-section-{{ ai_gen_id }} .delay-6.animated { transition-delay: 0.6s; }
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .ai-process-grid-{{ ai_gen_id }} {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ai-process-section-{{ ai_gen_id }} {
+    padding-top: {{ block.settings.padding_top_mobile }}px;
+    padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+  }
+
+  .ai-process-container-{{ ai_gen_id }} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .ai-process-header-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+  }
+
+  .ai-process-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size_mobile }}px;
+  }
+
+  .ai-process-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size_mobile }}px;
+  }
+
+  .ai-process-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size_mobile }}px;
+  }
+
+  .ai-process-grid-{{ ai_gen_id }} {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .ai-process-card-{{ ai_gen_id }} {
+    padding: 24px 20px;
+  }
+
+  .ai-process-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_number_size_mobile }}px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .ai-process-card-title-{{ ai_gen_id }} h3 {
+    font-size: {{ block.settings.card_title_size_mobile }}px;
+  }
+
+  .ai-process-card-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_subtitle_size_mobile }}px;
+  }
+
+  .ai-process-card-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_description_size_mobile }}px;
+  }
+
+  .ai-process-button-{{ ai_gen_id }} {
+    font-size: 15px;
+    padding: 14px 30px;
+    width: 100%;
+  }
+}
+{% endstyle %}
+
+<process-section-{{ ai_gen_id }} class="ai-process-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-process-container-{{ ai_gen_id }}">
+    <!-- Header with animation class -->
+    <div class="ai-process-header-{{ ai_gen_id }} anim delay-1">
+      {% if block.settings.subtitle != blank %}
+        <div class="ai-process-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+      {% endif %}
+
+      {% if block.settings.heading != blank %}
+        <div class="ai-process-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</div>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <p class="ai-process-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="ai-process-grid-{{ ai_gen_id }}">
+      {% if block.settings.step_1_number != blank %}
+        <div class="anim delay-1 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_1_number }}</div>
+            {% if block.settings.step_1_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_1_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_1_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_1_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_1_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_1_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.step_2_number != blank %}
+        <div class="anim delay-2 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_2_number }}</div>
+            {% if block.settings.step_2_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_2_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_2_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_2_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_2_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_2_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.step_3_number != blank %}
+        <div class="anim delay-3 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_3_number }}</div>
+            {% if block.settings.step_3_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_3_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_3_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_3_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_3_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_3_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.step_4_number != blank %}
+        <div class="anim delay-4 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_4_number }}</div>
+            {% if block.settings.step_4_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_4_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_4_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_4_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_4_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_4_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.step_5_number != blank %}
+        <div class="anim delay-5 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_5_number }}</div>
+            {% if block.settings.step_5_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_5_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_5_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_5_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_5_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_5_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.step_6_number != blank %}
+        <div class="anim delay-6 ai-process-card-{{ ai_gen_id }}">
+          <div class="ai-process-card-header-{{ ai_gen_id }}">
+            <div class="ai-process-number-{{ ai_gen_id }}">{{ block.settings.step_6_number }}</div>
+            {% if block.settings.step_6_title != blank %}
+              <div class="ai-process-card-title-{{ ai_gen_id }}">
+                <h3>{{ block.settings.step_6_title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.step_6_subtitle != blank %}
+            <div class="ai-process-card-subtitle-{{ ai_gen_id }}">{{ block.settings.step_6_subtitle }}</div>
+          {% endif %}
+          {% if block.settings.step_6_description != blank %}
+            <p class="ai-process-card-description-{{ ai_gen_id }}">{{ block.settings.step_6_description }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Call to Action with animation class -->
+    {% if block.settings.button_label != blank %}
+      <div class="anim delay-3 ai-process-cta-{{ ai_gen_id }}">
+        <a href="{{ block.settings.button_link }}" class="ai-process-button-{{ ai_gen_id }}">
+          {{ block.settings.button_label }}
+          <span class="ai-process-button-icon-{{ ai_gen_id }}">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.75 9H14.25M14.25 9L9 3.75M14.25 9L9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</process-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    'use strict';
+
+    // Pure CSS scroll-triggered animation without external libraries
+    function initScrollAnimations(container) {
+      if (!container) return;
+      
+      // Select all elements with .anim class inside this section
+      const animatedElements = container.querySelectorAll('.anim');
+      if (!animatedElements.length) return;
+
+      // Set up Intersection Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add 'animated' class to trigger CSS transition
+            entry.target.classList.add('animated');
+            // Stop observing once animated
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,        // Trigger when 15% of element is visible
+        rootMargin: '0px 0px -20px 0px'  // Slight offset for better UX
+      });
+
+      // Observe each animated element
+      animatedElements.forEach(el => observer.observe(el));
+    }
+
+    // Initialize for current section
+    const sectionElement = document.querySelector('.ai-process-section-{{ ai_gen_id }}');
+    if (sectionElement) {
+      initScrollAnimations(sectionElement);
+    }
+
+    // Shopify dynamic section reload support
+    document.addEventListener('shopify:section:load', function(event) {
+      const loadedSection = event.target;
+      if (loadedSection && loadedSection.classList && loadedSection.classList.contains('ai-process-section-{{ ai_gen_id }}')) {
+        initScrollAnimations(loadedSection);
+      }
+    });
+
+    // Also handle any DOM mutations (for theme builders that add content dynamically)
+    if (window.MutationObserver) {
+      const bodyObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList' && mutation.addedNodes.length) {
+            const sectionStillExists = document.querySelector('.ai-process-section-{{ ai_gen_id }}');
+            if (sectionStillExists && !sectionStillExists.hasAttribute('data-animation-initialized')) {
+              initScrollAnimations(sectionStillExists);
+              sectionStillExists.setAttribute('data-animation-initialized', 'true');
+            }
+          }
+        });
+      });
+      
+      // Only start observing after page load to avoid conflicts
+      window.addEventListener('load', function() {
+        const targetNode = document.querySelector('.ai-process-section-{{ ai_gen_id }}');
+        if (targetNode && !targetNode.hasAttribute('data-animation-initialized')) {
+          initScrollAnimations(targetNode);
+          targetNode.setAttribute('data-animation-initialized', 'true');
+        }
+        bodyObserver.observe(document.body, { childList: true, subtree: true });
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Process steps",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container settings"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "Container type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default (1280px)"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom container width",
+      "min": 1000,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "How it works"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Simple Steps to Get Started</p>"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Follow these easy steps to begin your journey with us"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Subtitle size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_number_size_desktop",
+      "label": "Card number size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "label": "Card title size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "card_subtitle_size_desktop",
+      "label": "Card subtitle size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "card_description_size_desktop",
+      "label": "Card description size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Typography - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "card_number_size_mobile",
+      "label": "Card number size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "label": "Card title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_subtitle_size_mobile",
+      "label": "Card subtitle size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "card_description_size_mobile",
+      "label": "Card description size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Step 1"
+    },
+    {
+      "type": "text",
+      "id": "step_1_number",
+      "label": "Number",
+      "default": "1"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "text",
+      "id": "step_1_subtitle",
+      "label": "Subtitle",
+      "default": "Select the perfect option"
+    },
+    {
+      "type": "text",
+      "id": "step_1_description",
+      "label": "Description",
+      "default": "Browse through our carefully curated plans and select the one that best fits your needs and budget."
+    },
+    {
+      "type": "header",
+      "content": "Step 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_number",
+      "label": "Number",
+      "default": "2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Title",
+      "default": "Create Account"
+    },
+    {
+      "type": "text",
+      "id": "step_2_subtitle",
+      "label": "Subtitle",
+      "default": "Quick registration"
+    },
+    {
+      "type": "text",
+      "id": "step_2_description",
+      "label": "Description",
+      "default": "Sign up in seconds with your email address. No complicated forms or lengthy verification processes."
+    },
+    {
+      "type": "header",
+      "content": "Step 3"
+    },
+    {
+      "type": "text",
+      "id": "step_3_number",
+      "label": "Number",
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Title",
+      "default": "Customize Settings"
+    },
+    {
+      "type": "text",
+      "id": "step_3_subtitle",
+      "label": "Subtitle",
+      "default": "Make it yours"
+    },
+    {
+      "type": "text",
+      "id": "step_3_description",
+      "label": "Description",
+      "default": "Personalize your experience with our intuitive dashboard. Adjust preferences to match your workflow."
+    },
+    {
+      "type": "header",
+      "content": "Step 4"
+    },
+    {
+      "type": "text",
+      "id": "step_4_number",
+      "label": "Number",
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "step_4_title",
+      "label": "Title",
+      "default": "Start Creating"
+    },
+    {
+      "type": "text",
+      "id": "step_4_subtitle",
+      "label": "Subtitle",
+      "default": "Begin your journey"
+    },
+    {
+      "type": "text",
+      "id": "step_4_description",
+      "label": "Description",
+      "default": "Access all features immediately and start bringing your ideas to life with our powerful tools."
+    },
+    {
+      "type": "header",
+      "content": "Step 5"
+    },
+    {
+      "type": "text",
+      "id": "step_5_number",
+      "label": "Number",
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "step_5_title",
+      "label": "Title",
+      "default": "Collaborate"
+    },
+    {
+      "type": "text",
+      "id": "step_5_subtitle",
+      "label": "Subtitle",
+      "default": "Work together"
+    },
+    {
+      "type": "text",
+      "id": "step_5_description",
+      "label": "Description",
+      "default": "Invite team members and collaborate in real-time. Share projects and get feedback instantly."
+    },
+    {
+      "type": "header",
+      "content": "Step 6"
+    },
+    {
+      "type": "text",
+      "id": "step_6_number",
+      "label": "Number",
+      "default": "6"
+    },
+    {
+      "type": "text",
+      "id": "step_6_title",
+      "label": "Title",
+      "default": "Launch & Grow"
+    },
+    {
+      "type": "text",
+      "id": "step_6_subtitle",
+      "label": "Subtitle",
+      "default": "Scale with confidence"
+    },
+    {
+      "type": "text",
+      "id": "step_6_description",
+      "label": "Description",
+      "default": "Deploy your projects with one click and watch your business grow with our scalable infrastructure."
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#f5f3ef"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_hover_color",
+      "label": "Card border on hover",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "number_background",
+      "label": "Number background",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Number text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "card_subtitle_color",
+      "label": "Card subtitle",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "card_description_color",
+      "label": "Card description",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#b8050f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process steps"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

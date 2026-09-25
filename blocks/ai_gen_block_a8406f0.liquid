@@ -1,0 +1,785 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&display=swap" rel="stylesheet">
+
+{% style %}
+  .ai-hero-section-{{ ai_gen_id }} {
+  display: block;
+  background-color: {{ block.settings.section_bg_color }};
+  padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+  width: 100%;
+}
+
+/* ✅ Reduce height on desktop */
+@media screen and (min-width: 1024px) {
+  .ai-hero-section-{{ ai_gen_id }} {
+    padding: 30px 20px 30px; /* adjust this value if needed */
+  }
+}
+
+  .ai-hero-container-{{ ai_gen_id }} {
+    {% if block.settings.container_type == 'default' %}
+      max-width: 1280px;
+    {% elsif block.settings.container_type == 'full' %}
+      max-width: 100%;
+    {% else %}
+      max-width: {{ block.settings.custom_container_width }}px;
+    {% endif %}
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .ai-hero-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-hero-subtitle-{{ ai_gen_id }} {
+    font-family: 'Caveat', cursive;
+    font-weight: 400;
+    font-size: 28px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ai-hero-heading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: {{ block.settings.heading_size }}px;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .ai-hero-heading-{{ ai_gen_id }} .text-black {
+    color: {{ block.settings.heading_black_color }};
+  }
+
+  .ai-hero-heading-{{ ai_gen_id }} .text-red {
+  color: {{ block.settings.heading_red_color }};
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.3s ease;
+}
+
+.ai-hero-heading-{{ ai_gen_id }} .text-red:hover {
+  color: #F6BACB;
+}
+
+  .ai-hero-description-{{ ai_gen_id }} {
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: {{ block.settings.body_font.weight }};
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+  }
+
+  .ai-hero-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .ai-hero-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    transform: translateX(4px);
+  }
+
+  .ai-hero-button-arrow-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-hero-button-{{ ai_gen_id }}:hover .ai-hero-button-arrow-{{ ai_gen_id }} {
+    transform: translateX(4px);
+  }
+
+  .ai-hero-image-wrapper-{{ ai_gen_id }} {
+  position: relative;
+}
+
+.ai-hero-image-wrapper-{{ ai_gen_id }}::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  background: {{ block.settings.border_color }};
+  border-radius: {{ block.settings.image_border_radius }}px;
+  z-index: 0;
+}
+
+/* ✅ Remove background on mobile
+@media screen and (max-width: 768px) {
+  .ai-hero-image-wrapper-{{ ai_gen_id }}::after {
+    display: none;
+  }
+}*/
+
+@media only screen and (max-width: 768px) {
+  /* For container */
+  .ai-hero-image-container-acxirmvh1dmdzwxb1waigenblocka8406f0tnxtwt {
+    width: 100% !important;
+    overflow: hidden !important;
+    display: block !important;
+    background: none;
+  }
+
+  /* For image in container*/
+  .ai-hero-image-container-acxirmvh1dmdzwxb1waigenblocka8406f0tnxtwt img {
+    width: 100% !important;
+    height: 290px !important; 
+    object-fit: cover !important;
+    object-position: top !important; /* cut in bottom */
+    display: block !important;
+  }
+
+  .ai-hero-image-wrapper-acxirmvh1dmdzwxb1waigenblocka8406f0tnxtwt::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-radius: 20px;
+    z-index: 0;
+}
+}
+
+  ..ai-hero-image-container-{{ ai_gen_id }} {
+  position: relative;
+  border-radius: {{ block.settings.image_border_radius }}px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  z-index: 1;
+}
+
+  .ai-hero-image-border-{{ ai_gen_id }} {
+    position: absolute;
+    top: {{ block.settings.border_offset }}px;
+    right: -{{ block.settings.border_width }}px;
+    width: 100%;
+    height: 100%;
+    background: {{ block.settings.border_color }};
+    border-radius: {{ block.settings.image_border_radius }}px;
+    z-index: 0;
+    opacity: {{ block.settings.border_opacity }};
+    pointer-events: none;
+  }
+
+  .ai-hero-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    filter: grayscale(0%);
+    transition: filter 0.4s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ai-hero-image-container-{{ ai_gen_id }}:hover .ai-hero-image-{{ ai_gen_id }} {
+    filter: grayscale(100%);
+  }
+
+  .ai-hero-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ai-hero-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-hero-badge-{{ ai_gen_id }} {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: ai-hero-float-{{ ai_gen_id }} 3s ease-in-out infinite;
+  }
+
+  .ai-hero-badge-number-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+    color: {{ block.settings.badge_number_color }};
+  }
+
+  .ai-hero-badge-text-{{ ai_gen_id }} {
+    margin: 0;
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    color: {{ block.settings.badge_text_color_custom }};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+  }
+
+  .ai-hero-quote-card-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 40px;
+    left: -40px;
+    background-color: {{ block.settings.quote_bg_color }};
+    padding: 24px 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-left: 4px solid {{ block.settings.quote_accent_color }};
+    max-width: 320px;
+    z-index: 3;
+    animation: ai-hero-bounce-{{ ai_gen_id }} 4s ease-in-out infinite;
+  }
+
+  .ai-hero-quote-text-{{ ai_gen_id }} {
+    font-family: 'Caveat', cursive;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    color: {{ block.settings.quote_text_color }};
+    margin: 0 0 12px 0;
+  }
+
+  .ai-hero-quote-author-{{ ai_gen_id }} {
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: 500;
+    font-size: 14px;
+    color: {{ block.settings.quote_author_color }};
+    margin: 0;
+  }
+
+  @keyframes ai-hero-float-{{ ai_gen_id }} {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes ai-hero-bounce-{{ ai_gen_id }} {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-hero-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-hero-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.6 }}px;
+    }
+
+    .ai-hero-subtitle-{{ ai_gen_id }} {
+      font-size: 22px;
+    }
+
+    .ai-hero-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+
+    .ai-hero-button-{{ ai_gen_id }} {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ai-hero-quote-card-{{ ai_gen_id }} {
+      position: static;
+      margin-top: 20px;
+      max-width: 100%;
+    }
+
+    .ai-hero-badge-{{ ai_gen_id }} {
+      top: 16px;
+      right: 16px;
+      padding: 10px 18px;
+      display: none;
+    }
+
+    .ai-hero-badge-number-{{ ai_gen_id }} {
+      font-size: 22px;
+    }
+
+    .ai-hero-badge-text-{{ ai_gen_id }} {
+      font-size: 10px;
+    }
+
+    .ai-hero-image-border-{{ ai_gen_id }} {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<hero-section-{{ ai_gen_id }} class="ai-hero-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-hero-container-{{ ai_gen_id }}">
+    <div class="ai-hero-content-{{ ai_gen_id }}">
+      {% if block.settings.subtitle != blank %}
+        <p class="ai-hero-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+      {% endif %}
+
+      {% if block.settings.heading_black != blank or block.settings.heading_red != blank %}
+        <h2 class="ai-hero-heading-{{ ai_gen_id }}">
+          {% if block.settings.heading_black != blank %}
+            <span class="text-black">{{ block.settings.heading_black }}</span>
+          {% endif %}
+          {% if block.settings.heading_red != blank %}
+            <span class="text-red">{{ block.settings.heading_red }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <p class="ai-hero-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+      {% endif %}
+
+      {% if block.settings.button_label != blank %}
+        <a href="{{ block.settings.button_link }}" class="ai-hero-button-{{ ai_gen_id }}">
+          {{ block.settings.button_label }}
+          <svg class="ai-hero-button-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-hero-image-wrapper-{{ ai_gen_id }}">
+      <div class="ai-hero-image-container-{{ ai_gen_id }}">
+        <div class="ai-hero-image-border-{{ ai_gen_id }}"></div>
+        
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 800 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            class="ai-hero-image-{{ ai_gen_id }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+          >
+        {% else %}
+          <div class="ai-hero-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.badge_number != blank or block.settings.badge_text != blank %}
+          <div class="ai-hero-badge-{{ ai_gen_id }}">
+            {% if block.settings.badge_number != blank %}
+              <span class="ai-hero-badge-number-{{ ai_gen_id }}">{{ block.settings.badge_number }}</span>
+            {% endif %}
+            {% if block.settings.badge_text != blank %}
+              <p class="ai-hero-badge-text-{{ ai_gen_id }}">{{ block.settings.badge_text | replace: ' ', '<br>' }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if block.settings.quote_text != blank %}
+        <div class="ai-hero-quote-card-{{ ai_gen_id }}">
+          <p class="ai-hero-quote-text-{{ ai_gen_id }}">"{{ block.settings.quote_text }}"</p>
+          {% if block.settings.quote_author != blank %}
+            <p class="ai-hero-quote-author-{{ ai_gen_id }}">— {{ block.settings.quote_author }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</hero-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class HeroSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('hero-section-{{ ai_gen_id }}', HeroSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero with quote",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "Container type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default (1280px)"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom container width",
+      "min": 1100,
+      "max": 1900,
+      "step": 10,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section background",
+      "default": "#f5f3ef"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_black",
+      "label": "Heading (black text)",
+      "default": "Discover Amazing"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_red",
+      "label": "Heading (red text with underline)",
+      "default": "Products Today"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Explore our curated collection of premium products designed to enhance your lifestyle. Quality meets affordability in every item we offer."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#F8DADB"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_offset",
+      "label": "Border offset",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "label": "Border opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.1
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_number",
+      "label": "Badge number",
+      "default": "+500"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "femmes accompagnées",
+      "info": "Use space to separate words for line break"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_number_color",
+      "label": "Badge number color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color_custom",
+      "label": "Badge text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Quote card"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote text",
+      "default": "This product changed my life! Absolutely love it."
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "Quote author",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "color",
+      "id": "quote_bg_color",
+      "label": "Quote card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quote_accent_color",
+      "label": "Quote accent border",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "quote_text_color",
+      "label": "Quote text",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "quote_author_color",
+      "label": "Quote author",
+      "default": "#5c564f"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "instrument_serif_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body font",
+      "default": "dm_sans_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "heading_black_color",
+      "label": "Heading black text",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "heading_red_color",
+      "label": "Heading red text",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description",
+      "default": "#5c564f"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#c8021f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#a00119"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero with quote"
+    }
+  ]
+}
+{% endschema %}

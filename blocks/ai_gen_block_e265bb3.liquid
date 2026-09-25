@@ -1,0 +1,755 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+{% style %}
+  .ai-comparison-section-{{ ai_gen_id }} {
+    background-color: {{ block.settings.section_bg_color }};
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    width: 100%;
+    display: block;
+  }
+
+  .ai-comparison-container-{{ ai_gen_id }} {
+    margin: 0 auto;
+    padding: 0 20px;
+    {% if block.settings.container_type == 'default' %}
+      max-width: 1280px;
+    {% elsif block.settings.container_type == 'full' %}
+      max-width: 100%;
+    {% elsif block.settings.container_type == 'custom' %}
+      max-width: {{ block.settings.custom_container_width }}px;
+    {% endif %}
+  }
+
+  .ai-comparison-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .ai-comparison-subtitle-{{ ai_gen_id }} {
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0 0 16px;
+  }
+
+  .ai-comparison-title-{{ ai_gen_id }} {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: {{ block.settings.title_size }}px;
+    line-height: 1.2;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 20px;
+  }
+
+  .ai-comparison-description-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-comparison-cards-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .ai-comparison-card-{{ ai_gen_id }} {
+    position: relative; /* needed for absolute arrow positioning */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .ai-comparison-card-top-{{ ai_gen_id }} {
+    background-color: {{ block.settings.before_bg_color }};
+    padding: 40px 24px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-comparison-card-bottom-{{ ai_gen_id }} {
+    background-color: {{ block.settings.after_bg_color }};
+    padding: 40px 24px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-comparison-icon-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .ai-comparison-icon-circle-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ai-comparison-icon-circle-before-{{ ai_gen_id }} {
+    background-color: {{ block.settings.before_icon_bg }};
+  }
+
+  .ai-comparison-icon-circle-after-{{ ai_gen_id }} {
+    background-color: {{ block.settings.after_icon_bg }};
+  }
+
+  .ai-comparison-icon-circle-{{ ai_gen_id }} svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .ai-comparison-label-before-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: {{ block.settings.before_label_size }}px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: {{ block.settings.before_label_color }};
+  }
+
+  .ai-comparison-label-after-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: {{ block.settings.after_label_size }}px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: {{ block.settings.after_label_color }};
+  }
+
+  /* text now starts directly under the icon (no left padding) */
+  .ai-comparison-text-wrapper-{{ ai_gen_id }} {
+    /* no padding – aligns with icon */
+  }
+
+  .ai-comparison-text-before-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: {{ block.settings.before_text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.before_text_color }};
+    margin: 0;
+  }
+
+  .ai-comparison-text-after-{{ ai_gen_id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: {{ block.settings.after_text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.after_text_color }};
+    margin: 0;
+  }
+
+  .ai-comparison-arrow-{{ ai_gen_id }} {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background-color: {{ block.settings.arrow_bg_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none; /* ensures arrow does not interfere with text selection */
+  }
+
+  .ai-comparison-arrow-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+    color: {{ block.settings.arrow_icon_color }};
+  }
+
+  @media (max-width: 1024px) {
+    .ai-comparison-cards-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .ai-comparison-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size_mobile }}px;
+    }
+
+    .ai-comparison-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+
+    .ai-comparison-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+
+    .ai-comparison-label-before-{{ ai_gen_id }} {
+      font-size: {{ block.settings.before_label_size_mobile }}px;
+    }
+
+    .ai-comparison-label-after-{{ ai_gen_id }} {
+      font-size: {{ block.settings.after_label_size_mobile }}px;
+    }
+
+    .ai-comparison-text-before-{{ ai_gen_id }} {
+      font-size: {{ block.settings.before_text_size_mobile }}px;
+    }
+
+    .ai-comparison-text-after-{{ ai_gen_id }} {
+      font-size: {{ block.settings.after_text_size_mobile }}px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ai-comparison-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top_mobile }}px 0 {{ block.settings.section_padding_bottom_mobile }}px;
+    }
+
+    .ai-comparison-cards-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-comparison-header-{{ ai_gen_id }} {
+      margin-bottom: 40px;
+    }
+
+    .ai-comparison-card-top-{{ ai_gen_id }},
+    .ai-comparison-card-bottom-{{ ai_gen_id }} {
+      padding: 32px 20px;
+      min-height: 150px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-comparison-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-comparison-container-{{ ai_gen_id }}">
+    <div class="ai-comparison-header-{{ ai_gen_id }}">
+      {% if block.settings.subtitle != blank %}
+        <div class="ai-comparison-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+      {% endif %}
+      {% if block.settings.title != blank %}
+        <h2 class="ai-comparison-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      {% endif %}
+      {% if block.settings.description != blank %}
+        <p class="ai-comparison-description-{{ ai_gen_id }}">{{ block.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-comparison-cards-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% assign before_text_key = 'before_text_' | append: i %}
+        {% assign after_text_key = 'after_text_' | append: i %}
+        {% assign before_label_key = 'before_label_' | append: i %}
+        {% assign after_label_key = 'after_label_' | append: i %}
+        {% assign before_text = block.settings[before_text_key] %}
+        {% assign after_text = block.settings[after_text_key] %}
+        {% assign before_label = block.settings[before_label_key] %}
+        {% assign after_label = block.settings[after_label_key] %}
+
+        <div class="ai-comparison-card-{{ ai_gen_id }}">
+          <div class="ai-comparison-card-top-{{ ai_gen_id }}">
+            <div class="ai-comparison-icon-wrapper-{{ ai_gen_id }}">
+              <div class="ai-comparison-icon-circle-{{ ai_gen_id }} ai-comparison-icon-circle-before-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="{{ block.settings.before_icon_color }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <span class="ai-comparison-label-before-{{ ai_gen_id }}">{{ before_label }}</span>
+            </div>
+            <div class="ai-comparison-text-wrapper-{{ ai_gen_id }}">
+              <p class="ai-comparison-text-before-{{ ai_gen_id }}">{{ before_text }}</p>
+            </div>
+          </div>
+
+          <div class="ai-comparison-arrow-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </div>
+
+          <div class="ai-comparison-card-bottom-{{ ai_gen_id }}">
+            <div class="ai-comparison-icon-wrapper-{{ ai_gen_id }}">
+              <div class="ai-comparison-icon-circle-{{ ai_gen_id }} ai-comparison-icon-circle-after-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="{{ block.settings.after_icon_color }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <span class="ai-comparison-label-after-{{ ai_gen_id }}">{{ after_label }}</span>
+            </div>
+            <div class="ai-comparison-text-wrapper-{{ ai_gen_id }}">
+              <p class="ai-comparison-text-after-{{ ai_gen_id }}">{{ after_text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Before after comparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "Container type",
+      "options": [
+        { "value": "default", "label": "Default (1280px)" },
+        { "value": "full", "label": "Full width" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom width",
+      "min": 1000,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Top padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Bottom padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Section colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background",
+      "default": "#f5f3ef"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Nos résultats"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Color",
+      "default": "#e30613"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Size mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Transformez votre peau avec nos soins experts</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Size mobile",
+      "min": 18,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Découvrez les résultats visibles de nos traitements professionnels"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color",
+      "default": "#5c564f"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Size mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "text",
+      "id": "before_label_1",
+      "label": "Before label",
+      "default": "Avant"
+    },
+    {
+      "type": "textarea",
+      "id": "before_text_1",
+      "label": "Before text",
+      "default": "Peau terne et fatiguée avec imperfections visibles"
+    },
+    {
+      "type": "text",
+      "id": "after_label_1",
+      "label": "After label",
+      "default": "Après"
+    },
+    {
+      "type": "textarea",
+      "id": "after_text_1",
+      "label": "After text",
+      "default": "Teint éclatant et unifié, peau visiblement rajeunie"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "text",
+      "id": "before_label_2",
+      "label": "Before label",
+      "default": "Avant"
+    },
+    {
+      "type": "textarea",
+      "id": "before_text_2",
+      "label": "Before text",
+      "default": "Rides marquées et perte de fermeté"
+    },
+    {
+      "type": "text",
+      "id": "after_label_2",
+      "label": "After label",
+      "default": "Après"
+    },
+    {
+      "type": "textarea",
+      "id": "after_text_2",
+      "label": "After text",
+      "default": "Peau lissée et raffermie, rides atténuées"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "text",
+      "id": "before_label_3",
+      "label": "Before label",
+      "default": "Avant"
+    },
+    {
+      "type": "textarea",
+      "id": "before_text_3",
+      "label": "Before text",
+      "default": "Texture irrégulière et pores dilatés"
+    },
+    {
+      "type": "text",
+      "id": "after_label_3",
+      "label": "After label",
+      "default": "Après"
+    },
+    {
+      "type": "textarea",
+      "id": "after_text_3",
+      "label": "After text",
+      "default": "Grain de peau affiné et pores resserrés"
+    },
+    {
+      "type": "header",
+      "content": "Before section style"
+    },
+    {
+      "type": "color",
+      "id": "before_bg_color",
+      "label": "Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "before_icon_bg",
+      "label": "Icon background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "before_icon_color",
+      "label": "Icon color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "before_label_color",
+      "label": "Label color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "before_label_size",
+      "label": "Label size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "before_label_size_mobile",
+      "label": "Label size mobile",
+      "min": 8,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "color",
+      "id": "before_text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "before_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "before_text_size_mobile",
+      "label": "Text size mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "After section style"
+    },
+    {
+      "type": "color",
+      "id": "after_bg_color",
+      "label": "Background",
+      "default": "#F7BAC2"
+    },
+    {
+      "type": "color",
+      "id": "after_icon_bg",
+      "label": "Icon background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "after_icon_color",
+      "label": "Icon color",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "after_label_color",
+      "label": "Label color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "after_label_size",
+      "label": "Label size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "after_label_size_mobile",
+      "label": "Label size mobile",
+      "min": 8,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "color",
+      "id": "after_text_color",
+      "label": "Text color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "after_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "after_text_size_mobile",
+      "label": "Text size mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Arrow circle"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Background",
+      "default": "#e30613"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before after comparison"
+    }
+  ]
+}
+{% endschema %}

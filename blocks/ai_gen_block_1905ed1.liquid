@@ -1,0 +1,1294 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-tabbed-collections-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-tabbed-collections-container-{{ ai_gen_id }} {
+    {% if block.settings.container_width == 'page' %}
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    {% else %}
+      width: 100%;
+      padding: 0 20px;
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-tabbed-collections-heading-{{ ai_gen_id }} {
+    font-size: 42px;
+    margin: 0 0 12px;
+    color: rgb(var(--color-heading-text));
+    font-family: var(--font-heading-family);
+  }
+
+  .ai-tabbed-collections-subheading-{{ ai_gen_id }} {
+    font-size: 16px;
+    color: rgb(var(--color-subtext));
+    margin: 0;
+  }
+
+  .ai-tabbed-collections-tabs-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    {% if block.settings.tab_alignment == 'center' %}
+      justify-content: center;
+    {% elsif block.settings.tab_alignment == 'right' %}
+      justify-content: flex-end;
+    {% else %}
+      justify-content: flex-start;
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-tabs-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-tabbed-collections-tab-{{ ai_gen_id }} {
+    padding: 12px 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    color: {{ block.settings.inactive_tab_color }};
+    {% if block.settings.tab_style == 'underline' %}
+      border-bottom: 2px solid transparent;
+    {% elsif block.settings.tab_style == 'pills' %}
+      border-radius: 50px;
+    {% elsif block.settings.tab_style == 'buttons' %}
+      border-radius: {{ block.settings.button_border_radius }}px;
+      border: 1px solid {{ block.settings.inactive_tab_color }};
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-tab-{{ ai_gen_id }}.active {
+    color: {{ block.settings.active_tab_color }};
+    {% if block.settings.tab_style == 'underline' %}
+      border-bottom-color: {{ block.settings.active_tab_color }};
+    {% elsif block.settings.tab_style == 'pills' %}
+      background-color: {{ block.settings.active_tab_color }};
+      color: #ffffff;
+    {% elsif block.settings.tab_style == 'buttons' %}
+      background-color: {{ block.settings.active_tab_color }};
+      color: #ffffff;
+      border-color: {{ block.settings.active_tab_color }};
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-content-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-tabbed-collections-content-{{ ai_gen_id }}.active {
+    display: block;
+    {% if block.settings.enable_animations %}
+      animation: ai-fade-in-{{ ai_gen_id }} 0.4s ease;
+    {% endif %}
+  }
+
+  {% if block.settings.enable_animations %}
+    @keyframes ai-fade-in-{{ ai_gen_id }} {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  {% endif %}
+
+  .ai-tabbed-collections-featured-{{ ai_gen_id }} {
+    margin-bottom: 40px;
+    {% if block.settings.enable_shadows %}
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    {% endif %}
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    background: #fbf8f4;
+  }
+
+  .ai-tabbed-collections-featured-inner-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    aspect-ratio: 16 / 2;
+  }
+
+  .ai-tabbed-collections-featured-image-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    {% if block.settings.featured_image_position == 'right' %}
+      order: 2;
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-featured-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    {% if block.settings.featured_image_ratio == 'square' %}
+      aspect-ratio: 1 / 1;
+    {% elsif block.settings.featured_image_ratio == 'portrait' %}
+      aspect-ratio: 3 / 4;
+    {% elsif block.settings.featured_image_ratio == 'landscape' %}
+      aspect-ratio: 4 / 3;
+    {% endif %}
+    transition: transform 0.3s ease;
+  }
+
+  {% if block.settings.enable_secondary_image %}
+    .ai-tabbed-collections-featured-image-{{ ai_gen_id }}:hover img:first-child {
+      opacity: 0;
+    }
+
+    .ai-tabbed-collections-featured-image-{{ ai_gen_id }} img:last-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .ai-tabbed-collections-featured-image-{{ ai_gen_id }}:hover img:last-child {
+      opacity: 1;
+    }
+  {% endif %}
+
+  .ai-tabbed-collections-featured-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: {{ block.settings.active_tab_color }};
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .ai-tabbed-collections-featured-info-{{ ai_gen_id }} {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ai-tabbed-collections-featured-title-{{ ai_gen_id }} {
+    font-size: 28px;
+    margin: 0 0 12px;
+    font-weight: 600;
+    color: rgb(var(--color-heading-text));
+  }
+
+  .ai-tabbed-collections-featured-price-{{ ai_gen_id }} {
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #e4032b;
+  }
+
+  .ai-tabbed-collections-featured-desc-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgb(var(--color-subtext));
+    margin-bottom: 24px;
+  }
+
+  .ai-tabbed-collections-featured-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid {{ block.settings.button_color }};
+    text-align: center;
+  }
+
+  .ai-tabbed-collections-featured-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    border-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-tabbed-collections-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .ai-tabbed-collections-card-{{ ai_gen_id }} {
+    {% if block.settings.enable_shadows %}
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    {% endif %}
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  {% if block.settings.enable_hover_effect %}
+    .ai-tabbed-collections-card-{{ ai_gen_id }}:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+  {% endif %}
+
+  .ai-tabbed-collections-card-image-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-tabbed-collections-card-image-{{ ai_gen_id }} img {
+    width: 100%;
+    display: block;
+    {% if block.settings.card_image_ratio == 'square' %}
+      aspect-ratio: 1 / 1;
+    {% elsif block.settings.card_image_ratio == 'portrait' %}
+      aspect-ratio: 3 / 4;
+    {% elsif block.settings.card_image_ratio == 'landscape' %}
+      aspect-ratio: 4 / 3;
+    {% endif %}
+    object-fit: cover;
+  }
+
+  .ai-tabbed-collections-card-content-{{ ai_gen_id }} {
+    padding: 20px;
+  }
+
+  .ai-tabbed-collections-card-title-{{ ai_gen_id }} {
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 600;
+    color: rgb(var(--color-heading-text));
+  }
+
+  .ai-tabbed-collections-card-price-{{ ai_gen_id }} {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: rgb(var(--color-text));
+  }
+
+  .ai-tabbed-collections-card-desc-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(var(--color-subtext));
+    margin-bottom: 16px;
+  }
+
+  /* .ai-tabbed-collections-card-button-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    {% if block.settings.button_style == 'filled' %}
+      background-color: {{ block.settings.button_color }};
+      color: {{ block.settings.button_text_color }};
+      border: 2px solid {{ block.settings.button_color }};
+    {% else %}
+      background-color: transparent;
+      color: {{ block.settings.button_color }};
+      border: 2px solid {{ block.settings.button_color }};
+    {% endif %}
+  }
+
+  .ai-tabbed-collections-card-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: #ffffff;
+    border-color: {{ block.settings.button_hover_color }};
+  } */
+
+
+
+
+/* Base card */
+.ai-tabbed-collections-card-{{ ai_gen_id }} {
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Button base (outline style) */
+.ai-tabbed-collections-card-button-{{ ai_gen_id }} {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1.5px solid #e30613;
+  color: #e30613;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* 🔥 HOVER EFFECT ON CARD */
+.ai-tabbed-collections-card-{{ ai_gen_id }}:hover {
+  border-color: #e30613;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Optional: slightly scale image */
+.ai-tabbed-collections-card-{{ ai_gen_id }}:hover img {
+  transform: scale(1.03);
+}
+
+/* Smooth image transition */
+.ai-tabbed-collections-card-{{ ai_gen_id }} img {
+  transition: transform 0.4s ease;
+  border-radius: 12px;
+}
+
+/* 🔴 Button changes when card is hovered */
+.ai-tabbed-collections-card-{{ ai_gen_id }}:hover 
+.ai-tabbed-collections-card-button-{{ ai_gen_id }} {
+  background: #e30613;
+  color: #fff;
+  border-color: #e30613;
+}
+
+/* Optional: arrow move animation */
+.ai-tabbed-collections-card-button-{{ ai_gen_id }} svg {
+  transition: transform 0.3s ease;
+}
+
+.ai-tabbed-collections-card-{{ ai_gen_id }}:hover 
+.ai-tabbed-collections-card-button-{{ ai_gen_id }} svg {
+  transform: translateX(4px);
+}
+
+
+
+/* Container */
+.ai-tabbed-collections-tabs-{{ ai_gen_id }} .button-group {
+  display: inline-flex;
+  background: #fbf8f4; /* light grey background */
+  padding: 6px;
+  border-radius: 12px; /* pill shape */
+  gap: 4px;
+}
+
+/* Default tab */
+.ai-tabbed-collections-tab-{{ ai_gen_id }} {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b6b6b; /* muted text */
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Active tab */
+.ai-tabbed-collections-tab-{{ ai_gen_id }}.active {
+  background: #ffffff;
+  color: #e60023; /* red text like image */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Optional hover effect */
+.ai-tabbed-collections-tab-{{ ai_gen_id }}:hover {
+  color: #e60023;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .ai-tabbed-collections-empty-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgb(var(--color-subtext));
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-tabbed-collections-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-tabbed-collections-heading-{{ ai_gen_id }} {
+      font-size: 32px;
+    }
+
+    .ai-tabbed-collections-featured-inner-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-tabbed-collections-featured-image-{{ ai_gen_id }} {
+      order: 1 !important;
+    }
+
+    .ai-tabbed-collections-featured-info-{{ ai_gen_id }} {
+      padding: 24px;
+    }
+
+    .ai-tabbed-collections-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .ai-tabbed-collections-tabs-{{ ai_gen_id }} {
+      justify-content: flex-start !important;
+    }
+  }
+{% endstyle %}
+
+<ai-tabbed-collections-{{ ai_gen_id }} class="ai-tabbed-collections-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-tabbed-collections-container-{{ ai_gen_id }}">
+    {% if block.settings.section_heading != blank or block.settings.section_subheading != blank %}
+      <div class="ai-tabbed-collections-header-{{ ai_gen_id }}">
+        {% if block.settings.section_heading != blank %}
+          <h2 class="ai-tabbed-collections-heading-{{ ai_gen_id }}">{{ block.settings.section_heading }}</h2>
+        {% endif %}
+        {% if block.settings.section_subheading != blank %}
+          <p class="ai-tabbed-collections-subheading-{{ ai_gen_id }}">{{ block.settings.section_subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% liquid
+      assign active_tabs = ''
+      for i in (1..6)
+        assign tab_label_key = 'tab_' | append: i | append: '_label'
+        assign tab_collection_key = 'tab_' | append: i | append: '_collection'
+        assign tab_label = block.settings[tab_label_key]
+        assign tab_collection = block.settings[tab_collection_key]
+        if tab_label != blank and tab_collection != blank
+          if active_tabs == ''
+            assign active_tabs = i | append: ''
+          else
+            assign active_tabs = active_tabs | append: ',' | append: i
+          endif
+        endif
+      endfor
+      assign tabs_array = active_tabs | split: ','
+    %}
+
+    {% if tabs_array.size > 0 %}
+      <div class="ai-tabbed-collections-tabs-{{ ai_gen_id }}" role="tablist">
+        <div class="button-group">
+
+
+{% for tab_index in tabs_array %}
+          {% assign tab_label_key = 'tab_' | append: tab_index | append: '_label' %}
+          {% assign tab_label = block.settings[tab_label_key] %}
+          <button
+            class="ai-tabbed-collections-tab-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-tab="{{ tab_index }}"
+          >
+            {{ tab_label }}
+          </button>
+        {% endfor %}
+
+
+
+        </div>
+      </div>
+
+      {% for tab_index in tabs_array %}
+        {% liquid
+          assign tab_collection_key = 'tab_' | append: tab_index | append: '_collection'
+          assign tab_max_products_key = 'tab_' | append: tab_index | append: '_max_products'
+          assign tab_badge_key = 'tab_' | append: tab_index | append: '_badge_text'
+          assign tab_cta_label_key = 'tab_' | append: tab_index | append: '_cta_label'
+          assign tab_cta_link_key = 'tab_' | append: tab_index | append: '_cta_link'
+
+          assign collection = block.settings[tab_collection_key]
+          assign max_products = block.settings[tab_max_products_key]
+          assign badge_text = block.settings[tab_badge_key]
+          assign cta_label = block.settings[tab_cta_label_key]
+          assign cta_link = block.settings[tab_cta_link_key]
+        %}
+
+        <div
+          class="ai-tabbed-collections-content-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+          role="tabpanel"
+          data-content="{{ tab_index }}"
+        >
+          {% if collection != blank and collection.products.size > 0 %}
+            {% assign featured_product = collection.products.first %}
+            {% assign remaining_count = max_products | minus: 1 %}
+
+            <div class="ai-tabbed-collections-featured-{{ ai_gen_id }}">
+              <div class="ai-tabbed-collections-featured-inner-{{ ai_gen_id }}">
+                <div class="ai-tabbed-collections-featured-image-{{ ai_gen_id }}">
+                  {% if block.settings.show_featured_badge and badge_text != blank %}
+                    <div class="ai-tabbed-collections-featured-badge-{{ ai_gen_id }}">{{ badge_text }}</div>
+                  {% endif %}
+                  {% if featured_product.featured_image %}
+                    <img
+                      src="{{ featured_product.featured_image | image_url: width: 800 }}"
+                      alt="{{ featured_product.featured_image.alt | escape }}"
+                      loading="lazy"
+                      width="800"
+                      height="800"
+                    >
+                    {% if block.settings.enable_secondary_image and featured_product.images[1] %}
+                      <img
+                        src="{{ featured_product.images[1] | image_url: width: 800 }}"
+                        alt="{{ featured_product.images[1].alt | escape }}"
+                        loading="lazy"
+                        width="800"
+                        height="800"
+                      >
+                    {% endif %}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="ai-tabbed-collections-featured-info-{{ ai_gen_id }}">
+                  <h3 class="ai-tabbed-collections-featured-title-{{ ai_gen_id }}">{{ featured_product.title }}</h3>
+                  <div class="ai-tabbed-collections-featured-price-{{ ai_gen_id }}">{{ featured_product.price | money }}</div>
+                  {% if block.settings.show_featured_description and featured_product.description != blank %}
+                    {% assign desc_length = block.settings.featured_description_length %}
+                    {% assign truncated_desc = featured_product.description | strip_html | truncate: desc_length %}
+                    <div class="ai-tabbed-collections-featured-desc-{{ ai_gen_id }}">{{ truncated_desc }}</div>
+                  {% endif %}
+                  {% if cta_label != blank %}
+                    <a
+                      href="{% if cta_link != blank %}{{ cta_link }}{% else %}{{ featured_product.url }}{% endif %}"
+                      class="ai-tabbed-collections-featured-button-{{ ai_gen_id }}"
+                    >
+                      {% comment %} {{ cta_label }} {% endcomment %} Discover the Planner
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            {% if collection.products.size > 1 %}
+              <div class="ai-tabbed-collections-grid-{{ ai_gen_id }}">
+                {% for product in collection.products offset: 1 limit: remaining_count %}
+                  <div class="ai-tabbed-collections-card-{{ ai_gen_id }}">
+                    {% if block.settings.show_card_image %}
+                      <div class="ai-tabbed-collections-card-image-{{ ai_gen_id }}">
+                        {% if product.featured_image %}
+                          <img
+                            src="{{ product.featured_image | image_url: width: 600 }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="600"
+                            height="600"
+                          >
+                        {% else %}
+                          {{ 'product-1' | placeholder_svg_tag }}
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    <div class="ai-tabbed-collections-card-content-{{ ai_gen_id }}">
+                      {% if block.settings.show_card_title %}
+                        <h4 class="ai-tabbed-collections-card-title-{{ ai_gen_id }}">{{ product.title }}</h4>
+                      {% endif %}
+                      {% if block.settings.show_card_price %}
+                        <div class="ai-tabbed-collections-card-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                      {% endif %}
+                      {% if block.settings.show_card_description and product.description != blank %}
+                        {% assign card_desc_length = block.settings.card_description_length %}
+                        {% assign card_truncated_desc = product.description | strip_html | truncate: card_desc_length %}
+                        <div class="ai-tabbed-collections-card-desc-{{ ai_gen_id }}">{{ card_truncated_desc }}</div>
+                      {% endif %}
+                      {% if block.settings.show_card_button and cta_label != blank %}
+                        <a href="{{ product.url }}" class="ai-tabbed-collections-card-button-{{ ai_gen_id }}">
+                          {% comment %} {{ cta_label }} {% endcomment %} Discover
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="ai-tabbed-collections-empty-{{ ai_gen_id }}">
+              <p>No products found in this collection. Please select a collection with products.</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="ai-tabbed-collections-empty-{{ ai_gen_id }}">
+        <p>Please configure at least one tab with a collection in the block settings.</p>
+      </div>
+    {% endif %}
+  </div>
+</ai-tabbed-collections-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AiTabbedCollections{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.tabs = this.querySelectorAll('.ai-tabbed-collections-tab-{{ ai_gen_id }}');
+        this.contents = this.querySelectorAll('.ai-tabbed-collections-content-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            this.switchTab(tabId);
+          });
+        });
+      }
+
+      switchTab(tabId) {
+        this.tabs.forEach((tab) => {
+          const isActive = tab.getAttribute('data-tab') === tabId;
+          tab.classList.toggle('active', isActive);
+          tab.setAttribute('aria-selected', isActive);
+        });
+
+        this.contents.forEach((content) => {
+          const isActive = content.getAttribute('data-content') === tabId;
+          content.classList.toggle('active', isActive);
+        });
+      }
+    }
+
+    customElements.define('ai-tabbed-collections-{{ ai_gen_id }}', AiTabbedCollections{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Tabbed collections",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Shop by collection"
+    },
+    {
+      "type": "text",
+      "id": "section_subheading",
+      "label": "Subheading",
+      "default": "Discover our curated collections"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "page",
+          "label": "Page width"
+        }
+      ],
+      "default": "page"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadows",
+      "label": "Enable shadows",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Tab 1"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "Label",
+      "default": "New arrivals"
+    },
+    {
+      "type": "collection",
+      "id": "tab_1_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_1_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_1_badge_text",
+      "label": "Featured badge text",
+      "default": "New"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Tab 2"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "Label",
+      "default": "Best sellers"
+    },
+    {
+      "type": "collection",
+      "id": "tab_2_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_2_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_2_badge_text",
+      "label": "Featured badge text",
+      "default": "Popular"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Tab 3"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_label",
+      "label": "Label",
+      "default": "Sale"
+    },
+    {
+      "type": "collection",
+      "id": "tab_3_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_3_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_3_badge_text",
+      "label": "Featured badge text",
+      "default": "Sale"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Tab 4"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_4_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_4_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_4_badge_text",
+      "label": "Featured badge text"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Tab 5"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_5_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_5_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_5_badge_text",
+      "label": "Featured badge text"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Tab 6"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_6_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "tab_6_max_products",
+      "label": "Max products",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "tab_6_badge_text",
+      "label": "Featured badge text"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_cta_label",
+      "label": "CTA button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_cta_link",
+      "label": "CTA link override"
+    },
+    {
+      "type": "header",
+      "content": "Featured product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "featured_description_length",
+      "label": "Description length",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 150
+    },
+    {
+      "type": "select",
+      "id": "featured_image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "select",
+      "id": "featured_image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_secondary_image",
+      "label": "Secondary image on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_image",
+      "label": "Show image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_description_length",
+      "label": "Description length",
+      "min": 30,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "filled",
+          "label": "Filled"
+        },
+        {
+          "value": "outline",
+          "label": "Outline"
+        }
+      ],
+      "default": "filled"
+    },
+    {
+      "type": "select",
+      "id": "card_image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover_effect",
+      "label": "Enable hover effect",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Primary color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Tab navigation"
+    },
+    {
+      "type": "select",
+      "id": "tab_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "tab_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "pills",
+          "label": "Pills"
+        },
+        {
+          "value": "buttons",
+          "label": "Buttons"
+        }
+      ],
+      "default": "underline"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_color",
+      "label": "Active tab color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "inactive_tab_color",
+      "label": "Inactive tab color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed collections"
+    }
+  ]
+}
+{% endschema %}
