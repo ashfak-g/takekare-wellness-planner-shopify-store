@@ -1,0 +1,255 @@
+{%- style -%}
+  .retreat-section-{{ section.id }} {
+    /* Custom padding values from settings */
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    
+    background: {{ section.settings.bg_color }};
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+  }
+
+  /* Mobile adjustment: reduce padding automatically on smaller screens */
+  @media (max-width: 768px) {
+    .retreat-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | times: 0.6 | round }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.6 | round }}px;
+    }
+  }
+
+  .retreat-bg-overlay {
+    position: absolute;
+    inset: 0;
+    {% if section.settings.image != blank %}
+      background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
+    {% endif %}
+    background-size: cover;
+    background-position: center;
+    opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  .retreat-container {
+    max-width: 1100px !important;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .retreat-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .retreat-subtitle {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .retreat-title {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .retreat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .retreat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .retreat-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 20px 24px;
+    transition: 0.3s;
+    backdrop-filter: blur(24px);
+  }
+
+  .retreat-card:hover {
+    background: rgba(228, 3, 43, 0.1);
+    border: 1px solid rgba(228, 3, 43, 0.5);
+  }
+
+  .retreat-arrow {
+    color: {{ section.settings.accent_color }};
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .retreat-card-text {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .retreat-footer-note {
+    margin-top: 40px;
+    text-align: center;
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+  }
+{%- endstyle -%}
+
+<section class="retreat-section-{{ section.id }}">
+  <div class="retreat-bg-overlay"></div>
+
+  <div class="retreat-container">
+    <div class="retreat-header" data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <div class="retreat-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      <h2 class="retreat-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="retreat-grid">
+      {% for block in section.blocks %}
+        {%- comment -%} Corrected: shopify_attributes moved inside the div tag {%- endcomment -%}
+        <div class="retreat-card" data-aos="fade-up" {{ block.shopify_attributes }}>
+          <span class="retreat-arrow">→</span>
+          <p class="retreat-card-text">{{ block.settings.item_text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.footer_text != blank %}
+      <div class="retreat-footer-note">
+        <p>{{ section.settings.footer_text }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Retreat - Who is it for",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1c1610"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Arrows/Subtitle)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background Image Opacity",
+      "default": 55
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Pour qui"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Cette retraite est faite pour toi si…"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Disclaimer",
+      "default": "Cette retraite n'est pas pour toi si tu cherches uniquement un week-end de détente ou une retraite spirituelle."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit/Condition",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "item_text",
+          "label": "Text",
+          "default": "Tu as l'impression de courir après le temps sans jamais le rattraper"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Retreat Who Is It For",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" }
+      ]
+    }
+  ]
+}
+{% endschema %}

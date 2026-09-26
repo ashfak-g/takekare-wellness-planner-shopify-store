@@ -1,0 +1,416 @@
+{%- style -%}
+  .timeline-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .timeline-sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgb(138, 129, 120);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .timeline-title {
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: rgb(10, 10, 10);
+  }
+
+  /* Desktop: Center line with alternating content */
+  .timeline-wrapper {
+    position: relative;
+  }
+
+  .timeline-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(228, 3, 43, 0.2);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 72px;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .timeline-dot-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+  .timeline-dot {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: {{ section.settings.accent_color }};
+  border: 3px solid {{ section.settings.background_color }};
+  box-shadow: {{ section.settings.accent_color }} 0px 0px 0px 2px;
+}
+
+  .timeline-content-left {
+    padding-right: 48px;
+    text-align: right;
+  }
+
+  .timeline-content-right {
+    padding-left: 48px;
+    text-align: left;
+  }
+
+  .timeline-year {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 400;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 4px;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .timeline-item-title {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 400;
+    color: rgb(10, 10, 10);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgb(92, 86, 79);
+  }
+
+  .timeline-tagline {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: {{ section.settings.accent_color }};
+    margin-top: 14px;
+    line-height: 1.2;
+  }
+
+  .timeline-image-box {
+    width: 160px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .timeline-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* --- MOBILE: Left vertical line + centered dots + cards on the right --- */
+  @media screen and (max-width: 768px) {
+    /* Hide the desktop center line */
+    .timeline-wrapper::before {
+      display: none;
+    }
+
+    /* Create a continuous vertical line on the left, aligned with dot centers */
+    .timeline-section-{{ section.id }} .timeline-wrapper {
+      position: relative;
+    }
+
+    .timeline-section-{{ section.id }} .timeline-wrapper::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 1.5px;
+      background: rgba(228, 3, 43, 0.3);
+      z-index: 0;
+    }
+
+    /* Make each timeline item a flex row */
+    .timeline-item {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 0px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Dot wrapper: fixed width, dot centered inside, positioned on the line */
+    .timeline-dot-wrapper {
+      width: 40px;
+      min-width: 40px;
+      padding-top: 12px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      order: 1; /* Ensure dot appears first */
+    }
+
+    .timeline-dot {
+  position: absolute;
+  top: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: {{ section.settings.accent_color }};
+  border: 2px solid {{ section.settings.background_color }};
+  box-shadow: {{ section.settings.accent_color }} 0px 0px 0px 1.5px;
+}
+
+    /* All content blocks (cards) appear to the right of the dot */
+    .timeline-content-left,
+    .timeline-content-right {
+      flex: 1;
+      padding: 18px 16px !important;
+      text-align: left;
+      background: transparent;
+      border-radius: 16px;
+  
+      order: 2; /* Content after the dot */
+    }
+
+    /* Hide all image wrappers on mobile */
+    .timeline-image-wrap {
+      display: none !important;
+    }
+
+    /* Typography for mobile */
+    .timeline-year {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-text {
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .timeline-tagline {
+      font-size: 20px;
+      margin-top: 12px;
+    }
+
+    /* Remove any leftover inline styles that might break layout */
+    .timeline-content-left[style],
+    .timeline-content-right[style] {
+      padding: 18px 16px !important;
+    }
+  }
+{%- endstyle -%}
+
+<section class="timeline-section-{{ section.id }}">
+  <div class="timeline-container">
+    
+    <div class="timeline-header" data-aos="fade-up">
+      <div class="timeline-sub">{{ section.settings.sub_heading }}</div>
+      <h2 class="timeline-title">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="timeline-wrapper" data-aos="fade-up">
+      {%- for block in section.blocks -%}
+        <div class="timeline-item" 
+     data-aos="fade-up"
+     {{ block.shopify_attributes }}>
+          
+          {%- liquid 
+            assign is_even = forloop.index | modulo: 2
+          -%}
+
+          {%- if is_even == 0 -%}
+            <div class="timeline-image-wrap" style="padding-right: 48px; display: flex; justify-content: flex-end;">
+              <div class="timeline-image-box">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 400 | image_tag }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag }}
+                {% endif %}
+              </div>
+            </div>
+          {%- else -%}
+            <div class="timeline-content-left">
+              <div class="timeline-year">{{ block.settings.year }}</div>
+              <h3 class="timeline-item-title">{{ block.settings.title }}</h3>
+              <p class="timeline-text">{{ block.settings.description }}</p>
+              {% if block.settings.tagline != blank %}
+                <div class="timeline-tagline">{{ block.settings.tagline }}</div>
+              {% endif %}
+            </div>
+          {%- endif -%}
+
+          <div class="timeline-dot-wrapper">
+            <div class="timeline-dot"></div>
+          </div>
+
+          {%- if is_even == 0 -%}
+             <div class="timeline-content-right">
+              <div class="timeline-year">{{ block.settings.year }}</div>
+              <h3 class="timeline-item-title">{{ block.settings.title }}</h3>
+              <p class="timeline-text">{{ block.settings.description }}</p>
+              {% if block.settings.tagline != blank %}
+                <div class="timeline-tagline">{{ block.settings.tagline }}</div>
+              {% endif %}
+            </div>
+          {%- else -%}
+            <div class="timeline-image-wrap" style="padding-left: 48px;">
+              <div class="timeline-image-box">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 400 | image_tag }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag }}
+                {% endif %}
+              </div>
+            </div>
+          {%- endif -%}
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vertical Timeline",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E4032B"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Comment j'en suis arrivée là"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Les moments qui ont tout changé"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_event",
+      "name": "Timeline Event",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year/Date",
+          "default": "2024"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Event Title",
+          "default": "Le déclic"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe what happened during this time."
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Bottom Tagline (Optional)",
+          "default": "this is when it all changed"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Event Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical Timeline",
+      "blocks": [
+        { "type": "timeline_event" },
+        { "type": "timeline_event" },
+        { "type": "timeline_event" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,299 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .feat-container-{{ section.id }} {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .feat-subtitle-{{ section.id }} {
+    font-family: Caveat, cursive;
+    color: {{ section.settings.accent_color }};
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .feat-title-{{ section.id }} {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 40px;
+  }
+
+  .feat-title-{{ section.id }} em {
+    font-style: italic;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .feat-intro-{{ section.id }} {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #5C564F;
+    margin-bottom: 24px;
+  }
+
+  .feat-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: left;
+    margin-top: 48px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .feat-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  
+
+  .feat-subtitle-{{ section.id }} {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .feat-title-{{ section.id }} {
+    font-size: 26px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .feat-intro-{{ section.id }} {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+  }
+  }
+
+  .feat-card-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border-radius: 12px;
+    padding: 28px 24px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+  }
+
+  .feat-card-{{ section.id }}:hover{
+    background: rgb(251, 248, 244);
+    border: 1px solid rgb(228, 3, 43);
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+  }
+
+  .feat-card-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .feat-card-title {
+    font-family: DM Sans, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 8px;
+  }
+
+  .feat-card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5C564F;
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="feat-container-{{ section.id }}">
+    
+    <div class="feat-header"
+ data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <div class="feat-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      
+      {%- comment -%} টাইটেল এখানে সরাসরি রেন্ডার হচ্ছে যাতে <br> ট্যাগ কাজ করে {%- endcomment -%}
+      <h2 class="feat-title-{{ section.id }}">{{ section.settings.title }}</h2>
+      
+      {% if section.settings.desc_1 != blank %}
+        <p class="feat-intro-{{ section.id }}">{{ section.settings.desc_1 }}</p>
+      {% endif %}
+      
+      {% if section.settings.desc_2 != blank %}
+        <p class="feat-intro-{{ section.id }}" style="margin-bottom: 48px;">{{ section.settings.desc_2 }}</p>
+      {% endif %}
+    </div>
+
+    <div class="feat-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="feat-card-{{ section.id }}"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+          <div class="feat-card-icon">{{ block.settings.icon }}</div>
+          <h3 class="feat-card-title">{{ block.settings.item_title }}</h3>
+          <p class="feat-card-text">{{ block.settings.item_text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features Retreat",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#E4032B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main Text Color",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "header",
+      "content": "Header Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ce qui t'attend"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Supports <br> and <em>)",
+      "default": "Tu connais ce sentiment d'être <br><em>débordée mais immobile.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_1",
+      "label": "Description Paragraph 1",
+      "default": "Beaucoup de mouvements, peu de résultats. Des listes interminables, des intentions sans suite."
+    },
+    {
+      "type": "textarea",
+      "id": "desc_2",
+      "label": "Description Paragraph 2",
+      "default": "La Retraite Structurée, c'est 3 jours pour couper du bruit..."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 140
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "🌿"
+        },
+        {
+          "type": "text",
+          "id": "item_title",
+          "label": "Title",
+          "default": "Un cadre hors du quotidien"
+        },
+        {
+          "type": "textarea",
+          "id": "item_text",
+          "label": "Description",
+          "default": "Un lieu de caractère choisi pour son calme et sa beauté."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Retreat",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "🌿", "item_title": "Un cadre hors du quotidien" } },
+        { "type": "feature", "settings": { "icon": "🛠", "item_title": "Des ateliers actionnables" } },
+        { "type": "feature", "settings": { "icon": "🤝", "item_title": "Un grupo engagé" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

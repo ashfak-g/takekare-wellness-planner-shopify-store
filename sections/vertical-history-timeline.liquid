@@ -1,0 +1,341 @@
+{%- style -%}
+  .timeline-section-{{ section.id }} {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    position: relative;
+    overflow: hidden;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .timeline-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .timeline-sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgb(138, 129, 120);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .timeline-title {
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(35px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: rgb(10, 10, 10);
+    margin: 0;
+  }
+
+  /* Vertical Center Line */
+  .timeline-wrapper {
+    position: relative;
+    padding: 40px 0;
+  }
+
+  .timeline-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(200, 2, 31, 0.2); /* Accent line color */
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    margin-bottom: 80px;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .timeline-dot-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+    z-index: 2;
+  }
+
+  /*.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: {{ section.settings.accent_color }};
+    border: 4px solid {{ section.settings.background_color }};
+    box-shadow: 0 0 0 2px {{ section.settings.accent_color }};
+  }*/
+  .timeline-dot  {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(228, 3, 43);
+    border: 3px solid rgb(251, 248, 244);
+    box-shadow: rgb(228, 3, 43) 0px 0px 0px 2px;
+    flex-shrink: 0;
+}
+
+  .timeline-content-left {
+    padding-right: 48px;
+    text-align: right;
+  }
+
+  .timeline-content-right {
+    padding-left: 48px;
+    text-align: left;
+  }
+
+  .timeline-year {
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 400;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 5px;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .timeline-item-title {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 400;
+    color: rgb(10, 10, 10);
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  .timeline-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgb(92, 86, 79);
+    margin: 0;
+  }
+
+  .timeline-tagline {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: {{ section.settings.accent_color }};
+    margin-top: 15px;
+    line-height: 1.2;
+  }
+
+  .timeline-image-box {
+    width: 220px;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: none;
+  }
+
+  .timeline-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+
+
+{%- endstyle -%}
+
+<section class="timeline-section-{{ section.id }}">
+  <div class="timeline-container">
+    
+    {%- if section.settings.heading != blank -%}
+      <div class="timeline-header">
+        {% if section.settings.sub_heading != blank %}
+          <div class="timeline-sub">{{ section.settings.sub_heading }}</div>
+        {% endif %}
+        <h2 class="timeline-title">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="timeline-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="timeline-item" {{ block.shopify_attributes }}>
+          
+          {%- liquid 
+            assign is_even = forloop.index | modulo: 2
+          -%}
+
+          {%- if is_even == 0 -%}
+            <div class="timeline-image-wrap" style="display: flex; justify-content: flex-end; padding-right: 40px;">
+              <div class="timeline-image-box">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 500 }}" 
+                       alt="{{ block.settings.image.alt | escape }}" 
+                       loading="lazy" width="500" height="700">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+            </div>
+          {%- else -%}
+            <div class="timeline-content-left">
+              <div class="timeline-year">{{ block.settings.year }}</div>
+              <h3 class="timeline-item-title">{{ block.settings.title }}</h3>
+              <p class="timeline-text">{{ block.settings.description }}</p>
+              {% if block.settings.tagline != blank %}
+                <div class="timeline-tagline">{{ block.settings.tagline }}</div>
+              {% endif %}
+            </div>
+          {%- endif -%}
+
+          <div class="timeline-dot-wrapper">
+            <div class="timeline-dot"></div>
+          </div>
+
+          {%- if is_even == 0 -%}
+             <div class="timeline-content-right">
+              <div class="timeline-year">{{ block.settings.year }}</div>
+              <h3 class="timeline-item-title">{{ block.settings.title }}</h3>
+              <p class="timeline-text">{{ block.settings.description }}</p>
+              {% if block.settings.tagline != blank %}
+                <div class="timeline-tagline">{{ block.settings.tagline }}</div>
+              {% endif %}
+            </div>
+          {%- else -%}
+            <div class="timeline-image-wrap" style="padding-left: 40px;">
+              <div class="timeline-image-box">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 500 }}" 
+                       alt="{{ block.settings.image.alt | escape }}" 
+                       loading="lazy" width="500" height="700">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+            </div>
+          {%- endif -%}
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand History Timeline",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Appearance Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Year & Dots)",
+      "default": "#C8021F"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Our Journey"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Moments that changed everything"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_event",
+      "name": "Timeline Event",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2024"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Event Title",
+          "default": "Milestone Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Share the details of this specific milestone or event."
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Bottom Tagline (Optional)",
+          "placeholder": "Handwritten style text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Event Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical History Timeline",
+      "category": "Text",
+      "blocks": [
+        { "type": "timeline_event" },
+        { "type": "timeline_event" },
+        { "type": "timeline_event" }
+      ]
+    }
+  ]
+}
+{% endschema %}
