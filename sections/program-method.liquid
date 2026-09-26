@@ -1,0 +1,308 @@
+{%- style -%}
+  :root {
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --primary-red: #e4032b;
+    --text-muted: #5c564f;
+    --light-bg: #fbf8f4;
+  }
+
+  .program-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: {{ section.settings.bg_color }};
+    font-family: var(--font-sans-val);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media screen and (min-width: 768px) {
+    .program-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .program-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  @media (max-width: 767px) {
+    .program-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .program-subtitle {
+    font-family: var(--font-accent-val);
+    font-size: 22px;
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .program-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(30px, 3.8vw, 46px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: #000;
+  }
+
+  .program-description {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .program-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+  .program-button:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+
+  .program-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .program-card {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: border-color 0.2s;
+  }
+  .program-card:hover {
+    border: 1px solid rgb(228, 3, 43);
+  }
+
+  .card-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #0a0a0a;
+    margin-bottom: 4px;
+  }
+
+  .card-text {
+    font-size: 13px;
+    color: #8a8178;
+    line-height: 1.55;
+  }
+
+  .card-check {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--primary-red);
+  }
+{%- endstyle -%}
+
+<section class="program-section-{{ section.id }}">
+  <div class="program-container">
+    <div class="program-grid">
+      
+      <div class="program-content-left" data-aos="fade-up">
+        {% if section.settings.subtitle != blank %}
+          <div class="program-subtitle">{{ section.settings.subtitle }}</div>
+        {% endif %}
+        
+        {% comment %} Title updated to handle custom HTML like <br> {% endcomment %}
+        <h2 class="program-title">
+          {{ section.settings.title }}
+        </h2>
+        
+        <div class="program-description">
+          {{ section.settings.description }}
+        </div>
+
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="program-button">
+            {{ section.settings.button_label }}
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="program-list">
+        {% for block in section.blocks %}
+          <div class="program-card"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+            <div class="card-icon">{{ block.settings.icon }}</div>
+            <div class="card-content">
+              <div class="card-title">{{ block.settings.item_title }}</div>
+              <div class="card-text">{{ block.settings.item_text }}</div>
+            </div>
+            <div class="card-check">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Program Method Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Le programme"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Supports <br>)",
+      "default": "Ce que tu reçois <br> dans la Méthode Structurée"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Un programme complet, pensé pour s'adapter à ta réalité. Accessible à ton rythme, pour toujours.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Rejoindre — 349€"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 44
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji/Icon",
+          "default": "🎯"
+        },
+        {
+          "type": "text",
+          "id": "item_title",
+          "label": "Item Title",
+          "default": "Audit sur mesure"
+        },
+        {
+          "type": "textarea",
+          "id": "item_text",
+          "label": "Item Description",
+          "default": "Un outil inédit automatisé pour faire le point sur ta semaine."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Program Method Section",
+      "blocks": [
+        { "type": "feature_item", "settings": { "icon": "🎯", "item_title": "Audit sur mesure" } },
+        { "type": "feature_item", "settings": { "icon": "📹", "item_title": "6 modules vidéo" } },
+        { "type": "feature_item", "settings": { "icon": "📄", "item_title": "Workbook" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

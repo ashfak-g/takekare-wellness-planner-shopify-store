@@ -1,0 +1,453 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .timeline-container-{{ section.id }} {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .timeline-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .timeline-subtitle-{{ section.id }} {
+    font-family: Caveat, cursive;
+    color: {{ section.settings.accent_color }};
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .timeline-title-{{ section.id }} {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #0A0A0A;
+  }
+
+  .timeline-wrapper-{{ section.id }} {
+    position: relative;
+  }
+
+  /* Central Line */
+  .timeline-line-{{ section.id }} {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%);
+    pointer-events: none;
+    height: 100%;
+  }
+
+  .timeline-line-{{ section.id }}::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    width: 1px;
+    background: rgb(228, 3, 43);
+    height: var(--scroll-height, 0%);
+    transform: translateX(-50%);
+    transition: height 0.08s linear;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .timeline-row-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr 64px 1fr;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  /* Mobile styles: timeline bar on left, numbers on left, content cards on right */
+  @media screen and (max-width: 767px) {
+    /* Reset grid to flex for mobile */
+    .timeline-row-{{ section.id }} {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    /* Position the central line exactly at the center of the number box */
+    /* Container left padding is 24px, number box width is 26px → center = 24 + 13 = 37px, fine-tuned to 39px for perfect visual centering */
+    .timeline-line-{{ section.id }} {
+      left: 10px !important;
+      transform: none !important;
+    }
+
+    /* Hide all image blocks on mobile */
+    .timeline-image-side {
+      display: none !important;
+    }
+
+    /* Number box styling - fixed width to match the number circle */
+    .timeline-number-box {
+      width: 26px;
+      min-width: 26px;
+      display: flex;
+      justify-content: center;
+      order: 1; /* Ensure number appears first */
+    }
+
+    .timeline-number {
+      width: 18px !important;
+      height: 18px !important;
+      padding: 15px 15px !important;
+      font-size: 10px;
+      border-radius: 6px;
+    }
+
+    /* Content card styling - always on right */
+    .timeline-content-side {
+      flex: 1;
+      width: 100%;
+      padding: 16px !important;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      text-align: left !important;
+      order: 2; /* Ensure content appears after number */
+      display: flex !important;
+    }
+
+    /* Override any inline padding styles */
+    .timeline-content-side[style] {
+      padding: 16px !important;
+    }
+
+    /* Typography adjustments for mobile */
+    .content-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .content-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .content-tag {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    /* Additional mobile refinements */
+    .content-tag {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .content-title {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+    .content-desc {
+      font-size: 13px;
+    }
+    .timeline-subtitle-{{ section.id }} {
+      font-size: 17px !important;
+    }
+  }
+
+  .timeline-image-box {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 240px;
+    height: 160px;
+    flex-shrink: 0;
+  }
+
+  .timeline-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .timeline-number-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+  }
+
+  .timeline-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: {{ section.settings.accent_color | color_modify: 'alpha', 0.15 }};
+    color: {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display-val, serif);
+    font-size: 15px;
+    font-weight: 700;
+    font-style: italic;
+    box-shadow: 0 2px 12px rgba(228, 3, 43, 0.12);
+  }
+
+  .timeline-content-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .content-tag {
+    font-family: Caveat, cursive;
+    color: {{ section.settings.accent_color }};
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .content-title {
+    text-align: left;
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #0A0A0A;
+    margin-bottom: 16px;
+  }
+
+  .content-desc {
+    text-align: left;
+    font-size: 15px;
+    color: #5C564F;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .timeline-line-fill-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #e63946;
+    transition: height 0.2s ease-out;
+  }
+
+  .timeline-number-box {
+    position: relative;
+    z-index: 2;
+  }
+
+  .timeline-number {
+    background: #f5d6d9;
+    color: #e63946;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="timeline-container-{{ section.id }}">
+    
+    <div class="timeline-header-{{ section.id }}" data-aos="fade-up">
+      <div class="timeline-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+      <h2 class="timeline-title-{{ section.id }}">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="timeline-wrapper-{{ section.id }}" data-aos="fade-up">
+      <div class="timeline-line-{{ section.id }}">
+        <div class="timeline-line-fill-{{ section.id }}"></div>
+      </div>
+      
+      <div class="timeline-list">
+        {% for block in section.blocks %}
+          {% capture alignment %}{% cycle 'left', 'right' %}{% endcapture %}
+          
+          <div class="timeline-row-{{ section.id }}" 
+     data-aos="fade-up"
+     {{ block.shopify_attributes }}>
+            
+            {% if alignment == 'left' %}
+              <div class="timeline-image-side" style="display: flex; justify-content: flex-end;">
+                <div class="timeline-image-box">
+                    {% if block.settings.image != blank %}
+                        <img src="{{ block.settings.image | image_url: width: 500 }}" alt="{{ block.settings.image.alt }}">
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                </div>
+              </div>
+            {% else %}
+              <div class="timeline-content-side" style="padding-right: 40px; text-align: right;">
+                <div class="content-tag">{{ block.settings.tag }}</div>
+                <h3 class="content-title">{{ block.settings.heading }}</h3>
+                <p class="content-desc">{{ block.settings.text }}</p>
+              </div>
+            {% endif %}
+
+            <div class="timeline-number-box">
+              <div class="timeline-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+            </div>
+
+            {% if alignment == 'left' %}
+              <div class="timeline-content-side" style="padding-left: 40px; text-align: left;">
+                <div class="content-tag">{{ block.settings.tag }}</div>
+                <h3 class="content-title">{{ block.settings.heading }}</h3>
+                <p class="content-desc">{{ block.settings.text }}</p>
+              </div>
+            {% else %}
+              <div class="timeline-image-side" style="display: flex; justify-content: flex-start;">
+                <div class="timeline-image-box">
+                    {% if block.settings.image != blank %}
+                        <img src="{{ block.settings.image | image_url: width: 500 }}" alt="{{ block.settings.image.alt }}">
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const section = document.querySelector(".section-{{ section.id }}");
+  const lineFill = section.querySelector(".timeline-line-fill-{{ section.id }}");
+
+  function updateTimeline() {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const sectionTop = rect.top;
+    const sectionHeight = rect.height;
+    
+    let startOffset = windowHeight * 0.2;   // delay start (20% of screen)
+    let endOffset = windowHeight * 0.2;     // delay finish
+
+    let progress = (windowHeight - sectionTop - startOffset) / (sectionHeight + startOffset + endOffset);
+
+    // Clamp between 0 and 1
+    progress = Math.max(0, Math.min(1, progress));
+
+    lineFill.style.height = (progress * 100) + "%";
+  }
+
+  window.addEventListener("scroll", updateTimeline);
+  window.addEventListener("resize", updateTimeline);
+
+  updateTimeline();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Timeline Program",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E4032B"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "The program"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "6 modules. One transformation."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "module",
+      "name": "Module Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Module Image"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Small Tag",
+          "default": "Reality Audit"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "See clearly"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Before changing anything, you need to understand where your time is really going."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Program",
+      "blocks": [
+        { "type": "module", "settings": { "heading": "See clearly", "tag": "Reality Audit" } },
+        { "type": "module", "settings": { "heading": "Alleviate", "tag": "Filter, sort, remove" } },
+        { "type": "module", "settings": { "heading": "Structure", "tag": "The TAPP method" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

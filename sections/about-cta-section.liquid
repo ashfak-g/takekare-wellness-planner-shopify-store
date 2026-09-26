@@ -1,0 +1,203 @@
+{%- style -%}
+  .cta-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Radial Gradient Background Effect */
+  .cta-glow-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vw;
+    max-width: 700px;
+    max-height: 700px;
+    background: radial-gradient(circle, {{ section.settings.accent_color | color_modify: 'alpha', 0.04 }} 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta-container-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-sub-{{ section.id }} {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .cta-heading-{{ section.id }} {
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #0A0A0A;
+    margin-bottom: 40px;
+  }
+
+  .cta-heading-{{ section.id }} em {
+    font-style: italic;
+    color: {{ section.settings.accent_color }};
+    text-decoration: underline 3px {{ section.settings.accent_color | color_modify: 'alpha', 0.3 }};
+    text-underline-offset: 8px;
+  }
+
+  .cta-button-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: {{ section.settings.accent_color }};
+    color: #FFFFFF;
+    padding: 18px 48px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+    width: auto;
+  }
+
+  .cta-button-{{ section.id }}:hover {
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.35) 0px 12px 40px;
+  }
+
+  .cta-footer-text-{{ section.id }} {
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgb(138, 129, 120);
+  }
+
+  @media screen and (max-width: 768px) {
+    .cta-button-{{ section.id }} {
+      width: 100%;
+      padding: 16px 24px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="cta-section-{{ section.id }}">
+  <div class="cta-glow-{{ section.id }}"></div>
+  
+ <div class="cta-container-{{ section.id }}" data-aos="fade-up">
+    <div class="cta-sub-{{ section.id }}" data-aos="fade-up">{{ section.settings.sub_heading }}</div>
+    
+    <h2 class="cta-heading-{{ section.id }}" data-aos="fade-up">
+     
+      {{ section.settings.heading }}
+    </h2>
+
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="cta-button-{{ section.id }}" data-aos="fade-up">
+        {{ section.settings.button_label }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.footer_text != blank -%}
+      <p class="cta-footer-text-{{ section.id }}" data-aos="fade-up">
+        {{ section.settings.footer_text }}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E4032B"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Prête ?"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "info": "You can use <br> for line breaks and <em>text</em> for italic accent style.",
+      "default": "Donne-moi 6 semaines et je <em>changerai</em> ton quotidien"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Rejoindre le Coaching Structurée"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Small Text",
+      "default": "349€ · Accès immédiat · 6 modules vidéo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ABOUT CTA Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,301 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .treat-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    font-family: sans-serif; /* Replace with theme font if needed */
+  }
+
+  .retreat-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .retreat-header {
+    text-align: center;
+    margin-bottom: 28px !important;
+  }
+  .retreat-subtitle {
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .retreat-title {
+    font-size: 26px;
+  }
+  }
+
+  .retreat-subtitle {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: none;
+  }
+
+  .retreat-title {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-family: Instrument Serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  .days-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .day-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .day-badge {
+    background: {{ section.settings.accent_color }};
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .day-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  .activities-list {
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+  }
+
+  .activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #5c564f;
+    line-height: 1.5;
+  }
+
+  .activity-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: {{ section.settings.accent_color }};
+    flex-shrink: 0;
+  }
+
+  .retreat-footer {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .retreat-disclaimer {
+    font-size: 13px;
+    color: #8a8178;
+    font-style: italic;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="treat-container">
+    
+<div class="retreat-header"
+ data-aos="fade-up">
+      <div class="retreat-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="retreat-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="days-wrapper">
+      {%- for block in section.blocks -%}
+    <div class="day-card"
+ data-aos="fade-up"
+ data-aos-delay="{{ forloop.index0 | times: 40 }}"
+ {{ block.shopify_attributes }}>
+          <div class="day-header">
+            <div class="day-badge">{{ block.settings.day_label }}</div>
+            <h3 class="day-title">{{ block.settings.day_title }}</h3>
+          </div>
+          <ul class="activities-list">
+            {%- assign activities = block.settings.activities | newline_to_br | split: '<br />' -%}
+            {%- for activity in activities -%}
+              {%- if activity != blank -%}
+                <li class="activity-item">
+                  <div class="activity-dot"></div>
+                  {{ activity | strip }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.footer_text != blank -%}
+      <div class="retreat-footer">
+        <p class="retreat-disclaimer">{{ section.settings.footer_text }}</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Retreat Programme",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Le programme"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "3 jours, jour par jour"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Disclaimer",
+      "default": "Le programme peut légèrement varier d'une édition à l'autre."
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "day",
+      "name": "Day",
+      "settings": [
+        {
+          "type": "text",
+          "id": "day_label",
+          "label": "Day Label",
+          "default": "Jour 1"
+        },
+        {
+          "type": "text",
+          "id": "day_title",
+          "label": "Day Title",
+          "default": "Arrivée & fondations"
+        },
+        {
+          "type": "textarea",
+          "id": "activities",
+          "label": "Activities (One per line)",
+          "default": "Accueil & installation\nAtelier #1\nDîner en groupe"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Retreat Programme",
+      "blocks": [
+        { "type": "day" },
+        { "type": "day" },
+        { "type": "day" }
+      ]
+    }
+  ]
+}
+{% endschema %}

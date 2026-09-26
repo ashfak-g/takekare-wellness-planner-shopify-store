@@ -1,0 +1,223 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    overflow: hidden;
+  }
+  
+  .about-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 200px 1fr 260px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .about-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .max-lg-hidden {
+      display: none;
+    }
+  }
+
+  .accent-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .main-heading {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #0A0A0A;
+    margin-bottom: 28px;
+  }
+
+  .main-heading em {
+    font-style: italic;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .description-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgb(92, 86, 79);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .quote-box {
+    padding-left: 16px;
+    border-left: 2px solid {{ section.settings.accent_color }};
+    margin-bottom: 32px;
+  }
+
+  .quote-text {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 1.5;
+    font-style: italic;
+    color: #0A0A0A;
+  }
+
+  .signature {
+    font-family: Caveat, cursive;
+    font-size: 38px;
+    color: {{ section.settings.accent_color }};
+    line-height: 1;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="max-w-[1180px] mx-auto px-6" style="max-width: 1180px; margin: 0 auto; padding: 0 24px;">
+    <div class="about-grid-{{ section.id }}">
+      
+      <div class="about-image-wrapper max-lg-hidden" style="margin-top: 40px;" data-aos="fade-up">
+        {% if section.settings.image_1 != blank %}
+          {{ section.settings.image_1 | image_url: width: 400 | image_tag: style: 'width:100%; height:100%; object-fit:cover; filter: grayscale(30%);' }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+
+      <div class="content-wrapper" data-aos="fade-up">
+        <div class="accent-text" data-aos="fade-up">{{ section.settings.sub_heading }}</div>
+        <h2 class="main-heading" data-aos="fade-up">{{ section.settings.heading }}</h2>
+        
+        <div class="description-text" data-aos="fade-up">
+          {{ section.settings.content }}
+        </div>
+
+        {% if section.settings.quote != blank %}
+          <div class="quote-box" data-aos="fade-up">
+            <p class="quote-text">"{{ section.settings.quote }}"</p>
+          </div>
+        {% endif %}
+
+        <div class="signature" data-aos="fade-up">{{ section.settings.signature_text }}</div>
+      </div>
+
+      <div class="about-image-wrapper max-lg-hidden" style="margin-top: 80px;">
+        {% if section.settings.image_2 != blank %}
+          {{ section.settings.image_2 | image_url: width: 500 | image_tag: style: 'width:100%; height:100%; object-fit:cover;' }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Story Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#E4032B"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Right Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Un peu de mon histoire"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "J'ai commencé exactement <em>là</em> où tu es."
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Main Content",
+      "default": "<p>Au début, j'avais des listes de partout...</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote Text",
+      "default": "Le problème n'est jamais la personne. C'est l'absence de système adapté à sa vraie vie."
+    },
+    {
+      "type": "text",
+      "id": "signature_text",
+      "label": "Signature Name",
+      "default": "Léa"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Story Section"
+    }
+  ]
+}
+{% endschema %}
