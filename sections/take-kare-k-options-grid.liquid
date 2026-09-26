@@ -1,0 +1,210 @@
+{%- style -%}
+  .tk-options-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 768px) {
+    .tk-options-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .tk-grid-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .tk-center-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .tk-grid-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    color: #e4032b;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .tk-grid-title {
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: #0a0a0a;
+  }
+
+  .tk-grid-desc {
+    font-size: 16px;
+    color: #8a8178;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .tk-card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .tk-card-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .tk-option-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 40px 28px 36px;
+    text-align: center;
+    transition: 0.3s ease;
+  }
+  .tk-option-card:hover {
+    border: 1px solid rgb(228, 3, 43);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 12px 40px;
+    transform: translateY(-4px);
+  }
+
+  .tk-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .tk-icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #fde9ef;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e4032b;
+  }
+
+  .tk-icon-box svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tk-card-h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #0a0a0a;
+  }
+
+  .tk-card-p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5c564f;
+    margin-bottom: 28px;
+  }
+
+  .tk-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #e4032b;
+    color: #e4032b;
+    padding: 13px 28px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    transition: 0.25s;
+    text-decoration: none;
+    background: transparent;
+  }
+
+  .tk-card-link:hover {
+    background: #e4032b;
+    color: #ffffff;
+  }
+{%- endstyle -%}
+
+<section class="tk-options-{{ section.id }}">
+  <div class="tk-grid-container">
+    
+    {% if section.settings.title != blank %}
+    <div class="tk-center-header" data-aos="fade-up">
+      <div class="tk-grid-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="tk-grid-title">{{ section.settings.title }}</h2>
+      <p class="tk-grid-desc">{{ section.settings.description }}</p>
+    </div>
+    {% endif %}
+
+    <div class="tk-card-wrapper">
+      {% for block in section.blocks %}
+        <div class="tk-option-card"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+          <div class="tk-icon-box">
+            {{ block.settings.svg_code }}
+          </div>
+          <h3 class="tk-card-h3">{{ block.settings.heading }}</h3>
+          <p class="tk-card-p">{{ block.settings.text }}</p>
+          {% if block.settings.link_label != blank %}
+            <a href="{{ block.settings.link_url }}" class="tk-card-link">
+              {{ block.settings.link_label }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "TK Options Grid",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Section Subtitle", "default": "Par où commencer ?" },
+    { "type": "textarea", "id": "title", "label": "Section Title", "default": "Trois options selon ton besoin" },
+    { "type": "textarea", "id": "description", "label": "Section Description", "default": "Une méthode complète, des outils ou un accompagnement sur mesure." },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#fbf8f4" },
+    { "type": "header", "content": "Desktop Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Top", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Bottom", "default": 100 },
+    { "type": "header", "content": "Mobile Padding" },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Mobile Padding Top", "default": 44 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Mobile Padding Bottom", "default": 44 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Option Card",
+      "limit": 3,
+      "settings": [
+        { "type": "html", "id": "svg_code", "label": "Icon SVG Code", "info": "Paste SVG code here" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Option Title" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Describe your service here." },
+        { "type": "text", "id": "link_label", "label": "Button Label", "default": "En savoir plus" },
+        { "type": "url", "id": "link_url", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Take Kare Options Grid",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

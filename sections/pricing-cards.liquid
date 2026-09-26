@@ -1,0 +1,310 @@
+{%- style -%}
+  .pricing-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.section_bg }};
+  }
+  .pricing-container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .pricing-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pricing-card-{{ section.id }} {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    position: relative;
+  }
+
+.pricing-card-{{ section.id }}:hover {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 3, 43)!important;
+    border-radius: 12px;
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    position: relative;
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 4px 14px;
+    white-space: nowrap;
+  }
+  .pricing-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .pricing-card-{{ section.id }} h2 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .pricing-price {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .pricing-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .pricing-ideal-box {
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+  }
+  .pricing-ideal-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pricing-ideal-text {
+    font-size: 13px;
+  }
+  .pricing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+
+  .pricing-btn:hover {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgb(255, 255, 255);
+    color: rgb(228, 3, 43);
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.25s;
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 990px) {
+    .pricing-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+     .pricing-section-{{ section.id }} {
+    padding-top: 28px;
+    padding-bottom: 40px;
+    background: {{ section.settings.section_bg }};
+  }
+  }
+
+{%- endstyle -%}
+
+<section class="pricing-section-{{ section.id }}" id="{{ section.settings.anchor_id }}">
+  <div class="pricing-container-{{ section.id }}">
+    <div class="pricing-grid-{{ section.id }}">
+      
+      {% for block in section.blocks %}
+        {%- assign is_highlight = block.settings.highlight_card -%}
+        
+        <div class="pricing-card-{{ section.id }} block-{{ block.id }}" 
+     data-aos="fade-up"
+     data-aos-delay="{{ forloop.index0 | times: 100 }}"
+             style="background: {% if is_highlight %}{{ section.settings.accent_color }}{% else %}#ffffff{% endif %};
+                    border: 1px solid {% if is_highlight %}transparent{% else %}rgba(0,0,0,0.06){% endif %};">
+          
+          {% if block.settings.badge_text != blank and is_highlight %}
+            <div class="pricing-badge" style="background: #fadedd; color: {{ section.settings.accent_color }};">
+              {{ block.settings.badge_text }}
+            </div>
+          {% endif %}
+
+          <div class="pricing-number" 
+               style="background: {% if is_highlight %}rgba(255,255,255,0.2){% else %}{{ section.settings.accent_color }}{% endif %}; 
+                      color: #ffffff;">
+            {{ forloop.index }}
+          </div>
+
+          <h2 style="color: {% if is_highlight %}#ffffff{% else %}#0a0a0a{% endif %};">
+            {{ block.settings.title }}
+          </h2>
+
+          <p class="pricing-price" style="color: {% if is_highlight %}rgba(255,255,255,0.9){% else %}{{ section.settings.accent_color }}{% endif %};">
+            {{ block.settings.price }}
+          </p>
+
+          <p class="pricing-desc" style="color: {% if is_highlight %}rgba(255,255,255,0.75){% else %}#5c564f{% endif %};">
+            {{ block.settings.description }}
+          </p>
+
+          <div class="pricing-ideal-box" style="background: {% if is_highlight %}rgba(255,255,255,0.1){% else %}#fbf8f4{% endif %};">
+            <p class="pricing-ideal-label" style="color: {% if is_highlight %}rgba(255,255,255,0.6){% else %}#8a8178{% endif %};">
+              Idéal pour :
+            </p>
+            <p class="pricing-ideal-text" style="color: {% if is_highlight %}rgba(255,255,255,0.8){% else %}#5c564f{% endif %};">
+              {{ block.settings.ideal_for }}
+            </p>
+          </div>
+
+          
+          <a href="{{ block.settings.button_link }}" class="pricing-btn"
+             style="background: {% if is_highlight %}#ffffff{% else %}#fadedd{% endif %}; 
+                    color: {{ section.settings.accent_color }};">
+            {{ block.settings.button_label }}
+            <svg width="16" height="16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pricing Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID (for scrolling)",
+      "default": "offres"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Offer Card",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "highlight_card",
+          "label": "Highlight Card (Red Background)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Top Badge (Highlight Only)",
+          "default": "Le plus complet"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Conseil Notion"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "90€/heure"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Tu as un besoin ponctuel, une question précise sur Notion..."
+        },
+        {
+          "type": "text",
+          "id": "ideal_for",
+          "label": "Ideal for...",
+          "default": "Optimisation d'un espace existant, conseil expert."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Réserver une session"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card", "settings": { "highlight_card": true } },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

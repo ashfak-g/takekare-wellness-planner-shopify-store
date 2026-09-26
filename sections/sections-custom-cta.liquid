@@ -1,0 +1,192 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .cta-section-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .cta-background-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.62);
+    z-index: 1;
+  }
+
+  .cta-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .cta-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 22px;
+    color: #E4032B;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-family: Caveat, cursive; /* S'adapte à votre police accentuée */
+  }
+
+  .cta-title {
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
+
+  .cta-description {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #E4032B;
+    color: #FFFFFF;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+
+  .cta-button svg {
+    width: 16px;
+    height: 16px;
+  }
+{%- endstyle -%}
+
+<section class="cta-section-wrapper section-{{ section.id }}-padding">
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'cta-background-img', loading: 'lazy' }}
+  {%- else -%}
+    <img src="https://via.placeholder.com/1920x800" class="cta-background-img" alt="placeholder">
+  {%- endif -%}
+
+  <div class="cta-overlay"></div>
+
+  <div class="cta-container">
+    <div class="cta-subtitle">{{ section.settings.subtitle }}</div>
+    <h2 class="cta-title">{{ section.settings.title }}</h2>
+    <div class="cta-description">{{ section.settings.text }}</div>
+    
+    <a href="{{ section.settings.button_link }}" class="cta-button">
+      {{ section.settings.button_label }}
+      <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+        <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom CTA Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Prête ?"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Reprends le contrôle de ton quotidien"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Rejoins +500 femmes qui construisent, à leur rythme, un système pour reprendre la main sur leur quotidien."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Rejoindre le Coaching Structurée"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom CTA Section Home"
+    }
+  ]
+}
+{% endschema %}

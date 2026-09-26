@@ -1,0 +1,388 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #E4032B;
+    --bg-creme: #FBF8F4;
+    --text-dark: #0A0A0A;
+    --text-muted: #5C564F;
+    --text-light: #8A8178;
+  }
+
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: var(--bg-creme);
+    font-family: var(--font-sans-val);
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* --- Slider Styling --- */
+  .slider-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #F3EDE5;
+    position: relative;
+  }
+
+  .slider-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+
+  .slider-image.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .badge-overlay {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    background: var(--primary-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 5px 12px;
+  }
+
+  .slider-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: 0.2s;
+    pointer-events: auto;
+  }
+
+  .nav-btn:hover { background: #fff; transform: scale(1.05); }
+
+  .dots-container {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap; /* Added for many dots */
+    justify-content: center;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    width: 20px;
+    background: var(--primary-red);
+  }
+
+  /* --- Text & Button Styling --- */
+  .subheading {
+    font-family: var(--font-accent-val);
+    color: var(--primary-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-family: "Instrument Serif", Georgia, serif !important;
+    font-size: 52px !important;
+    font-weight: 400 !important;
+    line-height: 57px !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 8px !important;
+  }
+
+  .tagline {
+    font-family: var(--font-display-val);
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .price {
+    font-family: var(--font-display-val);
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    color: var(--primary-red);
+    line-height: 1;
+  }
+
+  .btn-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  .btn-main:hover {
+    background: rgb(200, 2, 31);
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.35) 0px 8px 28px;
+  }
+
+  .trust-marks {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_images = product.media | where: "media_type", "image"
+-%}
+
+<section class="section-{{ section.id }}">
+  <div class="container-{{ section.id }}">
+    <div class="grid-{{ section.id }}" 
+     data-aos="fade-up" 
+     data-aos-duration="800" 
+     data-aos-easing="ease-out-cubic">
+      
+      <div class="slider-wrapper" 
+     id="slider-{{ section.id }}" 
+     data-aos="fade-right" 
+     data-aos-duration="800">
+        <div class="badge-overlay">
+          {%- if product.compare_at_price > product.price -%}
+            Sale
+          {%- else -%}
+            {{ product.type | default: "Featured" }}
+          {%- endif -%}
+        </div>
+        
+        <div class="slides">
+          {%- if product_images.size > 0 -%}
+            {%- for media in product_images -%}
+              <img src="{{ media | image_url: width: 1000 }}" 
+                   class="slider-image {% if forloop.first %}active{% endif %}" 
+                   data-index="{{ forloop.index0 }}" 
+                   alt="{{ media.alt | default: product.title }}"
+                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        {% if product_images.size > 1 %}
+        <div class="slider-nav">
+          <button class="nav-btn prev" onclick="moveSlide(-1, '{{ section.id }}')">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <button class="nav-btn next" onclick="moveSlide(1, '{{ section.id }}')">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+
+        <div class="dots-container">
+          {%- for media in product_images -%}
+            <button class="dot {% if forloop.first %}active{% endif %}" onclick="setSlide({{ forloop.index0 }}, '{{ section.id }}')"></button>
+          {%- endfor -%}
+        </div>
+        {% endif %}
+      </div>
+
+     <div class="content-side" 
+     data-aos="fade-left" 
+     data-aos-duration="800">
+        <div class="subheading">{{ product.vendor | default: "Our Collection" }}</div>
+        <h1 class="title">{{ product.title | escape }}</h1>
+        <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'>{{ product.metafields.judgeme.badge }}</div>
+        <p class="tagline">{{ product.description | strip_html | truncate: 80 }}</p>
+        <div class="desc">{{ product.description }}</div>
+        
+        <div class="cta-row">
+          <div class="price">
+            {{ current_variant.price | money }}
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <span style="font-size: 20px; text-decoration: line-through; color: var(--text-light); margin-left: 12px;">
+                {{ current_variant.compare_at_price | money }}
+              </span>
+            {%- endif -%}
+          </div>
+          
+          <form method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            
+            <button type="submit" class="btn-main">
+              {{ 'products.product.add_to_cart' | t | default: 'Add to Cart' }}
+              <svg width="16" height="16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </form>
+        </div>
+        <p class="trust-marks">{{ section.settings.footer_note }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Spotlight",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0, "max": 200, "step": 5, "unit": "px", "label": "Desktop Padding Top", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0, "max": 200, "step": 5, "unit": "px", "label": "Desktop Padding Bottom", "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Mobile Padding Top", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Mobile Padding Bottom", "default": 60
+    },
+    {
+      "type": "text",
+      "id": "footer_note",
+      "label": "Footer Note",
+      "default": "✓ Free Shipping  ·  ✓ Secure Payment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Spotlight"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  // Initialize index tracking for specific sections
+  if (typeof currentIndices === 'undefined') {
+    var currentIndices = {};
+  }
+
+  function updateSlider(sectionId, index) {
+    const section = document.getElementById('slider-' + sectionId);
+    if(!section) return;
+    const slides = section.querySelectorAll('.slider-image');
+    const dots = section.querySelectorAll('.dot');
+    
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+    
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    if(dots[index]) dots[index].classList.add('active');
+    
+    currentIndices[sectionId] = index;
+  }
+
+  function moveSlide(step, sectionId) {
+    if (currentIndices[sectionId] === undefined) currentIndices[sectionId] = 0;
+    updateSlider(sectionId, currentIndices[sectionId] + step);
+  }
+
+  function setSlide(index, sectionId) {
+    updateSlider(sectionId, index);
+  }
+</script>

@@ -1,0 +1,477 @@
+{%- style -%}
+  .tk-boutique-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 768px) {
+    .tk-boutique-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .tk-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .tk-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .tk-subtitle {
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    color: #e4032b;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: none;
+  }
+
+  .tk-title {
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+    color: #0a0a0a;
+  }
+
+  .tk-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #e4032b;
+    color: #e4032b;
+    padding: 13px 28px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .tk-btn-outline:hover {
+    background: #e4032b;
+    color: #fff;
+  }
+
+  .tk-grid-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    min-height: 480px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .tk-grid-card { grid-template-columns: 1fr 1fr; }
+  }
+
+  .tk-image-side {
+    position: relative;
+    background: #fbf8f4;
+    min-height: 350px;
+  }
+
+  .tk-main-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .tk-main-img.active { opacity: 1; z-index: 1; }
+
+  /* Slider arrows (left & right) */
+  .tk-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: white;
+    backdrop-filter: blur(4px);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s ease;
+    z-index: 20;
+    padding: 0;
+  }
+
+  .tk-slider-arrow:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .tk-slider-arrow.prev {
+    left: 16px;
+  }
+
+  .tk-slider-arrow.next {
+    right: 16px;
+  }
+
+  .tk-slider-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    color: black;
+  }
+  .tk-slider-arrow:hover svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    color: white;
+  }
+
+  @media screen and (max-width: 767px) {
+    .tk-slider-arrow {
+      width: 36px;
+      height: 36px;
+    }
+    .tk-slider-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+    .tk-slider-arrow.prev {
+      left: 8px;
+    }
+    .tk-slider-arrow.next {
+      right: 8px;
+    }
+  }
+
+  /* Image navigation (counter) */
+  .tk-image-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    backdrop-filter: blur(4px);
+    padding: 8px 16px;
+    border-radius: 40px;
+    color: black;
+  }
+
+  .tk-counter {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    font-family: monospace;
+  }
+
+  .tk-content-side {
+    background: #fbf8f4;
+    padding: clamp(36px, 5vw, 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .tk-product-info { display: none; }
+  .tk-product-info.active { display: block; animation: fadeIn 0.5s ease forwards; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tk-tag {
+    display: inline-block;
+    font-family: Caveat, cursive;
+    font-size: 15px;
+    color: #e4032b;
+    font-weight: 600;
+    background: rgba(228, 3, 43, 0.08);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+  }
+
+  .tk-prod-title { font-size: clamp(22px, 2.8vw, 34px); margin-bottom: 20px; font-weight: 400; }
+  .tk-description { font-size: 15px; color: #5c564f; line-height: 1.75; margin-bottom: 36px; }
+
+  .tk-dots-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin: 16px 0 24px 0;
+  }
+
+  .tk-dot {
+    width: 8px;
+    height: 8px;
+    background: #cbc6c0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    border: none;
+  }
+
+  .tk-dot.active {
+    background: #e4032b;
+    width: 24px;
+    border-radius: 20px;
+  }
+
+  .tk-thumbnails { display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap; }
+  .tk-thumb {
+    width: 60px; height: 60px; border-radius: 8px; overflow: hidden;
+    border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: 0.3s;
+  }
+  .tk-thumb.active { border-color: #e4032b; opacity: 1; }
+
+  .tk-btn-primary {
+    background: #e4032b; 
+    color: #fff; 
+    padding: 16px 36px;
+    border-radius: 6px; 
+    font-weight: 700; 
+    text-decoration: none; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px;
+    transition: 0.2s;
+  }
+  .tk-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+{%- endstyle -%}
+
+<section class="tk-boutique-{{ section.id }}">
+  <div class="tk-container">
+    <div class="tk-header">
+      <div>
+        <div class="tk-subtitle">{{ section.settings.subtitle }}</div>
+        <h2 class="tk-title">{{ section.settings.title }}</h2>
+      </div>
+      <a href="{{ section.settings.link_url }}" class="tk-btn-outline">
+        {{ section.settings.link_text }}
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+
+    <div class="tk-grid-card">
+      <div class="tk-image-side">
+        <!-- LEFT ARROW -->
+        <button class="tk-slider-arrow prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- RIGHT ARROW -->
+        <button class="tk-slider-arrow next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        {% for block in section.blocks %}
+          <img src="{{ block.settings.image | image_url: width: 800 }}" 
+               class="tk-main-img {% if forloop.first %}active{% endif %}" 
+               data-index="{{ forloop.index0 }}" alt="{{ block.settings.title }}">
+        {% endfor %}
+
+        <!-- dynamic counter bottom left -->
+        <div class="tk-image-nav">
+          <span class="tk-counter">1 / {{ section.blocks.size }}</span>
+        </div>
+      </div>
+
+      <div class="tk-content-side">
+        <div class="tk-info-container">
+          {% for block in section.blocks %}
+            <div class="tk-product-info {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-url="{{ block.settings.btn_url }}">
+              <div class="tk-tag">{{ block.settings.tag }}</div>
+              <h3 class="tk-prod-title">{{ block.settings.title }}</h3>
+              <p class="tk-description">{{ block.settings.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- dynamic dots container -->
+        <div class="tk-dots-container"></div>
+
+        <div class="tk-controls">
+          <div class="tk-thumbnails">
+            {% for block in section.blocks %}
+              <div class="tk-thumb {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                <img src="{{ block.settings.image | image_url: width: 120 }}" style="width:100%; height:100%; object-fit:cover;" alt="thumb">
+              </div>
+            {% endfor %}
+          </div>
+          <a id="tk-main-link" href="{{ section.blocks[0].settings.btn_url }}" class="tk-btn-primary">
+            Voir le produit 
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const sectionEl = document.querySelector('.tk-boutique-{{ section.id }}');
+    if (!sectionEl) return;
+
+    const totalSlides = {{ section.blocks.size }};
+    let currentIndex = 0;
+
+    // DOM elements
+    const mainImages = sectionEl.querySelectorAll('.tk-main-img');
+    const productInfos = sectionEl.querySelectorAll('.tk-product-info');
+    const thumbnails = sectionEl.querySelectorAll('.tk-thumb');
+    const mainLink = sectionEl.querySelector('#tk-main-link');
+    const prevBtn = sectionEl.querySelector('.tk-slider-arrow.prev');
+    const nextBtn = sectionEl.querySelector('.tk-slider-arrow.next');
+    const counterSpan = sectionEl.querySelector('.tk-counter');
+    const dotsContainer = sectionEl.querySelector('.tk-dots-container');
+
+    // Helper: update everything based on new index
+    function updateActiveSlide(newIndex) {
+      if (newIndex < 0) newIndex = totalSlides - 1;
+      if (newIndex >= totalSlides) newIndex = 0;
+      currentIndex = newIndex;
+
+      // update main images
+      mainImages.forEach((img, idx) => {
+        img.classList.toggle('active', idx === currentIndex);
+      });
+      // update product info panels
+      productInfos.forEach((info, idx) => {
+        info.classList.toggle('active', idx === currentIndex);
+      });
+      // update thumbnails
+      thumbnails.forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === currentIndex);
+      });
+      // update dots
+      const dots = dotsContainer.querySelectorAll('.tk-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+      // update counter text (1/4 style)
+      counterSpan.textContent = `${currentIndex + 1} / ${totalSlides}`;
+      // update main product URL
+      const activeProductInfo = productInfos[currentIndex];
+      if (activeProductInfo && activeProductInfo.dataset.url) {
+        mainLink.href = activeProductInfo.dataset.url;
+      }
+    }
+
+    // generate dot pagination
+    function generateDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('tk-dot');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.setAttribute('data-index', i);
+        dot.setAttribute('aria-label', `Go to slide ${i+1}`);
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(dot.getAttribute('data-index'), 10);
+          updateActiveSlide(idx);
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    // event listeners for left/right arrows
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateActiveSlide(currentIndex - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateActiveSlide(currentIndex + 1);
+      });
+    }
+
+    // thumbnails click
+    thumbnails.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const idx = parseInt(thumb.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) updateActiveSlide(idx);
+      });
+    });
+
+    // initialize dots, counter and sync all states
+    generateDots();
+    // ensure first slide active (index 0)
+    updateActiveSlide(0);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Take Kare Boutique",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "La Boutique" },
+    { "type": "textarea", "id": "title", "label": "Title", "default": "Des outils physiques pour organiser ta vie" },
+    { "type": "url", "id": "link_url", "label": "Header Link URL" },
+    { "type": "text", "id": "link_text", "label": "Header Link Text", "default": "Voir la boutique" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Top", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Bottom", "default": 100 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Mobile Padding Top", "default": 44 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Mobile Padding Bottom", "default": 44 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product Image" },
+        { "type": "text", "id": "tag", "label": "Category Tag", "default": "Journaling" },
+        { "type": "text", "id": "title", "label": "Product Name", "default": "Product Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "url", "id": "btn_url", "label": "Product URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Take Kare Boutique",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,803 @@
+{% comment %}
+  Journal Flipbook Section
+  Powered by St.PageFlip for realistic diagonal page turns.
+{% endcomment %}
+
+<!-- Load PageFlip Library -->
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+<section class="flipbook-section" id="journal-flipbook">
+  <div class="flipbook-container">
+
+    <button class="btn-exit-fullscreen" id="btn-exit-fullscreen" aria-label="Exit Fullscreen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
+      <span>Retour</span>
+    </button>
+
+    <!-- Header -->
+    <div class="flipbook-header">
+      <p class="flipbook-eyebrow">{{ section.settings.eyebrow | default: 'Flick through the' }}</p>
+      <h2 class="flipbook-title">{{ section.settings.title | default: 'Journal de gratitude' }}</h2>
+    </div>
+
+    <!-- Chapter Navigation (Desktop) -->
+    <nav class="chapter-nav" aria-label="Journal chapters">
+      <div class="chapter-track"></div>
+      {% assign chapters = section.blocks | where: 'type', 'chapter' %}
+      {% if chapters.size == 0 %}
+        {% assign fallback_chapters = "Gratitude prompts,Letter to yourself,Reframe your thoughts,30 day reflection,Gratitude challenge" | split: "," %}
+      {% endif %}
+
+      {% for chapter in chapters %}
+        <button
+          class="chapter-item{% if forloop.first %} is-active is-visited{% endif %}"
+          data-page="{{ chapter.settings.start_spread }}"
+          type="button"
+          {{ chapter.shopify_attributes }}
+        >
+          <span class="chapter-dot" aria-hidden="true"></span>
+          <span class="chapter-label">{{ chapter.settings.title }}</span>
+        </button>
+      {% else %}
+        {% for chapter in fallback_chapters %}
+          <button
+            class="chapter-item{% if forloop.first %} is-active is-visited{% endif %}"
+            data-page="{{ forloop.index0 | times: 10 | plus: 1 }}"
+            type="button"
+          >
+            <span class="chapter-dot" aria-hidden="true"></span>
+            <span class="chapter-label">{{ chapter }}</span>
+          </button>
+        {% endfor %}
+      {% endfor %}
+    </nav>
+
+    <!-- Mobile Chapter Select -->
+    <div class="chapter-nav-mobile">
+      <label for="chapter-select" class="chapter-select-label">Flick to</label>
+      <div class="chapter-select-wrapper">
+        <select id="chapter-select" class="chapter-select">
+          {% for chapter in chapters %}
+            <option value="{{ chapter.settings.start_spread }}">{{ chapter.settings.title }}</option>
+          {% else %}
+            {% for chapter in fallback_chapters %}
+              <option value="{{ forloop.index0 | times: 10 | plus: 1 }}">{{ chapter }}</option>
+            {% endfor %}
+          {% endfor %}
+        </select>
+        <svg class="select-icon" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </div>
+
+    <!-- Book Stage -->
+    <div class="book-stage">
+      <button class="book-nav book-nav--prev" id="btn-prev" aria-label="Previous page" type="button">
+        <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1L1 9l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <!-- Flipbook Container -->
+      <div class="book-wrapper">
+        <div id="flipbook" class="flipbook">
+          <!-- Pages will be injected by JS -->
+        </div>
+      </div>
+
+      <button class="book-nav book-nav--next" id="btn-next" aria-label="Next page" type="button">
+        <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M1 1l8 8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    {%- assign page_blocks = section.blocks | where: 'type', 'page' -%}
+    
+    <!-- Desktop Page Counter -->
+    <p class="page-counter" id="page-counter">Page 1 &amp; 2 sur {{ page_blocks.size }}</p>
+
+    <!-- Mobile Bottom Controls -->
+    <div class="book-bottom-mobile">
+      <button class="btn-fullscreen" id="btn-fullscreen" type="button">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 5V1h4M13 9v4H9M5 13H1V9M9 1h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Plein écran</span>
+      </button>
+      
+      <div class="book-nav-mobile">
+        <button class="book-nav-mob" id="btn-prev-mob" aria-label="Previous page" type="button">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="page-counter-mob" id="page-counter-mob">Page 1 &amp; 2 sur {{ page_blocks.size }}</p>
+        <button class="book-nav-mob" id="btn-next-mob" aria-label="Next page" type="button">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Render hidden JSON data from Shopify blocks -->
+    <script id="flipbook-data" type="application/json">
+      {
+        "flickthroughImageUrls": [
+          {%- assign first_page = true -%}
+          {%- for block in page_blocks -%}
+            {%- if block.settings.image -%}
+              {%- unless first_page -%},{%- endunless -%}
+              {
+                "page": {{ forloop.index0 }},
+                "image_url": {{ block.settings.image | image_url: width: 1300 | prepend: 'https:' | json }}
+              }
+              {%- assign first_page = false -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+
+  </div>
+</section>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --fb-cream:      {{ section.settings.bg_color | default: '#f5f0e8' }};
+  --fb-paper:      #faf8f4;
+  --fb-ink:        #1a1a1a;
+  --fb-ink-muted:  #6b6560;
+  --fb-track:      #d8d3cb;
+  --fb-visited:    #1a1a1a;
+  --fb-unvisited:  #c4bfb8;
+  --fb-border-color: {{ section.settings.border_color | default: '#FBF8F4' }};
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.flipbook-section {
+  background-color: var(--fb-cream);
+  {% if section.settings.bg_image %}
+  background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+  background-size: cover;
+  background-position: center;
+  {% endif %}
+  padding: 72px 24px 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+.flipbook-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.flipbook-header { text-align: center; margin-bottom: 48px; }
+.flipbook-eyebrow {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fb-ink-muted);
+  margin: 0 0 10px;
+}
+.flipbook-title {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--fb-ink);
+  margin: 0;
+}
+
+/* Chapter Nav */
+.chapter-nav {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 36px;
+  padding: 0 20px;
+}
+.chapter-track {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: var(--fb-track);
+  z-index: 0;
+}
+.chapter-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: var(--fb-visited);
+  transition: width 0.5s ease;
+}
+.chapter-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.chapter-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 5px solid var(--fb-cream);
+  background: var(--fb-unvisited);
+  transition: all 0.3s;
+  box-shadow: 0 0 0 1.5px var(--fb-unvisited);
+}
+.chapter-item.is-visited .chapter-dot { background: var(--fb-visited); box-shadow: 0 0 0 1.5px var(--fb-visited); }
+.chapter-item.is-active .chapter-dot { transform: scale(1.15); }
+.chapter-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11.5px;
+  color: var(--fb-ink-muted);
+  background: var(--fb-cream);
+  padding: 5px 10px 6px;
+  transition: all 0.2s;
+}
+.chapter-item.is-visited .chapter-label { color: var(--fb-ink); }
+.chapter-item.is-active .chapter-label { background: var(--fb-paper); }
+
+/* Book Stage */
+.book-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.book-nav {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fb-track);
+  background: var(--fb-paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.book-nav:hover {
+  background: var(--fb-ink);
+  border-color: var(--fb-ink);
+  color: var(--fb-cream);
+}
+.book-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Flipbook */
+.book-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 930px;
+  box-sizing: border-box;
+  {% if section.settings.show_border %}
+  background-color: var(--fb-border-color);
+  {% if section.settings.cover_image %}
+  background-image: url('{{ section.settings.cover_image | image_url: width: 1200 }}');
+  background-size: cover;
+  background-position: center;
+  {% else %}
+  background-image: 
+    repeating-linear-gradient(transparent, transparent 1px, rgba(0,0,0,0.04) 1px, rgba(0,0,0,0.04) 2px),
+    repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,0.04) 1px, rgba(0,0,0,0.04) 2px);
+  {% endif %}
+  padding: 8px 12px; /* Cover border showing linen */
+  box-shadow: 
+    inset 0 0 15px rgba(0,0,0,0.03),
+    0 20px 50px rgba(0,0,0,0.15);
+  border-radius: 6px 8px 8px 6px;
+  {% else %}
+  background: transparent;
+  padding: 0;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  {% endif %}
+  touch-action: manipulation;
+}
+
+.flipbook {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  touch-action: manipulation;
+}
+
+.flipbook {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.page {
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* StPageFlip specific overrides */
+.stf__item { box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
+
+/* Hard shadows for realism */
+.page.--left { border-right: 1px solid rgba(0,0,0,0.1); }
+.page.--right { border-left: 1px solid rgba(0,0,0,0.1); }
+
+.page-counter {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--fb-ink-muted);
+  text-align: center;
+}
+
+/* Mobile Controls CSS */
+.chapter-nav-mobile {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+.chapter-select-label {
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--fb-ink);
+  margin-bottom: 8px;
+}
+.chapter-select-wrapper {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--fb-ink);
+  border-radius: 2px;
+}
+.chapter-select {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--fb-ink);
+  cursor: pointer;
+}
+.chapter-select:focus { outline: none; }
+.select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.book-bottom-mobile {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+  width: 100%;
+}
+.btn-fullscreen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--fb-ink);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+.book-nav-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+}
+.book-nav-mob {
+  width: 40px;
+  height: 40px;
+  background: #f0e9dd;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--fb-ink);
+}
+.book-nav-mob:disabled {
+  opacity: 0.3;
+}
+.page-counter-mob {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: var(--fb-ink-muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .chapter-nav { display: none; }
+  .chapter-nav-mobile { display: block; }
+  .book-stage .book-nav { display: none; }
+  .book-stage { gap: 0; }
+  .book-wrapper { max-width: 100%; }
+  #page-counter { display: none; }
+  .book-bottom-mobile { display: flex; }
+}
+
+/* Fullscreen support */
+.btn-exit-fullscreen {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--fb-ink);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 1000;
+  align-items: center;
+  gap: 8px;
+}
+.flipbook-container:fullscreen .btn-exit-fullscreen {
+  display: flex;
+}
+
+.flipbook-container:fullscreen {
+  background: var(--fb-cream);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.flipbook-container:fullscreen .book-stage { margin-bottom: 0; flex-grow: 1; height: 100%; display: flex; align-items: center; }
+.flipbook-container:fullscreen .chapter-nav-mobile,
+.flipbook-container:fullscreen .book-bottom-mobile,
+.flipbook-container:fullscreen .flipbook-header { display: none; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('flipbook');
+  const btnNext = document.getElementById('btn-next');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNextMob = document.getElementById('btn-next-mob');
+  const btnPrevMob = document.getElementById('btn-prev-mob');
+  const pageCounter = document.getElementById('page-counter');
+  const pageCounterMob = document.getElementById('page-counter-mob');
+  const chapterSelect = document.getElementById('chapter-select');
+  const btnFullscreen = document.getElementById('btn-fullscreen');
+  const chapterItems = document.querySelectorAll('.chapter-item');
+  const chapterTrack = document.querySelector('.chapter-track');
+  
+  const TOTAL_PAGES = {{ page_blocks.size }};
+
+  // Parse JSON data
+  let images = [];
+  try {
+    const dataNode = document.getElementById('flipbook-data');
+    const data = JSON.parse(dataNode.textContent);
+    images = data.flickthroughImageUrls || data;
+  } catch(e) {
+    console.error("Failed to parse flipbook JSON data", e);
+  }
+
+  // Create DOM elements for pages
+  images.forEach((imgData, idx) => {
+    const pageEl = document.createElement('div');
+    pageEl.className = 'page';
+    pageEl.dataset.page = imgData.page || idx;
+    
+    const img = document.createElement('img');
+    img.src = imgData.image_url;
+    img.loading = idx < 4 ? 'eager' : 'lazy'; // preload first few
+    
+    pageEl.appendChild(img);
+    container.appendChild(pageEl);
+  });
+
+  // Initialize St.PageFlip
+  const pageFlip = new St.PageFlip(container, {
+    width: 465,
+    height: 661,
+    size: "stretch",
+    minWidth: 100,
+    maxWidth: 600,
+    minHeight: 100,
+    maxHeight: 850,
+    maxShadowOpacity: 0.4,
+    showCover: false,
+    mobileScrollSupport: false,
+    usePortrait: false // Always show two pages
+  });
+
+  pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+  // Update UI on page turn
+  pageFlip.on('flip', (e) => {
+    const currentPage = e.data; // 0-based index of left page
+    
+    // Update nav buttons
+    const isPrevDisabled = currentPage === 0;
+    const isNextDisabled = currentPage >= pageFlip.getPageCount() - 2;
+    btnPrev.disabled = isPrevDisabled;
+    btnNext.disabled = isNextDisabled;
+    if (btnPrevMob) btnPrevMob.disabled = isPrevDisabled;
+    if (btnNextMob) btnNextMob.disabled = isNextDisabled;
+
+    // Update Counter
+    let leftNum = currentPage + 1;
+    let rightNum = leftNum + 1;
+    let cText = '';
+    if (pageFlip.getOrientation() === 'portrait') {
+      cText = `Page ${leftNum} sur ${TOTAL_PAGES}`;
+    } else {
+      cText = `Page ${leftNum} & ${rightNum} sur ${TOTAL_PAGES}`;
+    }
+    pageCounter.innerHTML = cText;
+    if (pageCounterMob) pageCounterMob.innerHTML = cText;
+
+    // Update Chapter Nav
+    let activeIndex = 0;
+    chapterItems.forEach((item, idx) => {
+      const targetPage = parseInt(item.dataset.page, 10) || 1;
+      const pageIdx = Math.max(0, targetPage - 1);
+      if (currentPage >= pageIdx) {
+        activeIndex = idx;
+      }
+    });
+
+    chapterItems.forEach((item, idx) => {
+      item.classList.toggle('is-active', idx === activeIndex);
+      item.classList.toggle('is-visited', idx <= activeIndex);
+    });
+    
+    if (chapterSelect) {
+      chapterSelect.selectedIndex = activeIndex;
+    }
+
+    // Update Track Progress
+    if (chapterTrack && chapterItems.length > 1) {
+      const progress = (activeIndex / (chapterItems.length - 1)) * 100;
+      chapterTrack.style.setProperty('--progress', `${progress}%`);
+    }
+  });
+
+  // Button clicks
+  btnNext.addEventListener('click', () => pageFlip.flipNext());
+  btnPrev.addEventListener('click', () => pageFlip.flipPrev());
+  if (btnNextMob) btnNextMob.addEventListener('click', () => pageFlip.flipNext());
+  if (btnPrevMob) btnPrevMob.addEventListener('click', () => pageFlip.flipPrev());
+
+  // Tap anywhere on book to turn page (Desktop)
+  container.addEventListener('click', (e) => {
+    if (pageFlip.getState() !== 'read') return;
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      pageFlip.flipPrev();
+    } else {
+      pageFlip.flipNext();
+    }
+  });
+
+  // Tap anywhere on book to turn page (Mobile Touch)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    if(e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if(e.changedTouches.length > 0) {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchTime = Date.now() - touchStartTime;
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      const distance = Math.sqrt(dx*dx + dy*dy);
+
+      // If it's a quick tap without dragging
+      if (distance < 10 && touchTime < 300) {
+        if (pageFlip.getState() === 'read') {
+          const rect = container.getBoundingClientRect();
+          const x = touchEndX - rect.left;
+          if (x < rect.width / 2) {
+            pageFlip.flipPrev();
+          } else {
+            pageFlip.flipNext();
+          }
+        }
+      }
+    }
+  });
+
+  // Mobile chapter select
+  if (chapterSelect) {
+    chapterSelect.addEventListener('change', (e) => {
+      const targetPage = parseInt(e.target.value, 10) || 1;
+      const pageIdx = Math.max(0, targetPage - 1);
+      if (pageIdx < pageFlip.getPageCount()) {
+        pageFlip.flip(pageIdx);
+      }
+    });
+  }
+
+  // Fullscreen
+  const btnExitFullscreen = document.getElementById('btn-exit-fullscreen');
+
+  if (btnFullscreen) {
+    btnFullscreen.addEventListener('click', () => {
+      const wrap = document.querySelector('.flipbook-container');
+      if (!document.fullscreenElement) {
+        wrap.requestFullscreen().catch(err => {
+          console.error(err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
+  }
+  
+  if (btnExitFullscreen) {
+    btnExitFullscreen.addEventListener('click', () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    });
+  }
+
+  // Chapter clicks
+  chapterItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const targetPage = parseInt(item.dataset.page, 10) || 1;
+      const pageIdx = Math.max(0, targetPage - 1);
+      if (pageIdx < pageFlip.getPageCount()) {
+        pageFlip.flip(pageIdx);
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Journal Flipbook",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Flick through the"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Journal de gratitude"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5f0e8"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Section Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show Book Border",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Book Cover Color (Linen)",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Book Cover Image (Overrides Color)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter Link",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Chapter Title",
+          "default": "Chapter Name"
+        },
+        {
+          "type": "number",
+          "id": "start_spread",
+          "label": "Target Page Number",
+          "default": 1,
+          "info": "Enter the exact page number you want to jump to (e.g. 5 for page 5)."
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Book Page",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Page Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Journal Flipbook",
+      "blocks": [
+        { "type": "chapter", "settings": { "title": "Gratitude prompts", "start_spread": 1 } },
+        { "type": "chapter", "settings": { "title": "Letter to yourself", "start_spread": 11 } },
+        { "type": "chapter", "settings": { "title": "Reframe your thoughts", "start_spread": 31 } },
+        { "type": "chapter", "settings": { "title": "30 day reflection", "start_spread": 45 } },
+        { "type": "chapter", "settings": { "title": "Gratitude challenge", "start_spread": 57 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

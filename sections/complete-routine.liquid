@@ -1,0 +1,330 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #E4032B;
+    --bg-white: #ffffff;
+    --bg-sand: #FBF8F4;
+    --text-dark: #0A0A0A;
+    --text-muted: #5C564F;
+  }
+
+  .section-{{ section.id }} {
+    /* Custom Padding from Settings */
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--bg-white);
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .subheading-{{ section.id }} {
+    font-family: var(--font-accent-val);
+    color: var(--primary-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .title-{{ section.id }} {
+    font-family: var(--font-display-val);
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin: 0;
+  }
+
+  .grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 767px) {
+    .grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --- Card 1 (Sand) --- */
+  .card-sand-{{ section.id }} {
+    background: var(--bg-sand);
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: 0.3s ease-in-out;
+  }
+  .card-sand-{{ section.id }}:hover {
+    border: 1px solid rgb(228, 3, 43); 
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+  }
+
+  /* --- Card 2 (Red) --- */
+  .card-red-{{ section.id }} {
+    background: var(--primary-red);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+  }
+  .card-red-{{ section.id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(228, 3, 43, 0.2);
+  }
+
+  .radial-overlay-{{ section.id }} {
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* --- Typography inside Cards --- */
+  .card-sub-{{ section.id }} {
+    font-family: var(--font-accent-val);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .card-title-{{ section.id }} {
+    font-family: var(--font-display-val);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .card-p-{{ section.id }} {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  /* --- Buttons Fixed --- */
+  .btn-base-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Locked Gap */
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease-in-out;
+  }
+
+  .btn-light-red-{{ section.id }} {
+    background: #FADADD;
+    color: var(--primary-red);
+  }
+  
+  .btn-light-red-{{ section.id }}:hover {
+    background: rgb(245, 196, 201);
+    transform: translateY(-2px);
+    /* Gap stays 8px to keep arrow still */
+  }
+
+  .btn-white-{{ section.id }} {
+    background: #ffffff;
+    color: var(--primary-red);
+  }
+
+  .btn-white-{{ section.id }}:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="container-{{ section.id }}">
+    
+    <div class="header-{{ section.id }}" 
+     data-aos="fade-up" 
+     data-aos-duration="700">
+      <div class="subheading-{{ section.id }}">{{ section.settings.header_sub }}</div>
+      <h2 class="title-{{ section.id }}">{{ section.settings.header_title }}</h2>
+    </div>
+
+    <div class="grid-{{ section.id }}" 
+     data-aos="fade-up" 
+     data-aos-duration="800">
+      
+      <div class="card-sand-{{ section.id }}" 
+     data-aos="fade-right" 
+     data-aos-duration="800">
+        <div class="card-sub-{{ section.id }}" style="color: var(--primary-red);">
+          {{ section.settings.card1_sub }}
+        </div>
+        <h3 class="card-title-{{ section.id }}" style="color: var(--text-dark);">
+          {{ section.settings.card1_title }}
+        </h3>
+        <p class="card-p-{{ section.id }}" style="color: var(--text-muted);">
+          {{ section.settings.card1_desc }}
+        </p>
+        <a href="{{ section.settings.card1_link }}" class="btn-base-{{ section.id }} btn-light-red-{{ section.id }}">
+          {{ section.settings.card1_btn_text }}
+          <svg width="16" height="16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+
+      <div class="card-red-{{ section.id }}" 
+     data-aos="fade-left" 
+     data-aos-duration="800" 
+     data-aos-delay="100">
+        <div class="radial-overlay-{{ section.id }}"></div>
+        <div style="position: relative; z-index: 1;">
+          <div class="card-sub-{{ section.id }}" style="color: #ffffff;">
+            {{ section.settings.card2_sub }}
+          </div>
+          <h3 class="card-title-{{ section.id }}" style="color: #ffffff;">
+            {{ section.settings.card2_title }}
+          </h3>
+          <p class="card-p-{{ section.id }}" style="color: rgba(255, 255, 255, 0.8);">
+            {{ section.settings.card2_desc }}
+          </p>
+          <a href="{{ section.settings.card2_link }}" class="btn-base-{{ section.id }} btn-white-{{ section.id }}">
+            {{ section.settings.card2_btn_text }}
+            <svg width="16" height="16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Complete Your Routine",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "header_sub",
+      "label": "Main Subheading",
+      "default": "Aller plus loin"
+    },
+    {
+      "type": "textarea",
+      "id": "header_title",
+      "label": "Main Title",
+      "default": "Complète ta routine"
+    },
+    {
+      "type": "header",
+      "content": "Left Card (Sand)"
+    },
+    {
+      "type": "text",
+      "id": "card1_sub",
+      "label": "Card 1 Subheading",
+      "default": "Le Planner Structurée"
+    },
+    {
+      "type": "textarea",
+      "id": "card1_title",
+      "label": "Card 1 Title",
+      "default": "Le planner complet basé sur la Méthode"
+    },
+    {
+      "type": "textarea",
+      "id": "card1_desc",
+      "label": "Card 1 Description",
+      "default": "6 mois de planification structurée, avec l'audit de ta réalité, la méthode T.A.P.P. et les semaines détaillées."
+    },
+    {
+      "type": "text",
+      "id": "card1_btn_text",
+      "label": "Card 1 Button Text",
+      "default": "Découvrir — 34,90€"
+    },
+    {
+      "type": "url",
+      "id": "card1_link",
+      "label": "Card 1 Link"
+    },
+    {
+      "type": "header",
+      "content": "Right Card (Red)"
+    },
+    {
+      "type": "text",
+      "id": "card2_sub",
+      "label": "Card 2 Subheading",
+      "default": "Programme Signature"
+    },
+    {
+      "type": "textarea",
+      "id": "card2_title",
+      "label": "Card 2 Title",
+      "default": "Le Coaching Structurée"
+    },
+    {
+      "type": "textarea",
+      "id": "card2_desc",
+      "label": "Card 2 Description",
+      "default": "Les 6 modules vidéo pour maîtriser la Méthode et construire un système d'organisation qui tient."
+    },
+    {
+      "type": "text",
+      "id": "card2_btn_text",
+      "label": "Card 2 Button Text",
+      "default": "Rejoindre — 349€"
+    },
+    {
+      "type": "url",
+      "id": "card2_link",
+      "label": "Card 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complete Your Routine"
+    }
+  ]
+}
+{% endschema %}

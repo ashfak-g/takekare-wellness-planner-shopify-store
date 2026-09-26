@@ -1,0 +1,177 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  .features-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .features-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fbf8f4;
+    border-radius: 12px;
+    padding: 24px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+  }
+
+  .feature-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #0a0a0a;
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: #5c564f;
+    line-height: 1.6;
+  }
+
+  .section-header-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto 48px auto;
+    padding: 0 24px;
+  }
+
+  .feature-card:hover {
+    border: 1px solid rgb(228, 3, 43);
+    transition: 0.3s;
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 4px 20px;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="section-header-{{ section.id }}" 
+       data-aos="fade-up" 
+       data-aos-duration="700">
+    <div style="font-family: Caveat, cursive; color: #e4032b; font-size: 20px; font-weight: 600; margin-bottom: 10px;">
+      {{ section.settings.sub_heading }}
+    </div>
+    <h2 style="font-size: clamp(26px, 3vw, 40px); font-weight: 400; line-height: 1.2; color: #0a0a0a; margin: 0;">
+      {{ section.settings.heading }}
+    </h2>
+  </div>
+
+  <div class="features-grid-{{ section.id }}" 
+       data-aos="fade-up" 
+       data-aos-duration="800" 
+       data-aos-easing="ease-out-cubic">
+    {%- for block in section.blocks -%}
+      <div class="feature-card" 
+      {{ block.shopify_attributes }} 
+      data-aos="fade-up" 
+      data-aos-delay="{{ forloop.index0 | times: 100 }}">
+        <div class="feature-icon">{{ block.settings.icon }}</div>
+        <div>
+          <div class="feature-title">{{ block.settings.title }}</div>
+          <div class="feature-desc">{{ block.settings.text }}</div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Daily Planner Features",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "À l'intérieur"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Ce que tu trouves dans le Daily Planner"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji Icon",
+          "default": "📅"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "1 page par jour"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Format épuré pour intention du jour, priorités, tâches et bilan.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Daily Planner Features",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,360 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #e4032b;
+    --text-dark: #0a0a0a;
+    --text-muted: #5c564f;
+    --bg-light: #fbf8f4;
+    --border-light: rgba(0, 0, 0, 0.06);
+  }
+
+  .pillars-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: {{ section.settings.bg_color }};
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 768px) {
+    .pillars-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .pillars-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .pillars-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .pillars-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-accent-val);
+    font-size: 22px;
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .pillars-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+
+  .pillars-description {
+    font-size: 16px;
+    color: #8a8178;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 1024px) {
+    .pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pillar-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 32px 26px 28px;
+    border: 1px solid var(--border-light);
+    transition: 0.3s;
+    height: 100%;
+  }
+
+  .pillar-card:hover {
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 32px 26px 28px;
+    border: 1px solid rgb(228, 3, 43);
+    transition: 0.3s;
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+    transform: translateY(-3px);
+  }
+
+  .pillar-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .pillar-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display-val);
+    font-size: 18px;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  .pillar-main-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .pillar-accent-title {
+    font-family: var(--font-accent-val);
+    color: var(--primary-red);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .pillar-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .pillars-footer {
+    text-align: center;
+  }
+
+  .pillars-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+
+  .pillars-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+{%- endstyle -%}
+
+<section class="pillars-section-{{ section.id }}">
+  <div class="pillars-container">
+    
+    <div class="pillars-header" data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <div class="pillars-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      
+      <h2 class="pillars-title">
+        {{ section.settings.title }}
+      </h2>
+
+      {% if section.settings.description != blank %}
+        <div class="pillars-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="pillars-grid">
+      {% for block in section.blocks %}
+        <div class="pillar-card"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+          <div class="pillar-top">
+            <div class="pillar-number">
+              {% if block.settings.icon_text != blank %}
+                {{ block.settings.icon_text }}
+              {% else %}
+                {{ forloop.index }}
+              {% endif %}
+            </div>
+            <div class="pillar-main-title">{{ block.settings.main_title }}</div>
+          </div>
+          
+          <div class="pillar-accent-title">{{ block.settings.accent_title }}</div>
+          
+          <p class="pillar-text">
+            {{ block.settings.text }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_label != blank %}
+      <div class="pillars-footer" data-aos="fade-up">
+        <a href="{{ section.settings.button_link }}" class="pillars-btn">
+          {{ section.settings.button_label }}
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Solution Pillars",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "La solution"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Supports <br>)",
+      "default": "La Méthode Structurée<br>en 6 piliers"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Une méthode claire, actionnable, qui t’aide à avancer sans t’épuiser."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Découvrir la Méthode complète"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 44
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Number/Icon",
+          "info": "Leave blank to use block order (1, 2, 3...)"
+        },
+        {
+          "type": "text",
+          "id": "main_title",
+          "label": "Main Title",
+          "default": "Voir clair"
+        },
+        {
+          "type": "text",
+          "id": "accent_title",
+          "label": "Accent Title",
+          "default": "Audit de la réalité"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Comprendre où va ton temps, ton énergie, ta charge quotidienne en auditant ta réalité."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Pillars Home",
+      "blocks": [
+        { "type": "pillar", "settings": { "main_title": "Voir clair", "accent_title": "Audit de la réalité" } },
+        { "type": "pillar", "settings": { "main_title": "Alléger", "accent_title": "Filtrer, trier, retirer" } },
+        { "type": "pillar", "settings": { "main_title": "Structurer", "accent_title": "La méthode T.A.P.P." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

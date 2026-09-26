@@ -1,0 +1,290 @@
+{%- style -%}
+  :root {
+    --faq-red: {{ section.settings.accent_color }};
+    --faq-bg: {{ section.settings.bg_color }};
+    --faq-font-display: 'Instrument Serif', Georgia, serif;
+    --faq-font-accent: 'Caveat', cursive;
+    --faq-font-sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .faq-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: var(--faq-bg);
+    font-family: var(--faq-font-sans);
+    color: #0a0a0a;
+  }
+
+  @media screen and (min-width: 768px) {
+    .faq-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .faq-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .faq-subtitle {
+    font-family: var(--faq-font-accent);
+    color: var(--faq-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .faq-title {
+    font-family: var(--faq-font-display);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .faq-wrapper {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    transition: background 0.2s ease;
+  }
+
+  .faq-trigger:hover {
+    background: rgba(0,0,0,0.01);
+  }
+
+  .faq-question {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0a0a0a;
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    color: var(--faq-red);
+    font-size: 22px;
+    font-weight: 300;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+  }
+
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 28px;
+  }
+
+  .faq-content-inner {
+    padding-bottom: 22px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  /* Active State */
+  .faq-item.is-active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-item.is-active .faq-content {
+    max-height: 500px; /* Adjust if content is very long */
+    transition: max-height 0.5s ease-in;
+  }
+{%- endstyle -%}
+
+<section class="faq-section-{{ section.id }}">
+  <div class="faq-container">
+    <div class="faq-header">
+      {% if section.settings.subtitle != blank %}
+        <div class="faq-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="faq-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="faq-wrapper">
+      {% for block in section.blocks %}
+        <div class="faq-item" {{ block.shopify_attributes }}>
+          <button class="faq-trigger" aria-expanded="false">
+            <span class="faq-question">{{ block.settings.question }}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      const isOpen = item.classList.contains('is-active');
+      
+      // Optional: Close other items when opening one (Accordion style)
+      // document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
+      
+      if (!isOpen) {
+        item.classList.add('is-active');
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        item.classList.remove('is-active');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom FAQ Accordion",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Questions fréquentes"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Tout ce que tu dois savoir"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Comment reçois-je le produit après l'achat ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Après validation de votre commande, vous recevrez un email contenant le lien de téléchargement immédiat.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ Accordion",
+      "blocks": [
+        { "type": "faq_item", "settings": { "question": "Comment reçois-je le produit après l'achat ?" } },
+        { "type": "faq_item", "settings": { "question": "Ai-je besoin d'un compte Notion payant ?" } },
+        { "type": "faq_item", "settings": { "question": "Le template est-il mis à jour ?" } },
+        { "type": "faq_item", "settings": { "question": "Puis-je obtenir un remboursement ?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

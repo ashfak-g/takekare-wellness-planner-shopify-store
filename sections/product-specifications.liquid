@@ -1,0 +1,168 @@
+{%- style -%}
+  :root {
+    --font-accent-val: 'Caveat', cursive;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --tk-red: rgb(228, 3, 43);
+    --tk-bg: rgb(251, 248, 244);
+    --tk-border: rgba(0, 0, 0, 0.06);
+    --tk-muted: rgb(138, 129, 120);
+    --tk-dark: rgb(10, 10, 10);
+  }
+
+  .spec-section-{{ section.id }} {
+    padding: clamp(60px, 8vw, 100px) 0px;
+    background: var(--tk-bg);
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .spec-container-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .spec-header-{{ section.id }} {
+    margin-bottom: 40px;
+  }
+
+  .spec-subtitle-{{ section.id }} {
+    font-family: var(--font-accent-val);
+    color: var(--tk-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .spec-title-{{ section.id }} {
+    font-family: var(--font-display-val);
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--tk-dark);
+    margin: 0;
+  }
+
+  .spec-table-{{ section.id }} {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--tk-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .spec-row-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .spec-row-{{ section.id }}:last-child {
+    border-bottom: none;
+  }
+
+  .spec-label-{{ section.id }} {
+    font-size: 14px;
+    color: var(--tk-muted);
+    font-weight: 500;
+  }
+
+  .spec-value-{{ section.id }} {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tk-dark);
+    text-align: right;
+  }
+
+  @media screen and (max-width: 480px) {
+    .spec-row-{{ section.id }} {
+      padding: 15px 20px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="spec-section-{{ section.id }}">
+  <div class="spec-container-{{ section.id }}">
+    
+    <div class="spec-header-{{ section.id }}" 
+     data-aos="fade-up" 
+     data-aos-duration="700">
+      {% if section.settings.subtitle != blank %}
+        <div class="spec-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="spec-title-{{ section.id }}">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="spec-table-{{ section.id }}" 
+     data-aos="fade-up" 
+     data-aos-duration="800" 
+     data-aos-delay="100">
+      {% for block in section.blocks %}
+        <div class="spec-row-{{ section.id }}" 
+     {{ block.shopify_attributes }} 
+     data-aos="fade-up" 
+     data-aos-delay="{{ forloop.index0 | times: 100 }}">
+          <span class="spec-label-{{ section.id }}">{{ block.settings.label }}</span>
+          <span class="spec-value-{{ section.id }}">{{ block.settings.value }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Specifications",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Le détail"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Caractéristiques"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specification",
+      "name": "Spec Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Format"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "A5 (148 × 210 mm)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Specifications",
+      "blocks": [
+        { "type": "specification", "settings": { "label": "Format", "value": "A5 (148 × 210 mm)" } },
+        { "type": "specification", "settings": { "label": "Pages", "value": "200 pages" } },
+        { "type": "specification", "settings": { "label": "Couverture", "value": "Rigide, effet mat" } },
+        { "type": "specification", "settings": { "label": "Papier", "value": "80g, crème" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

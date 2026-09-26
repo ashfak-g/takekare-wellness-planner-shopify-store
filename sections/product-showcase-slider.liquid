@@ -1,0 +1,403 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #e4032b;
+  }
+
+  .boutique-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    overflow: hidden;
+    font-family: var(--font-sans-val);
+  }
+
+  .boutique-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header Styling */
+  .boutique-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .boutique-subtitle {
+    font-family: var(--font-accent-val);
+    font-size: 22px;
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .boutique-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+    color: #0a0a0a;
+  }
+
+  .btn-outline-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid var(--primary-red);
+    color: var(--primary-red);
+    padding: 13px 28px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    transition: 0.25s;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .btn-outline-red:hover {
+    background: var(--primary-red);
+    color: #fff;
+  }
+
+  /* Main Card Grid */
+  .showcase-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    min-height: 480px;
+  }
+
+  @media (max-width: 768px) {
+    .showcase-card { grid-template-columns: 1fr; }
+  }
+
+  /* Left Side: Image Gallery */
+  .showcase-gallery {
+    position: relative;
+    background: #fbf8f4;
+    overflow: hidden;
+  }
+
+  .gallery-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .gallery-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  .gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: 0.2s;
+  }
+
+  .nav-arrow:hover { background: #fff; }
+  .nav-prev { left: 16px; }
+  .nav-next { right: 16px; }
+
+  .counter-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0a0a0a;
+    z-index: 3;
+  }
+
+  /* Right Side: Content */
+  .showcase-content {
+    background: #fbf8f4;
+    padding: clamp(36px, 5vw, 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .content-slide {
+    display: none;
+  }
+
+  .content-slide.active {
+    display: block;
+    animation: slideUp 0.4s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .product-category {
+    display: inline-block;
+    font-family: var(--font-accent-val);
+    font-size: 15px;
+    color: var(--primary-red);
+    font-weight: 600;
+    background: rgba(228, 3, 43, 0.08);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+  }
+
+  .product-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+  }
+
+  .product-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #5c564f;
+    margin-bottom: 36px;
+  }
+
+  /* Dots & Thumbnails */
+  .pagination-dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    width: 28px;
+    background: var(--primary-red);
+  }
+
+  .thumb-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .thumb-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.25s;
+    opacity: 0.5;
+  }
+
+  .thumb-btn.active {
+    border-color: var(--primary-red);
+    opacity: 1;
+  }
+
+  .thumb-btn img { width: 100%; height: 100%; object-fit: cover; }
+
+  .btn-primary-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--primary-red);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+
+  .btn-primary-red:hover { opacity: 0.9; }
+{%- endstyle -%}
+
+<section class="boutique-{{ section.id }}">
+  <div class="boutique-container">
+    
+    <div class="boutique-header" data-aos="fade-up">
+      <div>
+        <div class="boutique-subtitle">{{ section.settings.subtitle }}</div>
+        <h2 class="boutique-title">{{ section.settings.title }}</h2>
+      </div>
+      <a href="{{ section.settings.shop_link }}" class="btn-outline-red">
+        {{ section.settings.shop_label }}
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+
+    <div class="showcase-card" data-aos="fade-up">
+      <div class="showcase-gallery" id="Gallery-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="gallery-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+        {% endfor %}
+        
+        <button class="nav-arrow nav-prev" onclick="moveSlide(-1, '{{ section.id }}')">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <button class="nav-arrow nav-next" onclick="moveSlide(1, '{{ section.id }}')">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+
+        <div class="counter-badge"><span class="current-idx">1</span> / {{ section.blocks.size }}</div>
+      </div>
+
+      <div class="showcase-content" id="Content-{{ section.id }}">
+        <div class="product-info-wrapper">
+          {% for block in section.blocks %}
+            <div class="content-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" >
+              <div class="product-category">{{ block.settings.category }}</div>
+              <h3 class="product-title">{{ block.settings.title }}</h3>
+              <p class="product-desc">{{ block.settings.text }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="controls">
+          <div class="pagination-dots">
+            {% for block in section.blocks %}
+              <button class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="goToSlide({{ forloop.index0 }}, '{{ section.id }}')"></button>
+            {% endfor %}
+          </div>
+
+          <div class="thumb-nav">
+            {% for block in section.blocks %}
+              <button class="thumb-btn {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="goToSlide({{ forloop.index0 }}, '{{ section.id }}')">
+                <img src="{{ block.settings.image | image_url: width: 120 }}" alt="">
+              </button>
+            {% endfor %}
+          </div>
+
+          {% assign first_block = section.blocks.first %}
+          <a href="{{ first_block.settings.link }}" class="btn-primary-red main-product-link">
+            {{ section.settings.buy_label }}
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function updateSlider(idx, sid) {
+    const container = document.querySelector('.boutique-' + sid);
+    const slides = container.querySelectorAll('.gallery-slide');
+    const contents = container.querySelectorAll('.content-slide');
+    const dots = container.querySelectorAll('.dot');
+    const thumbs = container.querySelectorAll('.thumb-btn');
+    const counter = container.querySelector('.current-idx');
+    const mainBtn = container.querySelector('.main-product-link');
+
+    slides.forEach(s => s.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    thumbs.forEach(t => t.classList.remove('active'));
+
+    slides[idx].classList.add('active');
+    contents[idx].classList.add('active');
+    dots[idx].classList.add('active');
+    thumbs[idx].classList.add('active');
+    counter.innerText = idx + 1;
+    
+    // Update main button link based on current slide
+    const currentLink = contents[idx].closest('.showcase-content').getAttribute('data-link'); 
+    // Optimization: Add link to content block data
+  }
+
+  let currentIdx = 0;
+  function moveSlide(dir, sid) {
+    const total = {{ section.blocks.size }};
+    currentIdx = (currentIdx + dir + total) % total;
+    updateSlider(currentIdx, sid);
+  }
+
+  function goToSlide(idx, sid) {
+    currentIdx = idx;
+    updateSlider(idx, sid);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Showcase Slider",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "La Boutique" },
+    { "type": "textarea", "id": "title", "label": "Title", "default": "Des outils physiques<br>pour organiser ta vie" },
+    { "type": "text", "id": "shop_label", "label": "Header Button", "default": "Voir la boutique" },
+    { "type": "url", "id": "shop_link", "label": "Header Link" },
+    { "type": "text", "id": "buy_label", "label": "Product Button", "default": "Voir le produit" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Top", "default": 100 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Padding Bottom", "default": 100 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product Image" },
+        { "type": "text", "id": "category", "label": "Category", "default": "Quotidien" },
+        { "type": "text", "id": "title", "label": "Product Name", "default": "Mon Menu — Planner Repas" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Le planner de repas hebdomadaire avec liste de courses intégrée." },
+        { "type": "url", "id": "link", "label": "Product Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Product Showcase Slider" }]
+}
+{% endschema %}

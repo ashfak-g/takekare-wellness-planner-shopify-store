@@ -1,0 +1,237 @@
+{%- style -%}
+  :root {
+    --dt-red: {{ section.settings.accent_color }};
+    --dt-bg: {{ section.settings.bg_color }};
+    --dt-card-bg: {{ section.settings.card_bg_color }};
+    --dt-font-display: 'Instrument Serif', Georgia, serif;
+    --dt-font-accent: 'Caveat', cursive;
+    --dt-font-sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .dt-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top_mobile }}px 24px {{ section.settings.padding_bottom_mobile }}px 24px;
+    background: var(--dt-bg);
+    font-family: var(--dt-font-sans);
+  }
+
+  @media screen and (min-width: 768px) {
+    .dt-section-{{ section.id }} {
+      padding: {{ section.settings.padding_top_desktop }}px 0 {{ section.settings.padding_bottom_desktop }}px 0;
+    }
+  }
+
+  .dt-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .dt-header {
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  .dt-subtitle {
+    font-family: var(--dt-font-accent);
+    color: var(--dt-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .dt-title {
+    font-family: var(--dt-font-display);
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  .dt-card-wrapper {
+    background: var(--dt-card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+
+  .dt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .dt-row:last-child {
+    border-bottom: none;
+  }
+
+  .dt-label {
+    font-size: 14px;
+    color: #8a8178;
+    font-weight: 500;
+  }
+
+  .dt-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a0a0a;
+    text-align: right;
+  }
+
+  @media screen and (max-width: 480px) {
+    .dt-row {
+      padding: 16px 20px;
+    }
+    .dt-label, .dt-value {
+      font-size: 13px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="dt-section-{{ section.id }}">
+  <div class="dt-container">
+    
+    <div class="dt-header">
+      {% if section.settings.subtitle != blank %}
+        <div class="dt-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="dt-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="dt-card-wrapper">
+      {% for block in section.blocks %}
+        <div class="dt-row" {{ block.shopify_attributes }}>
+          <span class="dt-label">{{ block.settings.label }}</span>
+          <span class="dt-value">{{ block.settings.value }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Details Table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Table Background",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Les détails"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Caractéristiques"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "detail_row",
+      "name": "Detail Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Format"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "Workspace Notion (.notion)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details Table",
+      "blocks": [
+        { "type": "detail_row", "settings": { "label": "Format", "value": "Workspace Notion (.notion)" } },
+        { "type": "detail_row", "settings": { "label": "Compatibilité", "value": "Notion gratuit et payant" } },
+        { "type": "detail_row", "settings": { "label": "Appareils", "value": "Mac, PC, iOS, Android" } },
+        { "type": "detail_row", "settings": { "label": "Livraison", "value": "Accès immédiat par email" } },
+        { "type": "detail_row", "settings": { "label": "Mises à jour", "value": "Incluses à vie" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

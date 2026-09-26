@@ -1,0 +1,203 @@
+{%- style -%}
+  :root {
+    --tk-red: rgb(228, 3, 43);
+    --tk-bg: rgb(251, 248, 244);
+    --tk-card-bg: #ffffff;
+    --tk-text-dark: #0a0a0a;
+    --tk-text-muted: #5c564f;
+    
+    /* Your requested variables */
+    --font-accent-val: 'Caveat', cursive;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .tk-diagnostic-section {
+    padding: clamp(80px, 10vw, 140px) 0;
+    background-color: var(--tk-bg);
+    font-family: var(--font-sans-val);
+    overflow: hidden;
+  }
+
+  .tk-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .tk-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .tk-subtitle {
+    font-family: var(--font-accent-val);
+    color: var(--tk-red);
+    font-size: 24px; /* Slightly adjusted for better Caveat visibility */
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .tk-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--tk-text-dark);
+    margin: 0;
+  }
+
+  .tk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 990px) {
+    .tk-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .tk-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tk-card {
+    background: var(--tk-card-bg);
+    border-radius: 12px;
+    padding: 36px 28px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .tk-card:hover {
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 36px 28px;
+    border: 1px solid rgb(228, 3, 43);
+    transition: 0.3s;
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+  }
+
+  .tk-card-num {
+    font-family: var(--font-display-val);
+    font-size: 48px;
+    color: rgba(228, 3, 43, 0.1);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-style: italic;
+    transition: color 0.3s ease;
+  }
+
+  .tk-card:hover .tk-card-num {
+    color: rgb(228, 3, 43);
+  }
+
+  .tk-card-h3 {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--tk-text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .tk-card-p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--tk-text-muted);
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="tk-diagnostic-section">
+  <div class="tk-container">
+    
+    <div class="tk-header" data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <span class="tk-subtitle">{{ section.settings.subtitle }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="tk-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="tk-grid" data-aos="fade-up">
+      {% for block in section.blocks %}
+        <div class="tk-card" 
+     data-aos="fade-up"
+     {{ block.shopify_attributes }}>
+          <div class="tk-card-num">
+            {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+          </div>
+          {% if block.settings.heading != blank %}
+            <h3 class="tk-card-h3">{{ block.settings.heading }}</h3>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <p class="tk-card-p">{{ block.settings.text }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Diagnostic Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Small Subtitle",
+      "default": "Le diagnostic"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "Ce contre quoi on se bat"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Diagnostic Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "La productivité toxique"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "L'injonction à faire toujours plus, être toujours disponible, optimiser chaque minute."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Diagnostic Grid",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

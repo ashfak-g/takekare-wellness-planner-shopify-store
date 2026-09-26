@@ -1,0 +1,389 @@
+{%- style -%}
+  /* CSS Variables */
+  :root {
+    --tk-red: #e4032b;
+    --tk-bg-sand: #fbf8f4;
+    --tk-text-main: #0a0a0a;
+    --tk-text-muted: #8a8178;
+    --tk-text-body: #5c564f;
+    --tk-font-display: 'Instrument Serif', Georgia, serif;
+    --tk-font-sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .tk-section {
+    padding: clamp(28px, 3vw, 40px) 0;
+    background: #ffffff;
+    font-family: var(--tk-font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .tk-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Tab Styling */
+  .tk-tabs-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .tk-tabs-container {
+    display: flex;
+    background: var(--tk-bg-sand);
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .tk-tab-trigger {
+    padding: 10px 24px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    transition: 0.25s;
+    background: transparent;
+    color: var(--tk-text-muted);
+  }
+
+  .tk-tab-trigger.is-active {
+    background: #ffffff;
+    color: var(--tk-red);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  .tk-tab-content {
+    display: none;
+    animation: tkFadeIn 0.4s ease;
+  }
+
+  .tk-tab-content.is-active {
+    display: block;
+  }
+
+  @keyframes tkFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero Responsiveness */
+  @media (max-width: 768px) {
+    .max-md\:flex-col { flex-direction: column !important; padding: 24px !important; gap: 24px !important; }
+    .tk-hero-image { max-width: 100% !important; width: 100% !important; }
+  }
+
+  /* Default Grid (Physical tab - 4 columns) */
+  .tk-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  /* Digital tab specific: 3 columns on desktop */
+  #digital .tk-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Responsive adjustments for both grids */
+  @media (max-width: 1024px) {
+    .tk-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    #digital .tk-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .tk-grid,
+    #digital .tk-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tk-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;
+    display: block;
+  }
+
+  .tk-card-img {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--tk-bg-sand);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .tk-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+  }
+
+  /* Badge on image (top-left, black background) */
+  .tk-product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    background: #000000;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 4px 10px;
+    pointer-events: none;
+  }
+
+  .tk-card-title {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--tk-text-main);
+  }
+
+  .tk-card-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tk-red);
+    margin-bottom: 8px;
+  }
+
+
+  .tk-card-text {
+    font-size: 13px;
+    color: var(--tk-text-muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    min-height: 40px;
+  }
+
+  .tk-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid var(--tk-red);
+    color: var(--tk-red);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.25s ease;
+    background: transparent;
+  }
+
+  /* Digital tab specific button style: full width, left-aligned text with arrow on right */
+  #digital .tk-card .tk-btn-outline {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* Hover Effects */
+  .tk-card:hover {
+    border-color: var(--tk-red);
+    transform: translateY(-5px);
+    box-shadow: rgba(228, 3, 43, 0.08) 0px 8px 32px;
+  }
+
+  .tk-card:hover .tk-btn-outline {
+    background: var(--tk-red);
+    color: #ffffff;
+  }
+
+  .tk-card:hover .tk-card-img img {
+    transform: scale(1.05);
+  }
+
+  .custom-hero-btn {
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: rgb(250, 218, 221); 
+    color: rgb(228, 3, 43); 
+    padding: 14px 28px; 
+    border-radius: 6px; 
+    font-size: 14px; 
+    font-weight: 700; 
+    text-decoration: none; 
+    transition: 0.25s;
+  }
+
+  .custom-hero-btn:hover {
+    background: rgb(245, 196, 201);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(228, 3, 43, 0.1);
+  }
+{%- endstyle -%}
+
+<section class="tk-section">
+  <div class="tk-container">
+    
+    <div class="tk-tabs-nav">
+      <div class="tk-tabs-container">
+        <button class="tk-tab-trigger is-active" onclick="tkSwitchTab(event, 'physical')">{{ section.settings.tab_1_label }}</button>
+        <button class="tk-tab-trigger" onclick="tkSwitchTab(event, 'digital')">{{ section.settings.tab_2_label }}</button>
+      </div>
+    </div>
+
+    <div id="physical" class="tk-tab-content is-active">
+      {%- assign hero = all_products[section.settings.hero_product] -%}
+      {% if hero != blank %}
+        <div class="tk-hero-card max-md:flex-col"
+ data-aos="fade-up" style="background: rgb(251, 248, 244); border-radius: 12px; padding: 40px 36px; display: flex; gap: 48px; align-items: center; margin-bottom: 32px; border: 1px solid rgba(0, 0, 0, 0.06);">
+          
+          <div class="tk-hero-image" style="flex: 1 1 0%; aspect-ratio: 4 / 3; max-width: 380px; background: rgb(243, 237, 229); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgb(138, 129, 120); font-size: 14px; overflow: hidden;">
+            {% if hero.featured_image != blank %}
+              <img src="{{ hero.featured_image | img_url: '600x' }}" alt="{{ hero.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+              <div style="text-align: center;">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" style="opacity: 0.3; margin: 0px auto 8px;">
+                  <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <span style="display: block; opacity: 0.6;">{{ hero.title }}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="tk-hero-info" style="flex: 1 1 0%;">
+            <div style="display: inline-block; background: rgb(228, 3, 43); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; border-radius: 4px; padding: 4px 12px; margin-bottom: 16px;">
+              {{ section.settings.hero_badge }}
+            </div>
+            
+            <h2 style="font-family: var(--tk-font-display); font-size: clamp(28px, 4vw, 36px); font-weight: 400; line-height: 1.2; margin: 0 0 10px 0; color: rgb(10, 10, 10);">
+              {{ hero.title }}
+            </h2>
+            
+            <p style="font-size: 24px; font-weight: 700; color: rgb(228, 3, 43); margin-bottom: 16px; font-family: var(--tk-font-sans);">
+              {%- comment -%}Price formatting{%- endcomment -%}
+              {%- assign price_value = hero.price -%}
+              {%- assign units = price_value | divided_by: 100 -%}
+              {%- assign cents = price_value | modulo: 100 | prepend: '00' | slice: -2, 2 -%}
+              {{ units }},{{ cents }}€
+            </p>
+            
+            <p style="font-size: 15px; line-height: 1.7; color: rgb(92, 86, 79); margin-bottom: 24px;">
+              {{ hero.description | strip_html | truncatewords: 20 }}
+            </p>
+
+
+<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+  <a href="{{ hero.url }}" class="custom-hero-btn">
+    Découvrir le Planner
+  </a>
+  <span style="font-size: 13px; color: rgb(138, 129, 120);">
+    {{ section.settings.availability }}
+  </span>
+</div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="tk-grid">
+        {% for product in collections[section.settings.physical_col].products %}
+          <a href="{{ product.url }}" class="tk-card"
+ data-aos="fade-up">
+            <div class="tk-card-img">
+              <img src="{{ product.featured_image | img_url: '400x400', crop: 'center' }}" alt="{{ product.title }}" loading="lazy">
+            </div>
+            <h3 class="tk-card-title">{{ product.title }}</h3>
+            <p class="tk-card-price">
+              {%- assign p_val = product.price -%}
+              {%- assign p_units = p_val | divided_by: 100 -%}
+              {%- assign p_cents = p_val | modulo: 100 | prepend: '00' | slice: -2, 2 -%}
+              {{ p_units }},{{ p_cents }}€
+            </p>
+            <p class="tk-card-text">{{ product.description | strip_html | truncate: 80 }}</p>
+            <div class="tk-btn-outline">
+              Découvrir 
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div id="digital" class="tk-tab-content">
+      <div class="tk-grid">
+        {% for product in collections[section.settings.digital_col].products limit: 8 %}
+          <a href="{{ product.url }}" class="tk-card"
+ data-aos="fade-up"
+ data-aos-duration="800"
+ data-aos-delay="{{ forloop.index0 | times: 100 }}">
+            <div class="tk-card-img">
+              <img src="{{ product.featured_image | img_url: '400x400', crop: 'center' }}" alt="{{ product.title }}" loading="lazy">
+              {% if product.type != blank %}
+                <div class="tk-product-badge">{{ product.type }}</div>
+              {% endif %}
+            </div>
+            <h3 class="tk-card-title">{{ product.title }}</h3>
+            <p class="tk-card-price">
+              {%- assign d_val = product.price -%}
+              {%- assign d_units = d_val | divided_by: 100 -%}
+              {%- assign d_cents = d_val | modulo: 100 | prepend: '00' | slice: -2, 2 -%}
+              {{ d_units }},{{ d_cents }}€
+            </p>
+            <p class="tk-card-text">{{ product.description | strip_html | truncate: 80 }}</p>
+            <div class="tk-btn-outline">
+              Découvrir 
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function tkSwitchTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tk-tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].classList.remove("is-active");
+  }
+  tablinks = document.getElementsByClassName("tk-tab-trigger");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("is-active");
+  }
+  document.getElementById(tabName).classList.add("is-active");
+  evt.currentTarget.classList.add("is-active");
+}
+</script>
+
+{% schema %}
+{
+  "name": "Featured Products Tabs",
+  "settings": [
+    { "type": "header", "content": "Tabs Labels" },
+    { "type": "text", "id": "tab_1_label", "label": "Tab 1 Name", "default": "Produits physiques" },
+    { "type": "text", "id": "tab_2_label", "label": "Tab 2 Name", "default": "Produits digitaux" },
+    { "type": "header", "content": "Physical Tab Hero" },
+    { "type": "product", "id": "hero_product", "label": "Hero Featured Product" },
+    { "type": "text", "id": "hero_badge", "label": "Badge Text", "default": "Nouveauté" },
+    { "type": "text", "id": "availability", "label": "Availability Text", "default": "Dispo sept. 2026" },
+    { "type": "header", "content": "Collections Setup" },
+    { "type": "collection", "id": "physical_col", "label": "Physical Products Collection" },
+    { "type": "collection", "id": "digital_col", "label": "Digital Products Collection" }
+  ],
+  "presets": [{ "name": "Featured Products Tabs" }]
+}
+{% endschema %}

@@ -1,0 +1,275 @@
+{%- style -%}
+  :root {
+    --inc-red: {{ section.settings.accent_color }};
+    --inc-bg-main: {{ section.settings.bg_color }};
+    --inc-bg-card: {{ section.settings.card_bg_color }};
+    --inc-font-display: 'Instrument Serif', Georgia, serif;
+    --inc-font-accent: 'Caveat', cursive;
+    --inc-font-sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .inc-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top_mobile }}px 24px {{ section.settings.padding_bottom_mobile }}px 24px;
+    background: var(--inc-bg-main);
+    font-family: var(--inc-font-sans);
+  }
+
+  @media screen and (min-width: 768px) {
+    .inc-section-{{ section.id }} {
+      padding: {{ section.settings.padding_top_desktop }}px 0 {{ section.settings.padding_bottom_desktop }}px 0;
+    }
+  }
+
+  .inc-container {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .inc-header {
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .inc-subtitle {
+    font-family: var(--inc-font-accent);
+    color: var(--inc-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .inc-title {
+    font-family: var(--inc-font-display);
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  .inc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .inc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .inc-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--inc-bg-card);
+    border-radius: 12px;
+    padding: 24px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+  }
+
+  .inc-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .inc-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .inc-icon img {
+    max-width: 24px;
+    height: auto;
+    display: block;
+  }
+
+  .inc-card-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #0a0a0a;
+    margin-bottom: 4px;
+  }
+
+  .inc-card-desc {
+    font-size: 13px;
+    color: #5c564f;
+    line-height: 1.6;
+  }
+  
+  .inc-card-desc p {
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="inc-section-{{ section.id }}">
+  <div class="inc-container">
+    
+    <div class="inc-header">
+      {% if section.settings.subtitle != blank %}
+        <div class="inc-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="inc-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="inc-grid">
+      {% for block in section.blocks %}
+        <div class="inc-card" {{ block.shopify_attributes }}>
+          <div class="inc-icon">
+            {% if block.settings.custom_icon_image != blank %}
+                {{ block.settings.custom_icon_image | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}
+            {% else %}
+                {{ block.settings.emoji_icon }}
+            {% endif %}
+          </div>
+          <div class="inc-content">
+            {% if block.settings.feature_title != blank %}
+              <div class="inc-card-title">{{ block.settings.feature_title }}</div>
+            {% endif %}
+            
+            {% if block.settings.feature_desc != blank %}
+              <div class="inc-card-desc">
+                {{ block.settings.feature_desc }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inclusions Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "header",
+      "content": "Header Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ce qui est inclus"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ce que tu obtiens avec le Programme Notion Structurée"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji_icon",
+          "label": "Emoji Icon",
+          "default": "🗂️"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon_image",
+          "label": "Custom Icon Image (Optional)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "feature_title",
+          "label": "Title",
+          "default": "Tableau de bord central"
+        },
+        {
+          "type": "richtext",
+          "id": "feature_desc",
+          "label": "Description",
+          "default": "<p>Une vue d'ensemble de tous tes projets, habitudes et priorités en un seul endroit.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inclusions Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,277 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      min-height: 500px;
+    }
+  }
+
+  .cta-bg-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center center;
+    {% if section.settings.image != blank %}
+      background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
+    {% else %}
+      background-color: #333;
+    {% endif %}
+  }
+
+  .cta-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .cta-content-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .cta-accent-{{ section.id }} {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .cta-title-{{ section.id }} {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .cta-description-{{ section.id }} {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+
+  .cta-price-{{ section.id }} {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    color: {{ section.settings.accent_color }};
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+
+  .cta-button-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: {{ section.settings.accent_color }};
+    color: #ffffff;
+    padding: 18px 48px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  @media (max-width: 768px){
+    .cta-button-{{ section.id }} {
+      font-size: 15px !important;
+      width: 100% !important;
+      justify-content: center;
+    }
+    .cta-accent-{{ section.id }}{
+      font-size: 17px;
+    }
+  }
+
+  .cta-button-{{ section.id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.4) 0px 8px 28px;
+  }
+
+  .cta-trust-badges-{{ section.id }} {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 13px;
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+{%- endstyle -%}
+
+{%- assign selected_product = section.settings.product_to_add -%}
+
+<section class="section-{{ section.id }}" id="{{ section.settings.anchor_id }}">
+  <div class="cta-bg-{{ section.id }}"></div>
+  <div class="cta-overlay-{{ section.id }}"></div>
+
+  <div class="cta-content-{{ section.id }}" data-aos="fade-up">
+    <div class="cta-accent-{{ section.id }}" data-aos="fade-up">{{ section.settings.accent_text }}</div>
+    <h2 class="cta-title-{{ section.id }}" data-aos="fade-up">{{ section.settings.title }}</h2>
+    <p class="cta-description-{{ section.id }}" data-aos="fade-up">{{ section.settings.description }}</p>
+    <div class="cta-price-{{ section.id }}" data-aos="fade-up">{{ section.settings.price }}</div>
+
+    {%- if selected_product != blank -%}
+      {%- form 'product', selected_product -%}
+        <input type="hidden" name="id" value="{{ selected_product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="return_to" value="/cart">
+        
+        <button type="submit" class="cta-button-{{ section.id }}" data-aos="fade-up">
+          {{ section.settings.button_text }}
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      {%- endform -%}
+    {%- else -%}
+      <button class="cta-button-{{ section.id }}" data-aos="fade-up" style="opacity: 0.5; cursor: not-allowed;">
+        Select a product
+      </button>
+    {%- endif -%}
+
+    <div class="cta-trust-badges-{{ section.id }}" data-aos="fade-up">
+      {%- for block in section.blocks -%}
+        <span>✓ {{ block.settings.badge_text }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Coaching CTA Buy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "default": "buy"
+    },
+    {
+      "type": "product",
+      "id": "product_to_add",
+      "label": "Select Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#0a0604"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0, "max": 100, "step": 1, "label": "Overlay Opacity", "default": 38
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e4032b"
+    },
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent Text",
+      "default": "Prête ?"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Reprends le contrôle\nde ton quotidien"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Le système qui va changer ta façon de gérer ton temps est à un clic."
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price Display",
+      "default": "349€"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Rejoindre pour 349€"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range", "id": "padding_top_desktop", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Top Padding Desktop", "default": 56
+    },
+    {
+      "type": "range", "id": "padding_bottom_desktop", "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Bottom Padding Desktop", "default": 56
+    },
+    {
+      "type": "range", "id": "padding_top_mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding Mobile", "default": 36
+    },
+    {
+      "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding Mobile", "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "Paiement sécurisé" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coaching CTA Buy",
+      "blocks": [
+        { "type": "badge", "settings": { "badge_text": "Paiement sécurisé" } },
+        { "type": "badge", "settings": { "badge_text": "Accès immédiat" } },
+        { "type": "badge", "settings": { "badge_text": "À vie" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

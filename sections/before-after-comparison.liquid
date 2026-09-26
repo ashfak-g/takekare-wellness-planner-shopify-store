@@ -1,0 +1,277 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .ba-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .ba-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .ba-accent {
+    font-family: Caveat, cursive;
+    color: {{ section.settings.accent_color }};
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .ba-title {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  @media screen and (min-width: 768px) {
+    .ba-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Left Side - Before */
+  .ba-side-before {
+    background: #ffffff;
+    padding: 24px 20px;
+  }
+
+  /* Right Side - After */
+  .ba-side-after {
+    background: {{ section.settings.accent_color }};
+    padding: 24px 20px;
+  }
+
+  .ba-badge {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .badge-before {
+    background: rgb(251, 248, 244);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgb(138, 129, 120);
+  }
+
+  .badge-after {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  .ba-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ba-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ba-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .icon-before {
+    background: rgba(0, 0, 0, 0.08);
+    color: #000;
+  }
+
+  .icon-after {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .ba-text-before {
+    font-size: 15px;
+    color: rgb(138, 129, 120);
+    text-decoration: line-through;
+    line-height: 1.5;
+  }
+
+  .ba-text-after {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="ba-container">
+    <div class="ba-header" data-aos="fade-up">
+      <div class="ba-accent">{{ section.settings.accent_text }}</div>
+      <h2 class="ba-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="ba-grid" data-aos="fade-up">
+      <div class="ba-side-before" data-aos="fade-up">
+        <div class="ba-badge badge-before">{{ section.settings.label_before }}</div>
+        <ul class="ba-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'before_item' -%}
+              <li class="ba-item">
+                <div class="ba-icon icon-before">✕</div>
+                <span class="ba-text-before">{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="ba-side-after" data-aos="fade-up">
+        <div class="ba-badge badge-after">{{ section.settings.label_after }}</div>
+        <ul class="ba-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'after_item' -%}
+              <li class="ba-item">
+                <div class="ba-icon icon-after">
+                  <svg width="10" height="10" fill="none" viewBox="0 0 10 10">
+                    <path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <span class="ba-text-after">{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before & After Comparison",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red Side)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent Label",
+      "default": "The transformation"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Before and after"
+    },
+    {
+      "type": "text",
+      "id": "label_before",
+      "label": "Before Label",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "label_after",
+      "label": "After Label",
+      "default": "After"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding (Desktop)", "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding (Desktop)", "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding (Mobile)", "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding (Mobile)", "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "before_item",
+      "name": "Before (Strike-through)",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Negative point here" }
+      ]
+    },
+    {
+      "type": "after_item",
+      "name": "After (Checkmark)",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Positive transformation here" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & After Comparison",
+      "blocks": [
+        { "type": "before_item", "settings": { "text": "Chasing after your time" } },
+        { "type": "after_item", "settings": { "text": "You know where your time goes" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

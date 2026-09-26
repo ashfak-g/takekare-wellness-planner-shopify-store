@@ -1,0 +1,102 @@
+{%- style -%}
+  .custom-back-link-wrapper-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    text-align: center;
+    border: 0 solid hsl(var(--border, 33 20% 88%));
+  }
+
+  .custom-back-link-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(138, 129, 120);
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: color 0.2s;
+    font-family: var(--font-sans-val, 'DM Sans', -apple-system, sans-serif);
+  }
+
+  .custom-back-link-{{ section.id }}:hover {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(228, 3, 43);
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: color 0.2s;
+  }
+
+  .custom-back-link-{{ section.id }} svg {
+    flex-shrink: 0;
+  }
+{%- endstyle -%}
+
+<div class="custom-back-link-wrapper-{{ section.id }}" bis_skin_checked="1">
+  <a href="{{ section.settings.link_url }}" class="custom-back-link-{{ section.id }}" bis_skin_checked="1">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 7H3m0 0l3.5-3.5M3 7l3.5 3.5" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"></path>
+    </svg>
+    {{ section.settings.link_text }}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Back to Tools Link",
+  "settings": [
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Voir tous les outils"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "default": "/collections"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Back to Tools Link"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,264 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .img-wrapper-{{ section.id }} {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+
+  .img-wrapper-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .subtitle-{{ section.id }} {
+    font-family: 'Caveat', cursive;
+    color: {{ section.settings.accent_color }};
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .title-{{ section.id }} {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #0A0A0A;
+  }
+
+  .text-content-{{ section.id }} {
+    font-size: 17px;
+    color: #5C564F;
+    line-height: 1.75;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .quote-box-{{ section.id }} {
+    background: {{ section.settings.quote_bg }};
+    border-radius: 12px;
+    padding: 40px 48px 40px 52px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .quote-line-{{ section.id }} {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: {{ section.settings.accent_color }};
+  }
+
+  .quote-text-{{ section.id }} {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    line-height: 1.55;
+    font-style: italic;
+    color: rgb(10, 10, 10);
+    margin: 0;
+  }
+
+  .quote-text-{{ section.id }} span {
+    color: rgb(228, 3, 43);
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="container-{{ section.id }}">
+    
+    <div class="grid-{{ section.id }}" data-aos="fade-up">
+      <div class="img-wrapper-{{ section.id }}" data-aos="fade-up">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.image.alt }}">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+
+      <div class="content-side-{{ section.id }}" data-aos="fade-up">
+        {% if section.settings.subtitle != blank %}
+          <div class="subtitle-{{ section.id }}" data-aos="fade-up">{{ section.settings.subtitle }}</div>
+        {% endif %}
+        
+        <h2 class="title-{{ section.id }}" data-aos="fade-up">
+          {{ section.settings.title }}
+        </h2>
+        
+        <div class="text-content-{{ section.id }}" data-aos="fade-up">
+          <div style="margin-bottom: 20px;">{{ section.settings.paragraph_1 }}</div>
+          <div>{{ section.settings.paragraph_2 }}</div>
+        </div>
+      </div>
+    </div>
+
+   <div class="quote-box-{{ section.id }}" data-aos="fade-up">
+      <div class="quote-line-{{ section.id }}"></div>
+      <div class="quote-text-{{ section.id }}">
+        {{ section.settings.quote_text }}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Solution Content Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quote_bg",
+      "label": "Quote Box Background",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Vertical Line)",
+      "default": "#E4032B"
+    },
+    {
+      "type": "header",
+      "content": "Main Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Le diagnostic"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Title (Supports <br> tags)",
+      "default": "A realistic organizational system, <br>designed for your real life"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Structured is a comprehensive method created for busy women who are tired of chasing after time."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "I created it after experiencing cognitive overload myself."
+    },
+    {
+      "type": "header",
+      "content": "Quote Section"
+    },
+    {
+      "type": "html",
+      "id": "quote_text",
+      "label": "Quote Text (Supports <br> and <span>)",
+      "default": "Structurée n'est pas une méthode miracle. <br>C'est un <span>système personnalisable qui tient dans ta vraie vie</span>."
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 140
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solution Content Block"
+    }
+  ]
+}
+{% endschema %}

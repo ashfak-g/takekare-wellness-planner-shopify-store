@@ -1,0 +1,323 @@
+{%- style -%}
+
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #e4032b;
+    --primary-red-light: rgba(228, 3, 43, 0.1);
+    --text-dark: #0a0a0a;
+    --text-muted: #5c564f;
+    --bg-card: #fbf8f4;
+  }
+
+  .problem-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: {{ section.settings.bg_color }};
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media screen and (min-width: 768px) {
+    .problem-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .problem-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .problem-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .problem-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-accent-val);
+    font-size: 22px;
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .problem-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+
+  .problem-description {
+    font-size: 16px;
+    color: #8a8178;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Grid Styling */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .problem-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 36px 28px;
+    border: 1px solid transparent;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    height: 100%;
+  }
+
+  .problem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.06);
+  }
+
+  .card-number {
+    font-family: var(--font-display-val);
+    font-size: 48px;
+    color: var(--primary-red-light);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-style: italic;
+    transition: color 0.25s;
+  }
+
+  .problem-card:hover .card-number {
+    color: var(--primary-red);
+  }
+
+  .card-title {
+    font-family: var(--font-sans-val);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+
+  .card-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* Bottom Quote Box */
+  .problem-quote-box {
+    margin-top: 48px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 48px 48px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-red);
+  }
+
+  .quote-content {
+    font-family: var(--font-display-val);
+    font-size: clamp(20px, 2.5vw, 28px);
+    line-height: 1.45;
+    font-style: italic;
+    max-width: 700px;
+    color: var(--text-dark);
+    margin: 0;
+  }
+
+  .quote-content span {
+    color: var(--primary-red);
+    display: block;
+  }
+{%- endstyle -%}
+
+<section class="problem-section-{{ section.id }}">
+  <div class="problem-container">
+    
+    <div class="problem-header"
+data-aos="fade-up"
+data-aos-duration="700">
+      <div class="problem-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="problem-title">{{ section.settings.title }}</h2>
+      <div class="problem-description">{{ section.settings.description }}</div>
+    </div>
+
+    <div class="problem-grid">
+      {% for block in section.blocks %}
+        <div class="problem-card"
+data-aos="fade-up"
+data-aos-duration="700"
+     {{ block.shopify_attributes }}>
+          <div class="card-number">
+            {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+          </div>
+          <h3 class="card-title">{{ block.settings.title }}</h3>
+          <p class="card-text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.quote_main != blank %}
+      <div class="problem-quote-box"
+data-aos="fade-up"
+data-aos-delay="200"
+data-aos-duration="700">
+        <div class="quote-border"></div>
+        <p class="quote-content">
+          {{ section.settings.quote_main }}
+          <span>{{ section.settings.quote_accent }}</span>
+        </p>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Problem Grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ça te parle ?"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Main Title (Supports <br>)",
+      "default": "Ton cerveau est devenu le gestionnaire<br>de toute ta vie."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Rdv, rappels, to-do, projets, idées… tout est stocké dans ta tête."
+    },
+    {
+      "type": "header",
+      "content": "Bottom Quote"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_main",
+      "label": "Quote Main Text",
+      "default": "Le problème n'est pas que tu es nulle en organisation."
+    },
+    {
+      "type": "textarea",
+      "id": "quote_accent",
+      "label": "Quote Accent (Red Text)",
+      "default": "Le problème, c'est qu'on ne t'a jamais appris à construire un système."
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Tu passes tes journées à courir"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Card Description",
+          "default": "Tu cours après le temps, tu enchaînes les journées sans jamais avoir le sentiment d'avancer..."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Problem Brain Grid",
+      "blocks": [
+        { "type": "reason" },
+        { "type": "reason" },
+        { "type": "reason" }
+      ]
+    }
+  ]
+}
+{% endschema %}

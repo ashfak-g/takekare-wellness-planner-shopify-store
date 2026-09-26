@@ -1,0 +1,283 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #E4032B;
+    --dark-bg: #1C1610;
+  }
+
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans-val);
+    display: block;
+  }
+
+  /* Background Image Layer */
+  .bg-overlay-image-{{ section.id }} {
+    position: absolute;
+    inset: 0px;
+    {% if section.settings.bg_image != blank %}
+      background-image: url("{{ section.settings.bg_image | image_url: width: 2000 }}");
+    {% endif %}
+    background-size: cover;
+    background-position: center center;
+    opacity: {{ section.settings.bg_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gradient Overlay Layer */
+  .bg-gradient-{{ section.id }} {
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(135deg, rgba(28, 22, 16, 0.45) 0%, rgba(28, 22, 16, 0.2) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container-{{ section.id }} {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-{{ section.id }} {
+    margin-bottom: 40px;
+  }
+
+  .subheading-{{ section.id }} {
+    font-family: var(--font-accent-val);
+    color: var(--primary-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .title-{{ section.id }} {
+    font-family: var(--font-display-val);
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  @media (max-width: 768px){
+    .subheading-{{ section.id }}{
+      font-size: 17px;
+    }
+    .list-text-{{ section.id }} {
+      font-size: 13px !important;
+    }
+    .list-{{ section.id }}{
+      gap: 12px;
+    }
+    .btn-{{ section.id }} {
+      width: 100% !important;
+      justify-content: center;
+    }
+  }
+
+  .list-{{ section.id }} {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 48px 0;
+    padding: 0;
+  }
+
+  .list-item-{{ section.id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .icon-check-{{ section.id }} {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .list-text-{{ section.id }} {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+
+  .btn-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: 0.25s;
+    text-decoration: none;
+    width: auto;
+  }
+
+  .btn-{{ section.id }}:hover {
+    background: rgb(200, 2, 31);
+    transform: translateY(-2px);
+    box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;
+  }
+{%- endstyle -%}
+
+{%- assign selected_product = section.settings.product | default: product -%}
+
+<section class="section-{{ section.id }}">
+  <div class="bg-overlay-image-{{ section.id }}"></div>
+  <div class="bg-gradient-{{ section.id }}"></div>
+
+  <div class="container-{{ section.id }}">
+    <div class="header-{{ section.id }}" data-aos="fade-up">
+      <div class="subheading-{{ section.id }}">{{ section.settings.subheading }}</div>
+      <h2 class="title-{{ section.id }}">
+        {%- if section.settings.title != blank -%}
+          {{ section.settings.title }}
+        {%- else -%}
+          {{ selected_product.title }}
+        {%- endif -%}
+      </h2>
+    </div>
+
+    <ul class="list-{{ section.id }}" data-aos="fade-up">
+      {% for block in section.blocks %}
+        <li class="list-item-{{ section.id }}" 
+            data-aos="fade-up"
+            {{ block.shopify_attributes }}>
+          <div class="icon-check-{{ section.id }}">
+            <svg width="10" height="10" fill="none" viewBox="0 0 10 10">
+              <path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <span class="list-text-{{ section.id }}">{{ block.settings.item_text }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div>
+      {%- if selected_product != blank -%}
+        {%- form 'product', selected_product, id: "product-form-{{ section.id }}", class: 'form' -%}
+          <input type="hidden" name="id" value="{{ selected_product.selected_or_first_available_variant.id }}">
+          <button type="submit" name="add" class="btn-{{ section.id }}" data-aos="fade-up" style="border: none; cursor: pointer;">
+            {{ section.settings.btn_text }}
+            <svg width="16" height="16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        <p style="color: white;">Please select a product in the section settings.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "It is for you (Hero)",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+      "info": "This product will be added to cart when clicking the button."
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background Opacity",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "C'est pour toi si…"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Ce Daily Planner est fait pour toi",
+      "info": "Press Enter in the editor for line breaks."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Commander pour 11,90€"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Checklist Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "item_text",
+          "label": "Text",
+          "default": "Tu veux une structure simple qui tient en une page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "It is for you (Hero)",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

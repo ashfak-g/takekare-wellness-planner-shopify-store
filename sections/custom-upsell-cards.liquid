@@ -1,0 +1,362 @@
+{%- style -%}
+  :root {
+    --upsell-red: {{ section.settings.accent_color }};
+    --upsell-bg-section: {{ section.settings.bg_color }};
+    --upsell-font-display: 'Instrument Serif', Georgia, serif;
+    --upsell-font-accent: 'Caveat', cursive;
+    --upsell-font-sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  .upsell-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background: var(--upsell-bg-section);
+    font-family: var(--upsell-font-sans);
+  }
+
+  @media screen and (min-width: 768px) {
+    .upsell-section-{{ section.id }} {
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .upsell-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .upsell-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .upsell-subtitle {
+    font-family: var(--upsell-font-accent);
+    color: var(--upsell-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .upsell-title {
+    font-family: var(--upsell-font-display);
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    color: #0a0a0a;
+  }
+
+  .upsell-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .upsell-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card Type 1: White Card */
+  .upsell-card-white {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upsell-card-white:hover {
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid rgb(228, 3, 43);
+    transition: 0.3s;
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+}
+
+  /* Card Type 2: Red Card */
+  .upsell-card-red {
+    background: var(--upsell-red);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #ffffff;
+  }
+
+  .upsell-card-red:hover {
+    background: rgb(228, 3, 43);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.35) 0px 8px 32px;
+  }
+
+  .upsell-card-red .radial-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .upsell-card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-label {
+    font-family: var(--upsell-font-accent);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .upsell-card-red .card-label {
+    font-style: italic;
+    font-size: 20px;
+  }
+
+  .card-heading {
+    font-family: var(--upsell-font-display);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  
+  .upsell-card-white .card-text { color: #5c564f; }
+  .upsell-card-red .card-text { color: rgba(255, 255, 255, 0.8); }
+
+  /* Buttons */
+  .upsell-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+
+  .btn-white-card {
+    background: #fadae1;
+    color: var(--upsell-red);
+  }
+
+  .btn-white-card:hover {
+    background: var(--upsell-red);
+    color: #ffffff;
+  }
+
+  .btn-red-card {
+    background: #ffffff;
+    color: var(--upsell-red);
+  }
+
+  .btn-red-card:hover {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: rgb(228, 3, 43);
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+    transform: translateY(-2px);
+  }
+
+  .upsell-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .upsell-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s;
+  }
+
+  .upsell-btn:hover svg {
+    transform: translateX(3px);
+  }
+{%- endstyle -%}
+
+<section class="upsell-section-{{ section.id }}">
+  <div class="upsell-container">
+    <div class="upsell-header">
+      <div class="upsell-subtitle">{{ section.settings.subtitle }}</div>
+      <h2 class="upsell-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="upsell-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'card' %}
+          <div class="{% if block.settings.use_red_style %}upsell-card-red{% else %}upsell-card-white{% endif %}" {{ block.shopify_attributes }}>
+            {% if block.settings.use_red_style %}<div class="radial-glow"></div>{% endif %}
+            
+            <div class="upsell-card-content">
+              <div class="card-label" style="color: {% if block.settings.use_red_style %}#ffffff{% else %}var(--upsell-red){% endif %};">
+                {{ block.settings.label }}
+              </div>
+              <h3 class="card-heading">{{ block.settings.heading }}</h3>
+              <p class="card-text">{{ block.settings.description }}</p>
+              
+              <a href="{{ block.settings.link_url }}" class="upsell-btn {% if block.settings.use_red_style %}btn-red-card{% else %}btn-white-card{% endif %}">
+                {{ block.settings.link_text }}
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Organization Upsell",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#e4032b"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Aller plus loin"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Complète ton organisation"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Upsell Card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "use_red_style",
+          "label": "Use Red Background Style",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Card Label",
+          "default": "Produit physique"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Card Heading",
+          "default": "Le Planner Structurée"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "L'outil papier complet pour 6 mois de planification structurée."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Button Text",
+          "default": "Découvrir — 34,90€"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Organization Upsell",
+      "blocks": [
+        { "type": "card", "settings": { "use_red_style": false, "label": "Produit physique", "heading": "Le Planner Structurée" } },
+        { "type": "card", "settings": { "use_red_style": true, "label": "Programme Signature", "heading": "Le Coaching Structurée" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

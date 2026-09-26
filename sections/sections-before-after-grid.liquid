@@ -1,0 +1,323 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* --- Divider Style (Now at the top) --- */
+  .section-divider-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto 60px auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(228, 3, 43, 0.35) 20%, rgba(228, 3, 43, 0.35) 80%, transparent);
+  }
+
+  .ba-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .ba-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .ba-subtitle {
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    color: #E4032B;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .ba-title {
+    font-family: 'Instrument Serif', Georgia, serif; /* Custom font maintenance */
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #0A0A0A;
+  }
+
+  .ba-desc {
+    font-size: 16px;
+    color: #8A8178;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .ba-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-divider-{{ section.id }} {
+      margin-bottom: 40px;
+    }
+  }
+
+  .ba-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .ba-card:hover {
+    transform: translateY(-4px);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 16px 48px;
+  }
+
+  .ba-top {
+    background: #ffffff;
+    padding: 24px 24px 20px;
+  }
+
+  .ba-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ba-icon-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ba-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .ba-text-before {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #8A8178;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .ba-divider {
+    position: relative;
+    height: 32px;
+    background: linear-gradient(#ffffff 50%, #FADADE 50%);
+  }
+
+  .ba-arrow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #E4032B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .ba-bottom {
+    background: #FADADE;
+    padding: 20px 24px 28px;
+    flex: 1 1 auto;
+  }
+
+  .ba-text-after {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #1C1610;
+    font-weight: 500;
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}-padding">
+  <div class="ba-container">
+    
+    {%- comment -%} Divider moves to the top, inside the container but before the header {%- endcomment -%}
+    <div class="section-divider-{{ section.id }}"></div>
+
+    <div class="ba-header" data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <div class="ba-subtitle">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h2 class="ba-title">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="ba-desc">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ba-grid">
+      {%- for block in section.blocks -%}
+        <div class="ba-card"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+          <div class="ba-top">
+            <div class="ba-label-wrapper">
+              <div class="ba-icon-circle" style="background: rgba(0,0,0,0.07);">
+                <svg width="8" height="8" fill="none" viewBox="0 0 8 8">
+                  <path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="#8A8178" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+              </div>
+              <span class="ba-label" style="color: #8A8178;">{{ section.settings.label_before }}</span>
+            </div>
+            <p class="ba-text-before">{{ block.settings.text_before }}</p>
+          </div>
+
+          <div class="ba-divider">
+            <div class="ba-arrow">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24">
+                <path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="ba-bottom">
+            <div class="ba-label-wrapper">
+              <div class="ba-icon-circle" style="background: rgba(228, 3, 43, 0.15);">
+                <svg width="10" height="10" fill="none" viewBox="0 0 10 10">
+                  <path d="M2 5l2.5 2.5L8 3" stroke="#E4032B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </div>
+              <span class="ba-label" style="color: #E4032B;">{{ section.settings.label_after }}</span>
+            </div>
+            <p class="ba-text-after">{{ block.settings.text_after }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before/After Grid Home",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ce que ça change"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (use <br> for breaks)",
+      "default": "Dans 8 semaines, <br> tout sera plus clair"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Moins de charge, plus de clarté, et un quotidien qui te ressemblera vraiment."
+    },
+    {
+      "type": "text",
+      "id": "label_before",
+      "label": "Label Before",
+      "default": "Avant"
+    },
+    {
+      "type": "text",
+      "id": "label_after",
+      "label": "Label After",
+      "default": "Après"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Comparison Card",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text_before",
+          "label": "Text Before (Italic)",
+          "default": "Texte décrivant la situation avant..."
+        },
+        {
+          "type": "textarea",
+          "id": "text_after",
+          "label": "Text After (Bold)",
+          "default": "Texte décrivant la situation après..."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before/After Grid Home",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

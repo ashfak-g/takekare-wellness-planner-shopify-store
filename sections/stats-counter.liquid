@@ -1,0 +1,193 @@
+{%- style -%}
+  .stats-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .stats-bg-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 0;
+  }
+
+  .stats-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+
+  .stats-container-{{ section.id }} {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .stats-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat-item-{{ section.id }} {
+    text-align: center;
+    padding: clamp(28px, 3.5vw, 44px) 24px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .stat-item-{{ section.id }}:last-child {
+    border-right: none;
+  }
+
+  .stat-number-{{ section.id }} {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 400;
+    color: {{ section.settings.accent_color }};
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label-{{ section.id }} {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 768px) {
+    .stats-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+    .stat-item-{{ section.id }} {
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .stat-item-{{ section.id }}:last-child {
+      border-bottom: none;
+    }
+  }
+{%- endstyle -%}
+
+<section class="stats-section-{{ section.id }}">
+  {%- if section.settings.bg_image != blank -%}
+    {%- assign img_class = 'stats-bg-' | append: section.id -%}
+    {{ section.settings.bg_image | image_url: width: 2000 | image_tag: class: img_class, loading: 'lazy' }}
+  {%- endif -%}
+  
+  <div class="stats-overlay-{{ section.id }}"></div>
+
+  <div class="stats-container-{{ section.id }}">
+    <div class="stats-grid-{{ section.id }}" data-aos="fade-up">
+      
+      {%- for block in section.blocks -%}
+        <div class="stat-item-{{ section.id }}" 
+     data-aos="fade-up"
+     {{ block.shopify_attributes }}>
+          <div class="stat-number-{{ section.id }}">{{ block.settings.stat_number }}</div>
+          <div class="stat-label-{{ section.id }}">{{ block.settings.stat_label }}</div>
+        </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stats Counter",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 10,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Number Color",
+      "default": "#E4032B"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Number (e.g. 3,5M)",
+          "default": "3,5M"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "écoutes podcast"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats Counter",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "stat" }
+      ]
+    }
+  ]
+}
+{% endschema %}

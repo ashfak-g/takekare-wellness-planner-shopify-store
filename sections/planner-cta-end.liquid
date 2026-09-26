@@ -1,0 +1,239 @@
+{%- style -%}
+  :root {
+    --font-accent-val: 'Caveat', cursive;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --color-primary-red: #e4032b;
+    --color-cta-bg: rgb(28, 22, 16);
+  }
+
+  .cta-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: var(--color-cta-bg);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cta-background-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(28, 22, 16, 0.25) 0%, rgba(28, 22, 16, 0.45) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cta-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-subheading {
+    font-family: var(--font-accent-val);
+    color: {{ section.settings.subheading_color }};
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .cta-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(30px, 4.5vw, 52px);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .cta-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.75;
+    margin: 0 auto 36px;
+    max-width: 480px;
+  }
+
+  /* Default Button Style */
+  .cta-button {
+    display: inline-block;
+    background: var(--color-primary-red);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: #c20224;
+    transform: scale(1.02);
+  }
+
+  /* Success State Style */
+  .cta-button.is-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    transform: none !important;
+    cursor: default;
+  }
+{%- endstyle -%}
+
+<section class="cta-section-{{ section.id }}">
+  {% if section.settings.bg_image != blank %}
+    <img 
+      src="{{ section.settings.bg_image | image_url: width: 2000 }}" 
+      alt="" 
+      class="cta-background-img"
+      loading="lazy"
+    >
+  {% endif %}
+  
+  <div class="cta-overlay"></div>
+
+  <div class="cta-container">
+    {% if section.settings.subheading != blank %}
+      <div class="cta-subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    <h2 class="cta-title">{{ section.settings.title }}</h2>
+
+    {% if section.settings.text != blank %}
+      <div class="cta-text">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <button 
+        type="button"
+        id="cta-btn-{{ section.id }}" 
+        class="cta-button"
+        onclick="handleCtaClick(this)"
+      >
+        <span class="btn-text">{{ section.settings.button_label }}</span>
+      </button>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  function handleCtaClick(btn) {
+    const textSpan = btn.querySelector('.btn-text');
+    
+    // Change Text
+    textSpan.innerText = "On te prévient dès le lancement !";
+    
+    // Apply Success Styles via Class
+    btn.classList.add('is-success');
+    
+    // Optional: Disable button after click
+    btn.disabled = true;
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Planner CTA End",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Opacity",
+      "default": 65
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Septembre 2026"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#f6bacb"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Sois la première à le recevoir"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description Text",
+      "default": "Inscris-toi pour être notifiée dès l'ouverture des précommandes et bénéficier d'une offre exclusive de lancement."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Être notifiée du lancement"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Planner CTA End"
+    }
+  ]
+}
+{% endschema %}

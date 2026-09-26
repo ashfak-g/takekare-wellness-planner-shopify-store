@@ -1,0 +1,244 @@
+{%- style -%}
+  :root {
+    --font-accent-val: 'Caveat', cursive;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --color-primary-red: #e4032b;
+  }
+
+  .planner-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: var(--font-sans-val);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .planner-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .planner-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .planner-subheading {
+    font-family: var(--font-accent-val);
+    color: var(--color-primary-red);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .planner-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 400;
+    color: #0a0a0a;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .planner-title em {
+    font-style: italic;
+    color: var(--color-primary-red);
+  }
+
+  .planner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .planner-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .planner-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .planner-card {
+    background: #fbf8f4;
+    border-radius: 12px;
+    padding: 28px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease-in-out;
+  }
+
+  .planner-card:hover {
+    background: rgb(251, 248, 244);
+    border-radius: 12px;
+    padding: 28px 24px;
+    border: 1px solid rgba(228, 3, 43, 0.15);
+    transition: 0.25s;
+    transform: translateY(-3px);
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+  }
+
+  .planner-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background: #fdeaf1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .planner-icon-wrapper svg, 
+  .planner-icon-wrapper img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .planner-card-title {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+
+  .planner-card-text {
+    font-size: 13px;
+    color: #6b6560;
+    line-height: 1.65;
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="planner-section-{{ section.id }}">
+  <div class="planner-container">
+    
+    <div class="planner-header">
+      {% if section.settings.subheading != blank %}
+        <div class="planner-subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+      
+      <h2 class="planner-title">
+        {{ section.settings.title }}
+      </h2>
+    </div>
+
+    <div class="planner-grid">
+      {% for block in section.blocks %}
+        <div class="planner-card" {{ block.shopify_attributes }}>
+          <div class="planner-icon-wrapper">
+            {% if block.settings.custom_icon_svg != blank %}
+              {{ block.settings.custom_icon_svg }}
+            {% elsif block.settings.icon_image != blank %}
+              <img src="{{ block.settings.icon_image | image_url: width: 50 }}" alt="{{ block.settings.title }}">
+            {% else %}
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" stroke="#E4032B" stroke-width="1.5"></circle>
+                <path d="M12 7v5l3 3" stroke="#E4032B" stroke-width="1.5" stroke-linecap="round"></path>
+              </svg>
+            {% endif %}
+          </div>
+          
+          <h3 class="planner-card-title">{{ block.settings.title }}</h3>
+          <p class="planner-card-text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Planner Structure",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Ce que contient le Planner"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Main Title",
+      "default": "6 sections, une logique <em>complète</em>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Section Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "custom_icon_svg",
+          "label": "Custom SVG Icon",
+          "info": "Paste SVG code here"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "OR Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Audit de ta réalité"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Feature Description",
+          "default": "Un bilan complet pour identifier tes blocages, tes ressources et tes priorités réelles."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Standard Planner Structure",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}
