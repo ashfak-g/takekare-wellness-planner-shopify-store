@@ -1,0 +1,245 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  
+  .testimonial-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .testimonial-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .testimonial-subtitle {
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .testimonial-main-title {
+    font-familt: Instrument Serif, Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  .testimonial-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    background: {{ section.settings.card_bg }};
+    border-radius: 14px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+  }
+
+  .testimonial-card:hover {
+    background: rgb(251, 248, 244);
+    border-radius: 14px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid rgba(228, 3, 43, 0.2);
+    transition: 0.3s;
+    transform: translateY(-3px);
+  }
+
+  .testimonial-quote-mark {
+    color: {{ section.settings.accent_color }};
+    font-size: 32px;
+    line-height: 0.8;
+    font-family: serif; /* Mimicking display font */
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3a3530;
+    font-style: italic;
+    flex: 1 1 0%;
+    margin: 0;
+  }
+
+  .testimonial-author {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0a0a0a;
+  }
+
+  .testimonial-meta {
+    font-size: 11px;
+    color: #8a8178;
+    margin-top: 2px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 768px) {
+    .testimonial-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .section-{{ section.id }} {
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+    .testimonial-header {
+    text-align: center;
+    margin-bottom: 24px !important;
+  }
+  .testimonial-subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .testimonial-main-title {
+    font-size: 26px;
+  }
+  .section-{{ section.id }} {
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+  }
+
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}">
+  <div class="testimonial-container">
+    
+    {% if section.settings.title != blank or section.settings.subtitle != blank %}
+      <div class="testimonial-header"
+ data-aos="fade-up">
+        <div class="testimonial-subtitle">{{ section.settings.subtitle }}</div>
+        <h2 class="testimonial-main-title">{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="testimonial-wrapper">
+      {% for block in section.blocks %}
+        <div class="testimonial-card"
+ data-aos="fade-up"
+ data-aos-delay="{{ forloop.index0 | times: 40 }}"
+ {{ block.shopify_attributes }}>
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-text">{{ block.settings.quote }}</p>
+          <div class="testimonial-info">
+            <div class="testimonial-author">{{ block.settings.author }}</div>
+            <div class="testimonial-meta">{{ block.settings.sub_info }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Elles y étaient"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Ce qu'elles en disent"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e4032b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 140
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote Text",
+          "default": "Write the customer review here."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "sub_info",
+          "label": "Sub-info (e.g. Date)",
+          "default": "Retraite Automne 2024"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Grid",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,300 @@
+{%- style -%}
+  .testi-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    position: relative;
+    overflow: hidden;
+  }
+  .testi-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .testi-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .testi-sub {
+    color: {{ section.settings.accent_color }};
+    font-family: Caveat, cursive;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .testi-header h2 {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #0a0a0a;
+  }
+
+  /* Featured Card Styles */
+  .featured-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: clamp(36px, 5vw, 56px);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: {{ section.settings.accent_color }};
+  }
+  .quote-mark {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: {{ section.settings.accent_color }};
+    line-height: 0.7;
+    opacity: 0.5;
+  }
+  .featured-text {
+    font-family: Instrument Serif, Georgia, serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-style: italic;
+    color: #0a0a0a;
+    line-height: 1.55;
+    margin-bottom: 32px;
+  }
+  .featured-text strong {
+    color: {{ section.settings.accent_color }};
+  }
+
+  /* Grid Styles */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .small-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+
+.small-card:hover {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 3, 43);
+    border-radius: 14px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: 0.3s;
+    box-shadow: rgba(228, 3, 43, 0.06) 0px 8px 32px;
+    transform: translateY(-3px);
+  }
+
+
+  .small-quote {
+    color: {{ section.settings.accent_color }};
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: 52px;
+    line-height: 0.8;
+    opacity: 0.6;
+    margin-bottom: -12px;
+  }
+  .small-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #5c564f;
+    font-style: italic;
+    flex: 1;
+  }
+
+  /* Author Styles */
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: Instrument Serif, Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .author-info b { display: block; font-size: 15px; color: #0a0a0a; }
+  .author-info span { font-size: 12px; color: #8a8178; text-transform: uppercase; }
+  .stars { margin-left: auto; color: {{ section.settings.accent_color }}; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .testi-grid { grid-template-columns: 1fr; }
+    .testi-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .testi-sub {
+    font-size: 18px;
+  }
+  .testi-header h2 {
+    font-size: 26px;
+  }
+  }
+{%- endstyle -%}
+
+<section class="testi-section-{{ section.id }}">
+  <div class="testi-container">
+    
+    <div class="testi-header" data-aos="fade-up">
+      <div class="testi-sub">{{ section.settings.subheading }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+
+    {%- comment -%} Featured Testimonials Loop {%- endcomment -%}
+    {% for block in section.blocks %}
+      {% if block.settings.is_featured %}
+        <div class="featured-card" data-aos="fade-up">
+          <div class="quote-mark">"</div>
+          <div class="featured-text">{{ block.settings.text }}</div>
+          <div class="author-row">
+            <div class="author-avatar">{{ block.settings.author_name | slice: 0 }}</div>
+            <div class="author-info">
+              <b>{{ block.settings.author_name }}</b>
+              <span>{{ block.settings.author_title }}</span>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="testi-grid">
+      {% for block in section.blocks %}
+        {% unless block.settings.is_featured %}
+          <div class="small-card" data-aos="fade-up">
+            <div class="small-quote">"</div>
+            <div class="small-text">{{ block.settings.text }}</div>
+            <div class="author-row" style="padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06);">
+              <div class="author-avatar" style="width:36px; height:36px; font-size:15px; background: rgba(228,3,43,0.1); color:{{ section.settings.accent_color }}; border:1px solid rgba(228,3,43,0.2);">
+                {{ block.settings.author_name | slice: 0 }}
+              </div>
+              <div class="author-info">
+                <b style="font-size:14px;">{{ block.settings.author_name }}</b>
+                <span style="font-size:11px;">{{ block.settings.author_title }}</span>
+              </div>
+              <div class="stars" style="font-family: Caveat, cursive; font-size:12px;">★★★★★</div>
+            </div>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Elles témoignent"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ce qu'elles disent de l'accompagnement"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#e4032b"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "is_featured",
+          "label": "Make Featured (Full Width)",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Quote Text",
+          "default": "<p>Your customer testimonial goes here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Mathilde B."
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Subtitle",
+          "default": "Freelance Designer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid",
+      "blocks": [
+        { "type": "testimonial", "settings": { "is_featured": true } },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

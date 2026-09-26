@@ -1,0 +1,309 @@
+{%- style -%}
+  :root {
+    --font-sans-val: 'DM Sans', -apple-system, sans-serif;
+    --font-display-val: 'Instrument Serif', Georgia, serif;
+    --font-accent-val: 'Caveat', cursive;
+    --primary-red: #e4032b;
+    --text-dark: #0a0a0a;
+    --text-muted: #8a8178;
+    --bg-light: #fbf8f4;
+  }
+
+  .testimonials-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: var(--font-sans-val);
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 768px) {
+    .testimonials-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .testi-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .testi-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .testi-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-accent-val);
+    font-size: 22px;
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .testi-title {
+    font-family: var(--font-display-val);
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--text-dark);
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 990px) {
+    .testi-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .testi-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .testi-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .testi-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .quote-icon {
+    font-family: var(--font-display-val);
+    font-size: 72px;
+    line-height: 1;
+    color: var(--primary-red);
+    opacity: 0.2;
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    user-select: none;
+  }
+
+  .testi-quote {
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin: 0 0 24px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testi-quote strong, .testi-quote b {
+    color: var(--primary-red);
+    font-weight: 600;
+  }
+
+  .testi-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .testi-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display-val);
+    font-size: 18px;
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  .testi-info-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+
+  .testi-info-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+{%- endstyle -%}
+
+<section class="testimonials-{{ section.id }}">
+  <div class="testi-container">
+    
+    <div class="testi-header" data-aos="fade-up">
+      {% if section.settings.subtitle != blank %}
+        <div class="testi-subtitle">
+          {% if section.settings.show_icon %}
+            <span style="font-size: 1.2em;">✨</span>
+          {% endif %}
+          {{ section.settings.subtitle }}
+        </div>
+      {% endif %}
+      
+      <h2 class="testi-title">
+        {{ section.settings.title }}
+      </h2>
+    </div>
+
+    <div class="testi-grid">
+      {% for block in section.blocks %}
+        <div class="testi-card"
+ data-aos="fade-up"
+ {{ block.shopify_attributes }}>
+          <div class="quote-icon">"</div>
+          
+          <blockquote class="testi-quote">
+            {{ block.settings.quote }}
+          </blockquote>
+
+          <div class="testi-footer">
+            <div class="testi-avatar">
+              {{ block.settings.author_name | slice: 0 | upcase }}
+            </div>
+            <div class="testi-info">
+              <div class="testi-info-name">{{ block.settings.author_name }}</div>
+              <div class="testi-info-meta">{{ block.settings.author_meta }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials Grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbf8f4"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ce qu'elles en disent"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show Subtitle Icon",
+      "default": false
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Supports <br>)",
+      "default": "Des femmes qui ont<br>repris le contrôle"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 44
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote Text",
+          "default": "<p>J'ai adoré ! La formation est super bien organisée. <b>Vous pouvez y aller les yeux fermés !</b></p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Fanny"
+        },
+        {
+          "type": "text",
+          "id": "author_meta",
+          "label": "Author Subtext",
+          "default": "Participante Coaching"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid Home",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}
