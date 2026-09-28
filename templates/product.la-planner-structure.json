@@ -1,0 +1,899 @@
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {}
+    },
+    "1634179460fa8cb6ac": {
+      "type": "breadcrumb",
+      "settings": {
+        "container": "container",
+        "text_alignment": "left",
+        "hide_current": false,
+        "hide_on_mb": false,
+        "animations": "fade-in"
+      }
+    },
+    "product_spotlight_ULwLex": {
+      "type": "product-spotlight",
+      "custom_css": [
+        "@media (max-width: 768px) {h1 {font-size: 32px !important; line-height: 35px !important; }}"
+      ],
+      "name": "Product Spotlight",
+      "settings": {
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 60,
+        "footer_note": "✓ Paiement en 3 fois sans frais possible  ·  ✓ Accès immédiat"
+      }
+    },
+    "book_geqac3": {
+      "type": "book",
+      "blocks": {
+        "page_JLAfyW": {
+          "type": "page",
+          "name": "audit perso",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/audit_perso.png"
+          }
+        },
+        "page_CNeMfG": {
+          "type": "page",
+          "name": "page bilan audit",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/page_bilan.png"
+          }
+        },
+        "page_tcUUep": {
+          "type": "page",
+          "name": "page projet complete",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/page_projet_completee.png"
+          }
+        },
+        "page_y6LrY4": {
+          "type": "page",
+          "name": "page projet to complete",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/page_planner.png"
+          }
+        },
+        "page_36LTKF": {
+          "type": "page",
+          "name": "Vue mensuelle gauche",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/vue_mensuelle_gauche.png"
+          }
+        },
+        "page_UUDmyt": {
+          "type": "page",
+          "name": "Vue mensuelle droite",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/agenda_droite.png"
+          }
+        },
+        "page_prBcrM": {
+          "type": "page",
+          "name": "mon cycle mois",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ouverture_de_cycle.png"
+          }
+        },
+        "page_WwY9NR": {
+          "type": "page",
+          "name": "ce qui va structurer mon mois",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ce_qui_va_structurer_mon_mois.png"
+          }
+        },
+        "page_7gQAQn": {
+          "type": "page",
+          "name": "page semaine",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/brain_dump_semaine_ok.png"
+          }
+        },
+        "page_9MPwGP": {
+          "type": "page",
+          "name": "page jour",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/agenda_ok.png"
+          }
+        },
+        "page_f7kgzK": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/15.png"
+          }
+        },
+        "page_qAhzbk": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/16.png"
+          }
+        },
+        "page_AXpRak": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/17.png"
+          }
+        },
+        "page_xAEmxh": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/18.png"
+          }
+        },
+        "page_FpLB7c": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/19.png"
+          }
+        },
+        "page_ajQAFp": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10.png"
+          }
+        },
+        "chapter_iJxKdN": {
+          "type": "chapter",
+          "settings": {
+            "title": "Audit & Bilan",
+            "start_spread": 0
+          }
+        },
+        "chapter_NFQCfx": {
+          "type": "chapter",
+          "settings": {
+            "title": "Espace projet",
+            "start_spread": 3
+          }
+        },
+        "chapter_GGMbBB": {
+          "type": "chapter",
+          "settings": {
+            "title": "Vue mensuelle",
+            "start_spread": 5
+          }
+        },
+        "chapter_pnbDWw": {
+          "type": "chapter",
+          "settings": {
+            "title": "Mon mois",
+            "start_spread": 7
+          }
+        },
+        "chapter_9dmxDf": {
+          "type": "chapter",
+          "settings": {
+            "title": "Semaine & Jour",
+            "start_spread": 9
+          }
+        }
+      },
+      "block_order": [
+        "page_JLAfyW",
+        "page_CNeMfG",
+        "page_tcUUep",
+        "page_y6LrY4",
+        "page_36LTKF",
+        "page_UUDmyt",
+        "page_prBcrM",
+        "page_WwY9NR",
+        "page_7gQAQn",
+        "page_9MPwGP",
+        "page_f7kgzK",
+        "page_qAhzbk",
+        "page_AXpRak",
+        "page_xAEmxh",
+        "page_FpLB7c",
+        "page_ajQAFp",
+        "chapter_iJxKdN",
+        "chapter_NFQCfx",
+        "chapter_GGMbBB",
+        "chapter_pnbDWw",
+        "chapter_9dmxDf"
+      ],
+      "name": "Journal Flipbook",
+      "settings": {
+        "eyebrow": "Feuillette quelques pages",
+        "title": "Le planner de la méthode Structurée©",
+        "bg_color": "#fbf8f4",
+        "show_border": true,
+        "border_color": "#e4032b",
+        "cover_image": "shopify:\/\/shop_images\/simple-smooth-fabric-textured-background.jpg"
+      }
+    },
+    "standard_planner_section_fkMxJH": {
+      "type": "standard-planner-section",
+      "blocks": {
+        "feature_pygKLC": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "",
+            "title": "Audit de ta réalité",
+            "text": "Un bilan complet pour identifier tes blocages, tes ressources et tes priorités réelles avant de commencer."
+          }
+        },
+        "feature_YEnpY4": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <path d=\"M12 2L14.4 9.4H22L15.8 13.9L18.2 21.3L12 17L5.8 21.3L8.2 13.9L2 9.4H9.6L12 2Z\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linejoin=\"round\"><\/path>\n<\/svg>",
+            "title": "Zone de génie",
+            "text": "Cartographie tes forces naturelles pour organiser ta vie autour de ce qui t'énergise vraiment."
+          }
+        },
+        "feature_KUxY4h": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" stroke=\"#E4032B\" stroke-width=\"1.5\"><\/rect>\n  <path d=\"M8 12H16M8 8H13M8 16H11\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\"><\/path>\n<\/svg>",
+            "title": "Base de données projets T.A.P.P.",
+            "text": "Un système visuel pour suivre tous tes projets selon la méthode T.A.P.P. : Trier, Arbitrer, Planifier, Progresser."
+          }
+        },
+        "feature_4pVUn3": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\" stroke=\"#E4032B\" stroke-width=\"1.5\"><\/rect>\n  <path d=\"M3 9H21M8 2V6M16 2V6\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\"><\/path>\n<\/svg>",
+            "title": "Calendrier hebdomadaire",
+            "text": "26 semaines de planification structurée, avec espace pour l'intention de la semaine, les priorités et le bilan."
+          }
+        },
+        "feature_kXdjKe": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <path d=\"M12 20V4M4 12H20\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\"><\/path>\n<\/svg>",
+            "title": "Pages journalières",
+            "text": "26 semaines de planification structurée, avec espace pour l'intention de la semaine, les priorités et le bilan."
+          }
+        },
+        "feature_QYxY3J": {
+          "type": "feature",
+          "settings": {
+            "custom_icon_svg": "<svg width=\"22\" height=\"22\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <circle cx=\"12\" cy=\"12\" r=\"9\" stroke=\"#E4032B\" stroke-width=\"1.5\"><\/circle>\n  <path d=\"M9 12L11 14L15 10\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><\/path>\n<\/svg>",
+            "title": "Rituels & révisions mensuels",
+            "text": "Des pages dédiées pour faire le point chaque mois et ajuster le cap avec lucidité."
+          }
+        }
+      },
+      "block_order": [
+        "feature_pygKLC",
+        "feature_YEnpY4",
+        "feature_KUxY4h",
+        "feature_4pVUn3",
+        "feature_kXdjKe",
+        "feature_QYxY3J"
+      ],
+      "name": "Standard Planner Structure",
+      "settings": {
+        "subheading": "Ce que contient le Planner",
+        "title": "La Méthode Structurée© en version papier",
+        "bg_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "custom_text_z6NWpj": {
+          "type": "custom_text",
+          "settings": {
+            "content": "<p>{{ product.metafields.custom.product_subtitle.value }}<\/p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_title": "Size"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_atc_button": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_saving": false,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "custom_liquid_tmbGWd": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p data-replit-metadata=\"artifacts\/takekare\/src\/pages\/SimpleProduct.tsx:312:14\" data-component-name=\"p\" style=\"font-size: 12px; color: rgb(138, 129, 120); font-weight: 500; letter-spacing: 0.3px;\"><font dir=\"auto\" style=\"vertical-align: inherit;\"><font dir=\"auto\" style=\"vertical-align: inherit;\">✓ Delivery within 3–5 days · ✓ Secure payment<\/font><\/font><\/p>"
+          }
+        },
+        "addons": {
+          "type": "addons",
+          "disabled": true,
+          "settings": {
+            "show_atcp": true,
+            "show_ask_a_question": true,
+            "show_social": true
+          }
+        }
+      },
+      "block_order": [
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83",
+        "title",
+        "custom_text_z6NWpj",
+        "variant_picker",
+        "buy_buttons",
+        "price",
+        "custom_liquid_tmbGWd",
+        "addons"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".m-product-text {font-family: Caveat, cursive; font-size: 20px; font-weight: 600;}"
+      ],
+      "settings": {
+        "container": "container",
+        "layout": "layout-6",
+        "show_atwl": false,
+        "enable_history_state": true,
+        "enable_variant_group_images": false,
+        "disable_selected_variant_default": false,
+        "show_featured_media": true,
+        "show_zoom_button": true,
+        "enable_video_autoplay": false,
+        "show_nav_media_mobile": false,
+        "show_pagination_mobile": true,
+        "use_sticky_atc": false,
+        "use_sticky_atc_on_mobile": false,
+        "enable_dynamic_checkout": false,
+        "sticky_atc_wishtlist": false,
+        "sticky_atc_compare": false
+      }
+    },
+    "inclusions_grid_QyrEHJ": {
+      "type": "inclusions-grid",
+      "blocks": {
+        "item_gFqe4q": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_1_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_1_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_1_description | metafield_tag }}<\/p>"
+          }
+        },
+        "item_DthDrn": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_2_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_2_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_2_description | metafield_tag }}<\/p>"
+          }
+        },
+        "item_a3tby9": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_3_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_3_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_3description | metafield_tag }}<\/p>"
+          }
+        },
+        "item_tXkVNK": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_4_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_4_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_4_description | metafield_tag }}<\/p>"
+          }
+        },
+        "item_pbm4g9": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_5_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_5_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_5_description | metafield_tag }}<\/p>"
+          }
+        },
+        "item_BAeq9c": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_6_icon.value }}",
+            "feature_title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_6_title.value }}",
+            "feature_desc": "<p>{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.field_6_description | metafield_tag }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_gFqe4q",
+        "item_DthDrn",
+        "item_a3tby9",
+        "item_tXkVNK",
+        "item_pbm4g9",
+        "item_BAeq9c"
+      ],
+      "disabled": true,
+      "name": "Inclusions Grid",
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Ce qui est inclus",
+        "title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.heading.value }}",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "standard_video_reavel_c4hA7r": {
+      "type": "standard-video-reavel",
+      "custom_css": [
+        "span.play-text-template--26085785108745__standard_video_reavel_QkW3nx {font-family: \"Instrument Serif\", Georgia, serif; font-size: 18px; font-weight: 400; color: rgba(255, 255, 255, 0.9); font-style: italic;}"
+      ],
+      "name": "Standard Video Reveal Banner",
+      "settings": {
+        "badge": "Voir avant d'acheter",
+        "title": "Le planner Take Kare",
+        "button_text": "Regarder",
+        "thumbnail": "shopify:\/\/shop_images\/lea-cta-bg.png",
+        "video_url": "",
+        "bg_color": "#fbf8f4",
+        "text_color": "#0a0a0a",
+        "accent_color": "#e4032b"
+      }
+    },
+    "planner_target_audience_6MBtJg": {
+      "type": "planner-target-audience",
+      "blocks": {
+        "audience_card_tWJe8X": {
+          "type": "audience_card",
+          "settings": {
+            "title": "Tu te noies dans les tâches",
+            "text": "Tu as l'impression de travailler tout le temps sans avancer vraiment. Le Planner te donne une structure claire pour enfin distinguer l'essentiel du bruit."
+          }
+        },
+        "audience_card_PU3LMd": {
+          "type": "audience_card",
+          "settings": {
+            "title": "Les apps ne te conviennent pas",
+            "text": "Tu as essayé Notion, Todoist, Google Keep… mais rien ne tient. Le papier, structuré, c'est différent."
+          }
+        },
+        "audience_card_FhKLUr": {
+          "type": "audience_card",
+          "settings": {
+            "title": "Tu veux progresser sur tes projets",
+            "text": "Tu as des ambitions mais elles restent floues. Le système T.A.P.P. transforme tes idées en jalons concrets."
+          }
+        }
+      },
+      "block_order": [
+        "audience_card_tWJe8X",
+        "audience_card_PU3LMd",
+        "audience_card_FhKLUr"
+      ],
+      "name": "Planner Target Audience",
+      "settings": {
+        "subheading": "Pour qui ?",
+        "title": "Ce planner est fait pour toi si…",
+        "bg_color": "#fbf8f4",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "standard_planner_specs_Cha6tx": {
+      "type": "standard-planner-specs",
+      "blocks": {
+        "spec_item_JzmnGk": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Format",
+            "value": "A5 (148 × 210 mm)"
+          }
+        },
+        "spec_item_aVE4wq": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Pages",
+            "value": "220 pages"
+          }
+        },
+        "spec_item_FbYXMr": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Couverture",
+            "value": "Rigide toilée, ivoire"
+          }
+        },
+        "spec_item_gaVpWd": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Papier",
+            "value": "80g, crème, sans bois"
+          }
+        },
+        "spec_item_NN3FhF": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Durée",
+            "value": "6 mois non datés"
+          }
+        },
+        "spec_item_kWrDAb": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Impression",
+            "value": "France, écoresponsable"
+          }
+        }
+      },
+      "block_order": [
+        "spec_item_JzmnGk",
+        "spec_item_aVE4wq",
+        "spec_item_FbYXMr",
+        "spec_item_gaVpWd",
+        "spec_item_NN3FhF",
+        "spec_item_kWrDAb"
+      ],
+      "name": "Standard Planner Specs",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/product-journal_1_7e7ab5e4-7680-4a4d-bea9-b9d4690af0aa.webp",
+        "subheading": "Fait avec soin",
+        "title": "Un objet pensé pour <em>durer<\/em>",
+        "bg_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "planner_cta_end_dgcJdG": {
+      "type": "planner-cta-end",
+      "name": "Planner CTA End",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/lea-cta-bg.png",
+        "image_opacity": 65,
+        "subheading": "Septembre 2026",
+        "subheading_color": "#f6bacb",
+        "title": "Sois la première à le recevoir",
+        "text": "Inscris-toi pour être notifiée dès l'ouverture des précommandes et bénéficier d'une offre exclusive de lancement.",
+        "button_label": "Être notifiée du lancement",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "custom_digital_product_benefits_mBWiyE": {
+      "type": "custom-digital-product-benefits",
+      "blocks": {
+        "benefit_kqf96C": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "<p>{{ product.metafields.custom.section_3_digital_product_ce_produit_est_fait_pour_toi.value.benefit_item_1.value }}<\/p>"
+          }
+        },
+        "benefit_eCeNDr": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "<p>{{ product.metafields.custom.section_3_digital_product_ce_produit_est_fait_pour_toi.value.benefit_item_2.value }}<\/p>"
+          }
+        },
+        "benefit_iBfFYb": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "<p>{{ product.metafields.custom.section_3_digital_product_ce_produit_est_fait_pour_toi.value.benefit_item_3.value }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_kqf96C",
+        "benefit_eCeNDr",
+        "benefit_iBfFYb"
+      ],
+      "disabled": true,
+      "name": "Digital Product Benefit",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "C'est pour toi si…",
+        "title": "Ce produit est fait pour toi",
+        "product_to_add": "",
+        "button_label": "Accéder maintenant",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_product_details_hgYyBw": {
+      "type": "custom-product-details",
+      "blocks": {
+        "detail_row_tcq8G4": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Format",
+            "value": "{{ product.title }}"
+          }
+        },
+        "detail_row_3nyhbG": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Compatibilité",
+            "value": "Notion gratuit et payant"
+          }
+        },
+        "detail_row_iUHPMg": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Appareils",
+            "value": "Mac, PC, iOS, Android"
+          }
+        },
+        "detail_row_RrUVXg": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Livraison",
+            "value": "Accès immédiat par email"
+          }
+        },
+        "detail_row_tKG4hQ": {
+          "type": "detail_row",
+          "disabled": true,
+          "settings": {
+            "label": "Mises à jour",
+            "value": "Incluses à vie"
+          }
+        }
+      },
+      "block_order": [
+        "detail_row_tcq8G4",
+        "detail_row_3nyhbG",
+        "detail_row_iUHPMg",
+        "detail_row_RrUVXg",
+        "detail_row_tKG4hQ"
+      ],
+      "disabled": true,
+      "name": "Product Details Table",
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Les détails",
+        "title": "Caractéristiques",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_faq_accordion_NzRNLe": {
+      "type": "custom-faq-accordion",
+      "blocks": {
+        "faq_item_hjQqUq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_1.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_1.value }}<\/p>"
+          }
+        },
+        "faq_item_DFCacm": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_2.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_2.value }}<\/p>"
+          }
+        },
+        "faq_item_3hhQgW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_3.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_3.value }}<\/p>"
+          }
+        },
+        "faq_item_jY9nCd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_4.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_4.value }}<\/p>"
+          }
+        },
+        "faq_item_iAmFpK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_5.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_5.value }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_hjQqUq",
+        "faq_item_DFCacm",
+        "faq_item_3hhQgW",
+        "faq_item_jY9nCd",
+        "faq_item_iAmFpK"
+      ],
+      "disabled": true,
+      "name": "Custom FAQ Accordion",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Questions fréquentes",
+        "title": "Tout ce que tu dois savoir",
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_upsell_cards_4DXn7B": {
+      "type": "custom-upsell-cards",
+      "blocks": {
+        "card_WyEtwA": {
+          "type": "card",
+          "settings": {
+            "use_red_style": false,
+            "label": "Produit physique",
+            "heading": "Le Planner Structurée",
+            "description": "L'outil papier complet pour 6 mois de planification structurée. Le duo parfait avec le digital. À découvrir à la rentrée septembre 2026.",
+            "link_text": "Coming soon — 34,90€",
+            "link_url": "shopify:\/\/pages\/outils"
+          }
+        },
+        "card_cNinep": {
+          "type": "card",
+          "settings": {
+            "use_red_style": true,
+            "label": "Programme Signature",
+            "heading": "Le Coaching Structurée",
+            "description": "Les 6 modules vidéo pour maîtriser la Méthode et construire un système qui tient dans la durée.",
+            "link_text": "Rejoindre — 349€",
+            "link_url": "shopify:\/\/pages\/coaching-structuree"
+          }
+        }
+      },
+      "block_order": [
+        "card_WyEtwA",
+        "card_cNinep"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".upsell-card-red h3 {color: #ffffff;}"
+      ],
+      "name": "Organization Upsell",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Aller plus loin",
+        "title": "Complète ton organisation",
+        "padding_top": 0,
+        "padding_bottom_desktop": 100,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "product-details-tabs": {
+      "type": "product-details-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "header": "Product description"
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "header": "Shipping & Return",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<\/p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<\/p>",
+            "content_page": ""
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "header": "Product reviews",
+            "container": "container",
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "tab",
+        "reviews"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "default_open": true,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {}
+    },
+    "1775794216974a042d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_mjQXEq": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_mjQXEq"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "back_to_tools_e46g9N": {
+      "type": "back-to-tools",
+      "name": "Back to Tools Link",
+      "settings": {
+        "link_text": "Voir tous les outils",
+        "link_url": "shopify:\/\/pages\/outils",
+        "bg_color": "#fbf8f4",
+        "padding_top": 32,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "1634179460fa8cb6ac",
+    "product_spotlight_ULwLex",
+    "book_geqac3",
+    "standard_planner_section_fkMxJH",
+    "main",
+    "inclusions_grid_QyrEHJ",
+    "standard_video_reavel_c4hA7r",
+    "planner_target_audience_6MBtJg",
+    "standard_planner_specs_Cha6tx",
+    "planner_cta_end_dgcJdG",
+    "custom_digital_product_benefits_mBWiyE",
+    "custom_product_details_hgYyBw",
+    "custom_faq_accordion_NzRNLe",
+    "custom_upsell_cards_4DXn7B",
+    "product-details-tabs",
+    "zp-product-footer-content",
+    "1775794216974a042d",
+    "back_to_tools_e46g9N"
+  ]
+}

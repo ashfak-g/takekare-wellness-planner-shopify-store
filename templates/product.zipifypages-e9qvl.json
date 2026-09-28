@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "content": {
+      "type": "product-content-zipifypages-e9qvl",
+      "settings": {}
+    }
+  },
+  "order": [
+    "content"
+  ]
+}

@@ -1,0 +1,422 @@
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {}
+    },
+    "1634179460fa8cb6ac": {
+      "type": "breadcrumb",
+      "settings": {
+        "container": "container",
+        "text_alignment": "left",
+        "hide_current": false,
+        "hide_on_mb": false,
+        "animations": "fade-in"
+      }
+    },
+    "product_spotlight_ULwLex": {
+      "type": "product-spotlight",
+      "custom_css": [
+        "@media (max-width: 768px) {h1 {font-size: 32px !important; line-height: 35px !important; }}"
+      ],
+      "name": "Product Spotlight",
+      "settings": {
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 60,
+        "footer_note": "✓ Livraison sous 3–5 jours  ·  ✓ Paiement sécurisé"
+      }
+    },
+    "17757942064da440e3": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_preview_badge_YrT9dr": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_YrT9dr"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "custom_text_z6NWpj": {
+          "type": "custom_text",
+          "settings": {
+            "content": "<p>{{ product.metafields.custom.product_subtitle.value }}<\/p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_title": "Size"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_atc_button": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_saving": false,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "custom_liquid_tmbGWd": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p data-replit-metadata=\"artifacts\/takekare\/src\/pages\/SimpleProduct.tsx:312:14\" data-component-name=\"p\" style=\"font-size: 12px; color: rgb(138, 129, 120); font-weight: 500; letter-spacing: 0.3px;\"><font dir=\"auto\" style=\"vertical-align: inherit;\"><font dir=\"auto\" style=\"vertical-align: inherit;\">✓ Delivery within 3–5 days · ✓ Secure payment<\/font><\/font><\/p>"
+          }
+        },
+        "addons": {
+          "type": "addons",
+          "disabled": true,
+          "settings": {
+            "show_atcp": true,
+            "show_ask_a_question": true,
+            "show_social": true
+          }
+        }
+      },
+      "block_order": [
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83",
+        "title",
+        "custom_text_z6NWpj",
+        "variant_picker",
+        "buy_buttons",
+        "price",
+        "custom_liquid_tmbGWd",
+        "addons"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".m-product-text {font-family: Caveat, cursive; font-size: 20px; font-weight: 600;}"
+      ],
+      "settings": {
+        "container": "container",
+        "layout": "layout-6",
+        "show_atwl": false,
+        "enable_history_state": true,
+        "enable_variant_group_images": false,
+        "disable_selected_variant_default": false,
+        "show_featured_media": true,
+        "show_zoom_button": true,
+        "enable_video_autoplay": false,
+        "show_nav_media_mobile": false,
+        "show_pagination_mobile": true,
+        "use_sticky_atc": false,
+        "use_sticky_atc_on_mobile": false,
+        "enable_dynamic_checkout": false,
+        "sticky_atc_wishtlist": false,
+        "sticky_atc_compare": false
+      }
+    },
+    "daily_planner_features_gEbWXT": {
+      "type": "daily-planner-features",
+      "blocks": {
+        "feature_TNANCM": {
+          "type": "feature",
+          "settings": {
+            "icon": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_1_icon.value }}",
+            "title": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_1_title.value }}",
+            "text": "<p>{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_1_description | metafield_tag }}<\/p>"
+          }
+        },
+        "feature_pFfKQC": {
+          "type": "feature",
+          "settings": {
+            "icon": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_3_icon.value }}",
+            "title": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_3_title.value }}",
+            "text": "<p>{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_3_description | metafield_tag }}<\/p>"
+          }
+        },
+        "feature_LxRtEk": {
+          "type": "feature",
+          "settings": {
+            "icon": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_2_icon.value }}",
+            "title": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_2_title.value }}",
+            "text": "<p>{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_2_description | metafield_tag }}<\/p>"
+          }
+        },
+        "feature_KbkNgR": {
+          "type": "feature",
+          "settings": {
+            "icon": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_4_icon.value }}",
+            "title": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_4_title.value }}",
+            "text": "<p>{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.field_4_description | metafield_tag }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_TNANCM",
+        "feature_pFfKQC",
+        "feature_LxRtEk",
+        "feature_KbkNgR"
+      ],
+      "custom_css": [
+        "h2 {max-width: 300px;}"
+      ],
+      "name": "Daily Planner Features",
+      "settings": {
+        "sub_heading": "À l'intérieur",
+        "heading": "{{ product.metafields.custom.ce_que_tu_trouves_dans_le_daily_planner.value.heading.value }}",
+        "bg_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "video_reveal_Q9xrYr": {
+      "type": "video-reveal",
+      "disabled": true,
+      "name": "Video Reveal Banner",
+      "settings": {
+        "badge": "Ce qui t'attend",
+        "title": "Gérer ton planning menu sans stress",
+        "button_text": "",
+        "thumbnail": "shopify:\/\/shop_images\/Vignette_Youtube_Voyage_Vintage_aesthetic_Photo_Jaune_1.png",
+        "video_url": "https:\/\/youtu.be\/tdZlhsrJJDY",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "accent_color": "#e4032b"
+      }
+    },
+    "it_is_for_you_fKFekB": {
+      "type": "it-is-for-you",
+      "blocks": {
+        "item_keEtcg": {
+          "type": "item",
+          "settings": {
+            "item_text": "{{ product.metafields.custom.ce_daily_planner.value.checklist_item_1.value }}"
+          }
+        },
+        "item_7PdimU": {
+          "type": "item",
+          "settings": {
+            "item_text": "{{ product.metafields.custom.ce_daily_planner.value.checklist_item_2.value }}"
+          }
+        },
+        "item_ER97Ch": {
+          "type": "item",
+          "settings": {
+            "item_text": "{{ product.metafields.custom.ce_daily_planner.value.checklist_item_3.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "item_keEtcg",
+        "item_7PdimU",
+        "item_ER97Ch"
+      ],
+      "custom_css": [],
+      "name": "It is for you (Hero)",
+      "settings": {
+        "product": "",
+        "bg_image": "shopify:\/\/shop_images\/pour-qui-bg_1.png",
+        "bg_opacity": 75,
+        "padding_top": 80,
+        "padding_bottom": 100,
+        "subheading": "Tu vas adorer",
+        "title": "C'est fait pour toi si...",
+        "btn_text": "Ajouter au panier"
+      }
+    },
+    "product_specifications_gVRRMM": {
+      "type": "product-specifications",
+      "blocks": {
+        "specification_bKkNpG": {
+          "type": "specification",
+          "settings": {
+            "label": "{{ product.metafields.custom.caracteristiques.value.spec_item_1_label.value }}",
+            "value": "{{ product.metafields.custom.caracteristiques.value.spec_item_1_value.value }}"
+          }
+        },
+        "specification_jwbxat": {
+          "type": "specification",
+          "settings": {
+            "label": "{{ product.metafields.custom.caracteristiques.value.spec_item_2_label.value }}",
+            "value": "{{ product.metafields.custom.caracteristiques.value.spec_item_2_value.value }}"
+          }
+        },
+        "specification_FXXUPn": {
+          "type": "specification",
+          "settings": {
+            "label": "{{ product.metafields.custom.caracteristiques.value.spec_item_3_label.value }}",
+            "value": "{{ product.metafields.custom.caracteristiques.value.spec_item_3_value.value }}"
+          }
+        },
+        "specification_Dd6Vhn": {
+          "type": "specification",
+          "settings": {
+            "label": "{{ product.metafields.custom.caracteristiques.value.spec_item_4_label.value }}",
+            "value": "{{ product.metafields.custom.caracteristiques.value.spec_item_4_value.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "specification_bKkNpG",
+        "specification_jwbxat",
+        "specification_FXXUPn",
+        "specification_Dd6Vhn"
+      ],
+      "name": "Product Specifications",
+      "settings": {
+        "subtitle": "Le détail",
+        "title": "Caractéristiques"
+      }
+    },
+    "complete_routine_mNt8mV": {
+      "type": "complete-routine",
+      "name": "Complete Routine Section",
+      "settings": {
+        "padding_top": 105,
+        "padding_bottom": 100,
+        "header_sub": "Aller plus loin",
+        "header_title": "Complète ta routine",
+        "card1_sub": "Le Planner Structurée",
+        "card1_title": "Le planner complet basé sur la Méthode",
+        "card1_desc": "6 mois de planification structurée, avec l'audit de ta réalité, la méthode T.A.P.P. et les semaines détaillées. À découvrir à la rentrée septembre 2026.",
+        "card1_btn_text": "Coming soon — 34,90€",
+        "card1_link": "shopify:\/\/pages\/outils",
+        "card2_sub": "Programme Signature",
+        "card2_title": "Le Coaching Structurée",
+        "card2_desc": "Les 6 modules vidéo pour maîtriser la Méthode et construire un système d'organisation qui tient.",
+        "card2_btn_text": "Rejoindre — 349€",
+        "card2_link": "shopify:\/\/pages\/coaching-structuree"
+      }
+    },
+    "product-details-tabs": {
+      "type": "product-details-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "header": "Product description"
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "header": "Shipping & Return",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<\/p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<\/p>",
+            "content_page": ""
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "header": "Product reviews",
+            "container": "container",
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "tab",
+        "reviews"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "default_open": true,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {}
+    },
+    "1775794216974a042d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_mjQXEq": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_mjQXEq"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "back_to_tools_e46g9N": {
+      "type": "back-to-tools",
+      "name": "Back to Tools Link",
+      "settings": {
+        "link_text": "Voir tous les outils",
+        "link_url": "shopify:\/\/pages\/outils",
+        "bg_color": "#fbf8f4",
+        "padding_top": 32,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "1634179460fa8cb6ac",
+    "product_spotlight_ULwLex",
+    "17757942064da440e3",
+    "main",
+    "daily_planner_features_gEbWXT",
+    "video_reveal_Q9xrYr",
+    "it_is_for_you_fKFekB",
+    "product_specifications_gVRRMM",
+    "complete_routine_mNt8mV",
+    "product-details-tabs",
+    "zp-product-footer-content",
+    "1775794216974a042d",
+    "back_to_tools_e46g9N"
+  ]
+}

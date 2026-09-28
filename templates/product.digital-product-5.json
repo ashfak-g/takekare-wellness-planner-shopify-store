@@ -1,0 +1,518 @@
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {}
+    },
+    "1634179460fa8cb6ac": {
+      "type": "breadcrumb",
+      "settings": {
+        "container": "container",
+        "text_alignment": "left",
+        "hide_current": false,
+        "hide_on_mb": false,
+        "animations": "fade-in"
+      }
+    },
+    "product_spotlight_ULwLex": {
+      "type": "product-spotlight",
+      "custom_css": [
+        "@media (max-width: 768px) {h1 {font-size: 32px !important; line-height: 35px !important; }}"
+      ],
+      "name": "Product Spotlight",
+      "settings": {
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 60,
+        "footer_note": "✓ Paiement en 3 fois sans frais possible  ·  ✓ Accès immédiat"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "custom_text_z6NWpj": {
+          "type": "custom_text",
+          "settings": {
+            "content": "<p>{{ product.metafields.custom.product_subtitle.value }}<\/p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_title": "Size"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_atc_button": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_saving": false,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "custom_liquid_tmbGWd": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p data-replit-metadata=\"artifacts\/takekare\/src\/pages\/SimpleProduct.tsx:312:14\" data-component-name=\"p\" style=\"font-size: 12px; color: rgb(138, 129, 120); font-weight: 500; letter-spacing: 0.3px;\"><font dir=\"auto\" style=\"vertical-align: inherit;\"><font dir=\"auto\" style=\"vertical-align: inherit;\">✓ Delivery within 3–5 days · ✓ Secure payment<\/font><\/font><\/p>"
+          }
+        },
+        "addons": {
+          "type": "addons",
+          "disabled": true,
+          "settings": {
+            "show_atcp": true,
+            "show_ask_a_question": true,
+            "show_social": true
+          }
+        }
+      },
+      "block_order": [
+        "7867d69c-9018-4e43-9ab1-c0dabc50ab83",
+        "title",
+        "custom_text_z6NWpj",
+        "variant_picker",
+        "buy_buttons",
+        "price",
+        "custom_liquid_tmbGWd",
+        "addons"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".m-product-text {font-family: Caveat, cursive; font-size: 20px; font-weight: 600;}"
+      ],
+      "settings": {
+        "container": "container",
+        "layout": "layout-6",
+        "show_atwl": false,
+        "enable_history_state": true,
+        "enable_variant_group_images": false,
+        "disable_selected_variant_default": false,
+        "show_featured_media": true,
+        "show_zoom_button": true,
+        "enable_video_autoplay": false,
+        "show_nav_media_mobile": false,
+        "show_pagination_mobile": true,
+        "use_sticky_atc": false,
+        "use_sticky_atc_on_mobile": false,
+        "enable_dynamic_checkout": false,
+        "sticky_atc_wishtlist": false,
+        "sticky_atc_compare": false
+      }
+    },
+    "inclusions_grid_QyrEHJ": {
+      "type": "inclusions-grid",
+      "blocks": {
+        "item_gFqe4q": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        },
+        "item_DthDrn": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        },
+        "item_a3tby9": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        },
+        "item_tXkVNK": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        },
+        "item_pbm4g9": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        },
+        "item_BAeq9c": {
+          "type": "item",
+          "settings": {
+            "emoji_icon": "",
+            "feature_title": "",
+            "feature_desc": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_gFqe4q",
+        "item_DthDrn",
+        "item_a3tby9",
+        "item_tXkVNK",
+        "item_pbm4g9",
+        "item_BAeq9c"
+      ],
+      "name": "Inclusions Grid",
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Ce qui est inclus",
+        "title": "{{ product.metafields.custom.section_1_digital_product_ce_que_tu_obtiens.value.heading.value }}",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "standard_video_reavel_c4hA7r": {
+      "type": "standard-video-reavel",
+      "custom_css": [
+        "span.play-text-template--26085785108745__standard_video_reavel_QkW3nx {font-family: \"Instrument Serif\", Georgia, serif; font-size: 18px; font-weight: 400; color: rgba(255, 255, 255, 0.9); font-style: italic;}"
+      ],
+      "name": "Standard Video Reveal Banner",
+      "settings": {
+        "badge": "Voir avant d'acheter",
+        "title": "Visite guidée du Programme Notion",
+        "button_text": "Regarder",
+        "thumbnail": "shopify:\/\/shop_images\/Vignette_Youtube_Voyage_Vintage_aesthetic_Photo_Jaune_2.png",
+        "video_url": "https:\/\/youtu.be\/R5EhlsIgmcc",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "accent_color": "#e4032b"
+      }
+    },
+    "custom_digital_product_benefits_mBWiyE": {
+      "type": "custom-digital-product-benefits",
+      "blocks": {
+        "benefit_kqf96C": {
+          "type": "benefit",
+          "settings": {
+            "item_text": ""
+          }
+        },
+        "benefit_eCeNDr": {
+          "type": "benefit",
+          "settings": {
+            "item_text": ""
+          }
+        },
+        "benefit_iBfFYb": {
+          "type": "benefit",
+          "settings": {
+            "item_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "benefit_kqf96C",
+        "benefit_eCeNDr",
+        "benefit_iBfFYb"
+      ],
+      "name": "Digital Product Benefit",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "C'est pour toi si…",
+        "title": "Ce produit est fait pour toi",
+        "product_to_add": "",
+        "button_label": "Accéder maintenant",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_product_details_hgYyBw": {
+      "type": "custom-product-details",
+      "blocks": {
+        "detail_row_tcq8G4": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Forma",
+            "value": ""
+          }
+        },
+        "detail_row_3nyhbG": {
+          "type": "detail_row",
+          "settings": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "detail_row_iUHPMg": {
+          "type": "detail_row",
+          "settings": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "detail_row_RrUVXg": {
+          "type": "detail_row",
+          "settings": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "detail_row_tKG4hQ": {
+          "type": "detail_row",
+          "disabled": true,
+          "settings": {
+            "label": "Mises à jour",
+            "value": "Incluses à vie"
+          }
+        }
+      },
+      "block_order": [
+        "detail_row_tcq8G4",
+        "detail_row_3nyhbG",
+        "detail_row_iUHPMg",
+        "detail_row_RrUVXg",
+        "detail_row_tKG4hQ"
+      ],
+      "name": "Product Details Table",
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Les détails",
+        "title": "Caractéristiques",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_faq_accordion_NzRNLe": {
+      "type": "custom-faq-accordion",
+      "blocks": {
+        "faq_item_hjQqUq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_item_DFCacm": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_item_3hhQgW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_item_jY9nCd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_item_iAmFpK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_title_5.value }}",
+            "answer": "<p>{{ product.metafields.custom.section_4_digital_product_caracteristiques.value.detail_row_value_5.value }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_hjQqUq",
+        "faq_item_DFCacm",
+        "faq_item_3hhQgW",
+        "faq_item_jY9nCd",
+        "faq_item_iAmFpK"
+      ],
+      "name": "Custom FAQ Accordion",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Questions fréquentes",
+        "title": "Tout ce que tu dois savoir",
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 100,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "custom_upsell_cards_4DXn7B": {
+      "type": "custom-upsell-cards",
+      "blocks": {
+        "card_WyEtwA": {
+          "type": "card",
+          "settings": {
+            "use_red_style": false,
+            "label": "Produit physique",
+            "heading": "Le Planner Structurée",
+            "description": "L'outil papier complet pour 6 mois de planification structurée. Le duo parfait avec le digital. À découvrir à la rentrée septembre 2026.",
+            "link_text": "Coming soon — 34,90€",
+            "link_url": "shopify:\/\/pages\/outils"
+          }
+        },
+        "card_cNinep": {
+          "type": "card",
+          "settings": {
+            "use_red_style": true,
+            "label": "Programme Signature",
+            "heading": "Le Coaching Structurée",
+            "description": "Les 6 modules vidéo pour maîtriser la Méthode et construire un système qui tient dans la durée.",
+            "link_text": "Rejoindre — 349€",
+            "link_url": "shopify:\/\/pages\/coaching-structuree"
+          }
+        }
+      },
+      "block_order": [
+        "card_WyEtwA",
+        "card_cNinep"
+      ],
+      "custom_css": [
+        ".upsell-card-red h3 {color: #ffffff;}"
+      ],
+      "name": "Organization Upsell",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Aller plus loin",
+        "title": "Complète ton organisation",
+        "padding_top": 0,
+        "padding_bottom_desktop": 100,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "product-details-tabs": {
+      "type": "product-details-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "header": "Product description"
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "header": "Shipping & Return",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<\/p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<\/p>",
+            "content_page": ""
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "header": "Product reviews",
+            "container": "container",
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "tab",
+        "reviews"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "default_open": true,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {}
+    },
+    "1775794216974a042d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_mjQXEq": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_mjQXEq"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "back_to_tools_e46g9N": {
+      "type": "back-to-tools",
+      "name": "Back to Tools Link",
+      "settings": {
+        "link_text": "Voir tous les outils",
+        "link_url": "shopify:\/\/pages\/outils",
+        "bg_color": "#fbf8f4",
+        "padding_top": 32,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "1634179460fa8cb6ac",
+    "product_spotlight_ULwLex",
+    "main",
+    "inclusions_grid_QyrEHJ",
+    "standard_video_reavel_c4hA7r",
+    "custom_digital_product_benefits_mBWiyE",
+    "custom_product_details_hgYyBw",
+    "custom_faq_accordion_NzRNLe",
+    "custom_upsell_cards_4DXn7B",
+    "product-details-tabs",
+    "zp-product-footer-content",
+    "1775794216974a042d",
+    "back_to_tools_e46g9N"
+  ]
+}
