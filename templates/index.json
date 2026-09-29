@@ -1,0 +1,575 @@
+{
+  "sections": {
+    "hero_structured_method_cLH7me": {
+      "type": "hero-structured-method",
+      "custom_css": [
+        "@media only screen and(max-width: 768px) {img {width: 100% !important; height: 290px !important; object-fit: cover !important; object-position: top !important; display: block !important; }}"
+      ],
+      "name": "Hero Structured Method",
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 140,
+        "sub_heading": "Fondatrice de la Méthode Structurée",
+        "title": "Je suis Léa, et j'aide les femmes à reprendre <em>le contrôle de leur quotidien.<\/em>",
+        "description": "<p>J’ai créé la Méthode Structurée pour les femmes qui portent trop de choses à la fois : travail, projets, vie personnelle… Et qui ont l’impression de courir en permanence, sans jamais vraiment avoir le temps pour ce qui compte vraiment.<\/p>",
+        "btn_text": "Découvrir la Méthode",
+        "btn_link": "shopify:\/\/pages\/coaching-structuree",
+        "image": "shopify:\/\/shop_images\/lea-hero_2.png",
+        "stat_number": "+500",
+        "stat_text": "femmes accompagnées",
+        "quote_text": "Tu n'es pas mal organisée, tu manques d'un système pensé pour toi !",
+        "quote_author": "Léa Coff"
+      }
+    },
+    "problem_brain_grid_ebR4BA": {
+      "type": "problem-brain-grid",
+      "blocks": {
+        "reason_Jty6tf": {
+          "type": "reason",
+          "settings": {
+            "title": "Tu passes tes journées à courir",
+            "text": "Tu cours après le temps, tu enchaînes les journées sans jamais avoir le sentiment d'avancer sur ce qui compte vraiment pour toi."
+          }
+        },
+        "reason_ThgKHc": {
+          "type": "reason",
+          "settings": {
+            "title": "Tu penses que c'est toi le problème",
+            "text": "J'entends souvent « Je ne suis pas assez bien organisée. » Mais ce n'est pas un problème individuel : c'est une charge mentale que les femmes portent seules."
+          }
+        },
+        "reason_dK6bUy": {
+          "type": "reason",
+          "settings": {
+            "title": "Tu as déjà testé tous les outils",
+            "text": "Tu as testé 10 applis à la mode, 5 templates instagrammable, 13 planners. Rien n'a tenu plus de deux semaines parce qu'aucun ne s'adaptait à ta vraie vie."
+          }
+        }
+      },
+      "block_order": [
+        "reason_Jty6tf",
+        "reason_ThgKHc",
+        "reason_dK6bUy"
+      ],
+      "custom_css": [
+        ".problem-header.aos-init.aos-animate {margin-bottom: 32px;}"
+      ],
+      "name": "Problem Brain Grid",
+      "settings": {
+        "bg_color": "#ffffff",
+        "subtitle": "Ça te parle ?",
+        "title": "Ton cerveau est devenu le gestionnaire de toute ta vie.",
+        "description": "Rdv, rappels, to-do, projets, idées… tout est stocké dans ta tête.",
+        "quote_main": "Le problème n'est pas que tu es nulle en organisation.",
+        "quote_accent": "Le problème, c'est qu'on ne t'a jamais appris à construire un système.",
+        "padding_top_desktop": 70,
+        "padding_bottom_desktop": 70,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "image_with_text_2_m6ntT8": {
+      "type": "image-with-text-2",
+      "name": "Image with text overlay",
+      "settings": {
+        "color_scheme": "",
+        "container": "w-full",
+        "hero_size": "small",
+        "show_overlay": true,
+        "image": "shopify:\/\/shop_images\/lea-banner.png",
+        "image_link": "",
+        "parallax": false,
+        "parallax_direction": "vertical",
+        "content_in_container": false,
+        "content_position": "center middle",
+        "text_alignment": "center",
+        "text_size": "medium",
+        "text_color": "white",
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "text_alignment_mobile": "center",
+        "use_content_above": false,
+        "custom_class": "",
+        "animations": "inherit",
+        "enable_bg_zoom_effect": true,
+        "enable_preload_image": false
+      }
+    },
+    "1774532846d9ff0df2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_07430ee_7xCywr": {
+          "type": "ai_gen_block_07430ee",
+          "settings": {
+            "container_type": "default",
+            "custom_container_width": 1280,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "subtitle": "La solution",
+            "heading": "<h2>La Méthode Structurée<br\/>en 6 piliers<\/h2>",
+            "description": "Une méthode claire, actionnable, qui t’aide à avancer sans t’épuiser.",
+            "subtitle_size_desktop": 22,
+            "heading_size_desktop": 50,
+            "description_size_desktop": 16,
+            "card_number_size_desktop": 18,
+            "card_title_size_desktop": 17,
+            "card_subtitle_size_desktop": 19,
+            "card_description_size_desktop": 14,
+            "subtitle_size_mobile": 18,
+            "heading_size_mobile": 32,
+            "description_size_mobile": 15,
+            "card_number_size_mobile": 16,
+            "card_title_size_mobile": 16,
+            "card_subtitle_size_mobile": 17,
+            "card_description_size_mobile": 13,
+            "step_1_number": "1",
+            "step_1_title": "Voir clair",
+            "step_1_subtitle": "Audit de la réalité",
+            "step_1_description": "Comprendre où va ton temps, ton énergie, ta charge quotidienne en auditant ta réalité.",
+            "step_2_number": "2",
+            "step_2_title": "Alléger",
+            "step_2_subtitle": "Filtrer, trier, retirer",
+            "step_2_description": "Trier, filtrer et apprendre comment et pourquoi déléguer.",
+            "step_3_number": "3",
+            "step_3_title": "Structurer",
+            "step_3_subtitle": "La méthode T.A.P.P.",
+            "step_3_description": "Transforme ta to do en système clair grâce au filtre T.A.P.P, en distinguant tâches, actions et projets.",
+            "step_4_number": "4",
+            "step_4_title": "Planifier",
+            "step_4_subtitle": "Rythme & capacité",
+            "step_4_description": "Apprend à planifier de manière optimale en respectant ton énergie, tes contraintes et ta réalité.",
+            "step_5_number": "5",
+            "step_5_title": "Produire",
+            "step_5_subtitle": "Deep Work",
+            "step_5_description": "Apprendre à être hyper focus pour avancer vraiment, en te concentrant sur les tâches prioritaires sans distraction ni dispersion.",
+            "step_6_number": "6",
+            "step_6_title": "Ajuster",
+            "step_6_subtitle": "Autonomie & maintenance",
+            "step_6_description": "Analyser ce qui fonctionne et faire évoluer ton système pour qu'il reste aligné avec ta vraie vie.",
+            "button_label": "Découvrir la Méthode complète",
+            "button_link": "shopify:\/\/pages\/coaching-structuree",
+            "section_background_color": "#fbf8f4",
+            "subtitle_color": "#e30613",
+            "heading_color": "#0a0a0a",
+            "description_color": "#999999",
+            "card_background": "#ffffff",
+            "card_border_hover_color": "#e30613",
+            "number_background": "#e30613",
+            "number_color": "#ffffff",
+            "card_title_color": "#0a0a0a",
+            "card_subtitle_color": "#e30613",
+            "card_description_color": "#999999",
+            "button_background": "#e30613",
+            "button_hover_background": "#b8050f",
+            "button_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_07430ee_7xCywr"
+      ],
+      "disabled": true,
+      "name": "Featured Promotion",
+      "settings": {}
+    },
+    "home_solution_pillars_6JfVGe": {
+      "type": "home-solution-pillars",
+      "blocks": {
+        "pillar_ifkGPr": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Voir clair",
+            "accent_title": "Audit de la réalité",
+            "text": "Comprendre où va ton temps, ton énergie, ta charge quotidienne en auditant ta réalité."
+          }
+        },
+        "pillar_UqNXrg": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Alléger",
+            "accent_title": "Filtrer, trier, retirer",
+            "text": "Trier, filtrer et apprendre comment et pourquoi déléguer."
+          }
+        },
+        "pillar_6pMQQG": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Structurer",
+            "accent_title": "La méthode T.A.P.P.",
+            "text": "Transforme ta to do en système clair grâce au filtre T.A.P.P, en distinguant tâches, actions et projets."
+          }
+        },
+        "pillar_3Jt7Tq": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Planifier",
+            "accent_title": "Rythme & capacité",
+            "text": "Apprend à planifier de manière optimale en respectant ton énergie, tes contraintes et ta réalité."
+          }
+        },
+        "pillar_dWBL9M": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Produire",
+            "accent_title": "Deep Work",
+            "text": "Apprendre à être hyper focus pour avancer vraiment, en te concentrant sur les tâches prioritaires sans distraction ni dispersion."
+          }
+        },
+        "pillar_W9UD4n": {
+          "type": "pillar",
+          "settings": {
+            "icon_text": "",
+            "main_title": "Ajuster",
+            "accent_title": "Autonomie & maintenance",
+            "text": "Analyser ce qui fonctionne et faire évoluer ton système pour qu'il reste aligné avec ta vraie vie."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_ifkGPr",
+        "pillar_UqNXrg",
+        "pillar_6pMQQG",
+        "pillar_3Jt7Tq",
+        "pillar_dWBL9M",
+        "pillar_W9UD4n"
+      ],
+      "name": "Solution Pillars Home",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "subtitle": "La solution",
+        "title": "La Méthode Structurée en 6 piliers",
+        "description": "Une méthode claire, actionnable, qui t’aide à avancer sans t’épuiser.",
+        "button_label": "Découvrir la Méthode complète",
+        "button_link": "shopify:\/\/pages\/coaching-structuree",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 44
+      }
+    },
+    "sections_before_after_grid_tii9im": {
+      "type": "sections-before-after-grid",
+      "blocks": {
+        "card_44DW7x": {
+          "type": "card",
+          "settings": {
+            "text_before": "Tu penses à envoyer ce mail sous la douche, à prendre ce rdv en voiture, à ne pas oublier ce truc en te couchant. Tu vis avec une liste mentale qui ne s'arrête jamais.",
+            "text_after": "Tout est sorti de ta tête et posé dans un système fiable. Tu n'as plus besoin de te rappeler de tout. Tu sais que rien ne sera oublié, et ton cerveau peut enfin se reposer."
+          }
+        },
+        "card_K4eqLW": {
+          "type": "card",
+          "settings": {
+            "text_before": "Tu ouvres ta to-do, tu vois 25 tâches, tu ne sais pas par où commencer. Tu fais des petites choses pour te donner l'impression d'avancer… mais tu termines ta journée frustrée car rien n'a vraiment progressé.",
+            "text_after": "Tu sais exactement par quoi commencer. Tu as trié ta to do list grâce à TAPP. Tu avances sur tes tâches et tes projets efficacement, tu termines ta journée avec un vrai sentiment d'accomplissement."
+          }
+        },
+        "card_c6E6we": {
+          "type": "card",
+          "settings": {
+            "text_before": "Tu passes plus de temps à organiser tes outils… qu'à avancer. Tu notes la même chose à 3 endroits différents, et malgré ça, tu oublies.",
+            "text_after": "Ton système est accessible et pensé pour toi. Tes infos sont claires, organisées, accessibles en quelques secondes. Tu sais exactement où et quoi chercher. Tu avances sur tes projets sereinement."
+          }
+        }
+      },
+      "block_order": [
+        "card_44DW7x",
+        "card_K4eqLW",
+        "card_c6E6we"
+      ],
+      "name": "Before\/After Grid Home",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "subtitle": "Ce que ça change",
+        "title": "Dans 8 semaines, tout sera plus clair",
+        "description": "Moins de charge, plus de clarté, et un quotidien qui te ressemblera vraiment.",
+        "label_before": "Avant",
+        "label_after": "Après",
+        "padding_top": 0,
+        "padding_bottom": 80
+      }
+    },
+    "program_method_YKiqMp": {
+      "type": "program-method",
+      "blocks": {
+        "feature_item_4wRQng": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "🎯",
+            "item_title": "Audit sur mesure",
+            "item_text": "Un outil inédit automatisé pour faire le point sur ta semaine, identifier concrètement et en détail ce qui te surcharge et reprendre le contrôle de ton temps."
+          }
+        },
+        "feature_item_YQcAxE": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "📹",
+            "item_title": "6 modules vidéo",
+            "item_text": "Accessibles à ton rythme, chaque module t'aide à construire un système d'organisation réaliste, étape par étape."
+          }
+        },
+        "feature_item_HbF8Jz": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "📄",
+            "item_title": "Workbook",
+            "item_text": "Tous les outils de la méthode et les exercices pratiques regroupés dans un document unique qui t'accompagne tout au long du programme."
+          }
+        },
+        "feature_item_WzC6bT": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "💬",
+            "item_title": "Espace communauté",
+            "item_text": "Un espace privé pour poser tes questions, débloquer des situations concrètes et avancer avec d'autres femmes qui vivent la même réalité."
+          }
+        },
+        "feature_item_zfcNLK": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "∞",
+            "item_title": "Accès à vie",
+            "item_text": "Tu avances à ton rythme, tu consultes le contenu quand tu le souhaites. Les ressources sont accessibles 100% en ligne, sans limite de temps."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_4wRQng",
+        "feature_item_YQcAxE",
+        "feature_item_HbF8Jz",
+        "feature_item_WzC6bT",
+        "feature_item_zfcNLK"
+      ],
+      "name": "Program Method Section",
+      "settings": {
+        "bg_color": "#ffffff",
+        "subtitle": "Le programme",
+        "title": "Ce que tu reçois  dans la Méthode Structurée",
+        "description": "<p>Un programme complet, pensé pour s'adapter à ta réalité. Accessible à ton rythme, pour toujours.<\/p>",
+        "button_label": "Rejoindre — 349€",
+        "button_link": "shopify:\/\/pages\/coaching-structuree",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 44
+      }
+    },
+    "testimonials_grid_home_CiWq4a": {
+      "type": "testimonials-grid-home",
+      "blocks": {
+        "testimonial_fcgqrm": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p><em>J'ai adoré ! La formation est super bien organisée,<\/em><em><strong>mention spéciale pour les réponses rapides à nos questions de la part de l'équipe Take Kare <\/strong><\/em><em>ainsi que la communauté qui est un réel + ! On se sent moins seule. Vous pouvez y aller les yeux fermés !<\/em><\/p>",
+            "author_name": "Fanny",
+            "author_meta": "Participante Coaching"
+          }
+        },
+        "testimonial_wGc4tJ": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p><em>Un shift radical, <\/em><em><strong>ce programme a changé ma vie sans exagérer<\/strong><\/em><em>, il m'a permis d'apporter clarté, structure dans ma vie pro et perso et surtout, <\/em><em><strong>il m'a même permis de me libérer du temps personnel <\/strong><\/em><em>dans mon quotidien. Je le recommande x1000 !<\/em><\/p>",
+            "author_name": "Yasmin",
+            "author_meta": "Participante Coaching"
+          }
+        },
+        "testimonial_XcdQRQ": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Coaching très complet et très concret ! J'avais besoin d'améliorer mon quotidien, d'avoir<strong>plus de clarté et plus de contrôle sur mes journées <\/strong>! Ce coaching m'a permis de prendre conscience où je perdais de l'énergie pour me concentrer sur l'essentiel !<\/p>",
+            "author_name": "Emma",
+            "author_meta": "Participante Coaching"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_fcgqrm",
+        "testimonial_wGc4tJ",
+        "testimonial_XcdQRQ"
+      ],
+      "name": "Testimonials Grid Home",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "subtitle": "Ce qu'elles en disent",
+        "show_icon": false,
+        "title": "Des femmes qui ont repris le contrôle",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 44
+      }
+    },
+    "product_showcase_slider_NmCrW6": {
+      "type": "product-showcase-slider",
+      "blocks": {
+        "product_ReKbMj": {
+          "type": "product",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/tkMATHILDE_VILLEMEJEANNE_PHOTOGRAPHE_copie.jpg",
+            "category": "Quotidien",
+            "title": "Le pack découverte Take Kare",
+            "text": "Découvre toute la papeterie Take Kare en un seul pack. \nÀ l'intérieur : tes 3 planners (daily, tracker d'habitudes et menu), un set de 4 stylos et 3 blocs de pense-bêtes. \nDe quoi organiser tes journées, suivre tes habitudes, le tout réuni à prix découverte avec 30% de remise. \nPour te faire plaisir ou pour offrir.",
+            "link": "shopify:\/\/products\/le-lot-decouverte-papeterie-by-take-kare"
+          }
+        },
+        "product_gkYbGe": {
+          "type": "product",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/TAKEKARE_NEW_PRODUCTS_SITE_MATHILDE_VILLEMEJEANNE_PHOTOGRAPHE-22_jpg.webp",
+            "category": "Organisation",
+            "title": "Daily planner",
+            "text": "Ce daily planner est le compagnon idéal pour organiser ta journée facilement et maximiser ta productivité. Il est conçu pour t’aider à structurer chaque jour avec efficacité.  Chaque page inclut une to-do list, un planning par heure, et un encart pour définir tes priorités.",
+            "link": "shopify:\/\/pages\/outils"
+          }
+        },
+        "product_xaAzGW": {
+          "type": "product",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/product-menu.webp",
+            "category": "Quotidien",
+            "title": "Mon Menu - Planner Repas",
+            "text": "Le Menu Planner Take Kare est ton allié pour organiser tes repas de la semaine.\nFini le \"qu’est-ce qu’on mange ce soir ? et les courses improvisées à la dernière minute : planifie sereinement tes menus et ta liste de courses sur un seul et même support.",
+            "link": "shopify:\/\/products\/mon-planner-de-menus"
+          }
+        },
+        "product_hyJQty": {
+          "type": "product",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/product-postits.webp",
+            "category": "Organisation",
+            "title": "Lot de 3 blocs de pense-bêtes",
+            "text": "Organise tes idées grâce à ce lot de 3 blocs de pense-bêtes. Chaque bloc contient 50 feuilles détachables, parfaites pour noter ce que tu ne veux pas oublier : une to-do, une idée de génie, un rappel important…",
+            "link": "shopify:\/\/products\/lot-de-3-blocs-de-pense-betes"
+          }
+        },
+        "product_8LAXJ6": {
+          "type": "product",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/product-stylos.webp",
+            "category": "Papeterie",
+            "title": "Set de 4 Stylos Take Kare",
+            "text": "Le set de 4 stylos Take Kare t’accompagne à chaque moment de ta journée : écrire tes pensées, organiser tes idées, poser tes intentions. Chaque stylo porte un message pour te rappeler, au quotidien, d’oser, de croire en toi, d’avancer.",
+            "link": "shopify:\/\/products\/set-de-4-stylos-take-kare"
+          }
+        }
+      },
+      "block_order": [
+        "product_ReKbMj",
+        "product_gkYbGe",
+        "product_xaAzGW",
+        "product_hyJQty",
+        "product_8LAXJ6"
+      ],
+      "custom_css": [
+        ".btn-primary-red:hover {transform: translateY(-2px); box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;}",
+        "@media (max-width: 768px) {.boutique-template--26045660725513__product_showcase_slider_NmCrW6 {padding-top: 44px; padding-bottom: 40px; }}"
+      ],
+      "name": "Product Showcase Slider",
+      "settings": {
+        "bg_color": "#ffffff",
+        "subtitle": "La Boutique",
+        "title": "Des outils physiques pour organiser ta vie",
+        "shop_label": "Voir la boutique",
+        "shop_link": "shopify:\/\/pages\/outils",
+        "buy_label": "Voir la boutique",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "take_kare_k_options_grid_wLVHAM": {
+      "type": "take-kare-k-options-grid",
+      "blocks": {
+        "card_krJ9Fm": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg width=\"28\" height=\"28\" fill=\"none\" viewbox=\"0 0 24 24\">\n  <path d=\"M12 14l9-5-9-5-9 5 9 5z\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M12 14l6.16-3.422a12 12 0 01.84 4.422c0 3-7 6-7 6s-7-3-7-6a12 12 0 01.84-4.422L12 14z\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><\/path>\n<\/svg>",
+            "heading": "Le Coaching Structurée",
+            "text": "Le programme de notre méthode signature pour transformer ton quotidien durablement.",
+            "link_label": "Rejoindre — 349€",
+            "link_url": "shopify:\/\/pages\/coaching-structuree"
+          }
+        },
+        "card_D8mcEi": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg width=\"28\" height=\"28\" fill=\"none\" viewbox=\"0 0 24 24\">\n  <path d=\"M4 5a1 1 0 011-1h4a1 1 0 011 1v5a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10-2a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1v-6z\" stroke=\"#E4032B\" stroke-width=\"1.5\"><\/path>\n<\/svg>",
+            "heading": "Les Outils",
+            "text": "Produits physiques et outils digitaux pour appliquer la Méthode Structurée au quotidien.",
+            "link_label": "Découvrir",
+            "link_url": "shopify:\/\/pages\/outils"
+          }
+        },
+        "card_QrBW89": {
+          "type": "card",
+          "settings": {
+            "svg_code": "<svg width=\"28\" height=\"28\" fill=\"none\" viewbox=\"0 0 24 24\">\n  <path d=\"M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\"><\/path>\n  <circle cx=\"9\" cy=\"7\" r=\"4\" stroke=\"#E4032B\" stroke-width=\"1.5\"><\/circle>\n  <path d=\"M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75\" stroke=\"#E4032B\" stroke-width=\"1.5\" stroke-linecap=\"round\"><\/path>\n<\/svg>",
+            "heading": "Accompagnement sur mesure",
+            "text": "Conseil, développement sur mesure, interventions et conférences B2B.",
+            "link_label": "En savoir plus",
+            "link_url": "shopify:\/\/pages\/accompagnement"
+          }
+        }
+      },
+      "block_order": [
+        "card_krJ9Fm",
+        "card_D8mcEi",
+        "card_QrBW89"
+      ],
+      "name": "Take Kare Options Grid",
+      "settings": {
+        "subtitle": "Par où commencer ?",
+        "title": "Trois options selon ton besoin",
+        "description": "Une méthode complète, des outils ou un accompagnement sur mesure.",
+        "bg_color": "#fbf8f4",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 44
+      }
+    },
+    "custom_home_cta_banner_R3pttG": {
+      "type": "custom-home-cta-banner",
+      "custom_css": [
+        ".btn:hover {transform: translateY(-2px); box-shadow: rgba(228, 3, 43, 0.3) 0px 8px 28px;}"
+      ],
+      "name": "CTA Banner with Overlay",
+      "settings": {
+        "selected_product": "le-programme-structuree-by-take-kare",
+        "bg_image": "shopify:\/\/shop_images\/cta-bg_1.png",
+        "overlay_opacity": 62,
+        "subtitle": "Prête ?",
+        "title": "Reprends le contrôle de ton quotidien",
+        "description": "Rejoins +500 femmes qui construisent, à leur rythme, un système pour reprendre la main sur leur quotidien.",
+        "button_text": "Rejoindre la Méthode Structurée",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "hero_structured_method_cLH7me",
+    "problem_brain_grid_ebR4BA",
+    "image_with_text_2_m6ntT8",
+    "1774532846d9ff0df2",
+    "home_solution_pillars_6JfVGe",
+    "sections_before_after_grid_tii9im",
+    "program_method_YKiqMp",
+    "testimonials_grid_home_CiWq4a",
+    "product_showcase_slider_NmCrW6",
+    "take_kare_k_options_grid_wLVHAM",
+    "custom_home_cta_banner_R3pttG"
+  ]
+}
