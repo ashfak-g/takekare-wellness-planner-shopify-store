@@ -1,0 +1,168 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "disabled": true,
+      "settings": {
+        "container": "container"
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "blocks": {
+        "text-block-1": {
+          "type": "textblock",
+          "settings": {
+            "title": "Address",
+            "content": "<p>7895 Piermont Dr NE Albuquerque, NM 198866, <a href=\"#\">See Our Stores<\/a><\/p>"
+          }
+        },
+        "text-block-2": {
+          "type": "textblock",
+          "settings": {
+            "title": "Information",
+            "content": "<p>+391 (0)35 2568 4593<\/p><p>hello@domain.com<\/p>"
+          }
+        },
+        "text-block-3": {
+          "type": "socialmedia",
+          "settings": {
+            "title": "Social Media"
+          }
+        },
+        "text-block-4": {
+          "type": "textblock",
+          "settings": {
+            "title": "We're Open",
+            "content": "<p>Our store has re-opened for shopping, exchanges<\/p><p>Every day 11am to 7pm<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text-block-1",
+        "text-block-2",
+        "text-block-3",
+        "text-block-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "container",
+        "title": "We would love to hear from you.",
+        "description": "<p>If you’ve got great products your making or looking to work with us then drop us a line.<\/p>",
+        "show_name": true,
+        "show_phone": false,
+        "show_signup_email": true,
+        "animations": "inherit"
+      }
+    },
+    "contact_hero_eTaWwR": {
+      "type": "contact-hero",
+      "blocks": {
+        "info_iGzX9g": {
+          "type": "info",
+          "settings": {
+            "icon": "✉️",
+            "text": "Contact par formulaire uniquement"
+          }
+        },
+        "info_VyLgmY": {
+          "type": "info",
+          "settings": {
+            "icon": "🕑",
+            "text": "Réponse sous 72h"
+          }
+        },
+        "info_TW36LT": {
+          "type": "info",
+          "settings": {
+            "icon": "📍",
+            "text": "Montpellier, France - Déplacement possible"
+          }
+        }
+      },
+      "block_order": [
+        "info_iGzX9g",
+        "info_VyLgmY",
+        "info_TW36LT"
+      ],
+      "name": "Contact Hero Custom",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "Contacte-moi",
+        "title": "<p>Parlons de<br\/><em>ton projet<\/em><\/p>",
+        "description": "Tu as une question, un projet particulier ou une demande de SAV concernant ta commande ? Complète le formulaire ci-dessous, la team Take Kare te répondra au plus vite.",
+        "image": "shopify:\/\/shop_images\/lea-accompagnement_1.png",
+        "badge_text_1": "Réponse garantie",
+        "badge_text_2": "sous 72h ouvrées",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact_form_typeform_JrLibf": {
+      "type": "contact-form-typeform",
+      "name": "Typeform Contact Form",
+      "settings": {
+        "typeform_url": "https:\/\/form.typeform.com\/to\/N57KODvo",
+        "bg_color": "#ffffff",
+        "container_width": 860,
+        "form_height": 600,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "rich_text_qUigg6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_GWTmxT": {
+          "type": "heading",
+          "settings": {
+            "heading": "Abonne-toi à la newsletter Take Kare !",
+            "heading_size": "h2"
+          }
+        },
+        "text_xNegE9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Si tu veux être certain.e de ne rien manquer de nos nouveautés, notre newsletter est faite pour toi. Reçois en avant-première nos dernières actualités et promotions. Promis on t'enverra juste l'essentiel pour te faire plaisir.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_GWTmxT",
+        "text_xNegE9"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "container": "container",
+        "color_scheme": "default",
+        "content_alignment": "center",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "contact_form_typeform_CDcgxt": {
+      "type": "contact-form-typeform",
+      "custom_css": [],
+      "name": "Typeform Contact Form",
+      "settings": {
+        "typeform_url": "https:\/\/form.typeform.com\/to\/RArY1s5C",
+        "bg_color": "#ffffff",
+        "container_width": 860,
+        "form_height": 600,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact-form",
+    "contact_hero_eTaWwR",
+    "contact_form_typeform_JrLibf",
+    "rich_text_qUigg6",
+    "contact_form_typeform_CDcgxt"
+  ]
+}

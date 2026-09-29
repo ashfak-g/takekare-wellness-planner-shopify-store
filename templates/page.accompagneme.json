@@ -1,0 +1,213 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_hero_GEtCz9": {
+      "type": "custom-hero",
+      "custom_css": [
+        "@media (max-width: 768px) {.custom-hero-template--26053316116745__custom_hero_GEtCz9 {padding-top: 32px; padding-bottom: 40px; }}"
+      ],
+      "name": "Custom Hero Section",
+      "settings": {
+        "sub_title": "Sur mesure",
+        "title_main": "Accompagnement",
+        "title_italic": "personnalisé",
+        "desc": "Conseil, développement sur mesure, interventions et conférences.",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "padding_top": 72,
+        "padding_bottom": 132
+      }
+    },
+    "expert_profile_hL73Kj": {
+      "type": "expert-profile",
+      "blocks": {
+        "badge_PY7Vqb": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "Notion lover"
+          }
+        },
+        "badge_G6NiUU": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "500+ clientes accompagnées"
+          }
+        },
+        "badge_x6AWcy": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "Missions pro et perso"
+          }
+        },
+        "badge_fTUF3A": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "Conférences & Masterclass"
+          }
+        }
+      },
+      "block_order": [
+        "badge_PY7Vqb",
+        "badge_G6NiUU",
+        "badge_x6AWcy",
+        "badge_fTUF3A"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {section.expert-section-template--26053316116745__expert_profile_hL73Kj {padding-top: 32px; padding-bottom: 32px; } .expert-content-side {padding: clamp(20px, 5vw, 64px); } .expert-btn {width: 100%; display: flex; justify-content: center; }}"
+      ],
+      "name": "Expert Profile Grid",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/lea-accompagnement.png",
+        "image_order": "1",
+        "quote_text": "De la clarté, de la structure, et un système qui vous ressemble.",
+        "quote_author": "Léa Coffrant",
+        "label": "Mon accompagnement",
+        "heading": "Léa Coffrant,Notion addict & fondatrice de la Méthode Structurée",
+        "description": "<p>Chaque accompagnement est différent, parce que chaque besoin l'est aussi.<br\/>J'interviens de différentes façons : un conseil ponctuel pour débloquer une situation précise, une création de système sur mesure si vous repartez de zéro, ou une transmission à votre équipe pour que la méthode vive au-delà de notre collaboration.<br\/>Pour les entreprises et organisations, j'accompagne aussi les équipes : conception d'un espace collectif, formation des collaborateurs, conférences B2B.<br\/><br\/>On commence toujours par une chose : comprendre ce dont vous avez vraiment besoin.<\/p>",
+        "button_label": "",
+        "button_link": "",
+        "accent_color": "#e4032b",
+        "content_bg": "#fbf8f4",
+        "padding_vertical": 120
+      }
+    },
+    "pricing_cards_Af4J3i": {
+      "type": "pricing-cards",
+      "blocks": {
+        "card_KkY9cC": {
+          "type": "card",
+          "settings": {
+            "highlight_card": false,
+            "badge_text": "Le plus complet",
+            "title": "Conseil Notion à l'heure",
+            "price": "90€\/heure",
+            "description": "Tu as un besoin ponctuel, une question précise sur Notion ou ton système d'organisation. On travaille ensemble en session 1:1.",
+            "ideal_for": "Optimisation d'un espace existant, conseil individualisé, questions précises.",
+            "button_label": "Réserver une session",
+            "button_link": "https:\/\/calendly.com\/contact-zfkm\/coaching-express-1-1-avec-lea"
+          }
+        },
+        "card_tHF98q": {
+          "type": "card",
+          "settings": {
+            "highlight_card": true,
+            "badge_text": "Le plus complet",
+            "title": "Développement complet",
+            "price": "Sur devis",
+            "description": "Audit complet de tes besoins + Création d'un espace sur mesure + Formation de ton équipe. Un système pensé de A à Z.",
+            "ideal_for": "Entreprises, équipes, projets complexes, systèmes sur mesure.",
+            "button_label": "Demander un devis",
+            "button_link": "https:\/\/form.typeform.com\/to\/xznnYmdl"
+          }
+        },
+        "card_84bALK": {
+          "type": "card",
+          "settings": {
+            "highlight_card": false,
+            "badge_text": "Le plus complet",
+            "title": "Interventions & Conférences",
+            "price": "Sur devis",
+            "description": "Conférences, workshops et interventions B2B sur les thèmes de l'organisation, l'efficacité, la productivité et la Méthode Structurée.",
+            "ideal_for": "Entreprises, événements professionnels, collectifs, associations.",
+            "button_label": "Demander une intervention",
+            "button_link": "shopify:\/\/pages\/contact"
+          }
+        }
+      },
+      "block_order": [
+        "card_KkY9cC",
+        "card_tHF98q",
+        "card_84bALK"
+      ],
+      "name": "Pricing Cards",
+      "settings": {
+        "anchor_id": "offres",
+        "section_bg": "#ffffff",
+        "accent_color": "#e4032b",
+        "padding_top": 40,
+        "padding_bottom": 100
+      }
+    },
+    "testimonials_grid_EDFFqE": {
+      "type": "testimonials-grid",
+      "blocks": {
+        "testimonial_tf3Ufj": {
+          "type": "testimonial",
+          "settings": {
+            "is_featured": true,
+            "text": "<p>Nous avons fait appel à Léa pour nous accompagner sur <strong>une organisation sur mesure pour notre agence <\/strong>via Notion, et c’est clairement l’une des <strong>meilleures décisions <\/strong>qu’on ait prises. Elle a pris le temps de comprendre en profondeur nos process métiers et a révolutionné notre façon de travailler avec <strong>une gestion de projets nettement plus efficace, moins de temps perdu, et une vraie montée en productivité collective<\/strong>. On recommande mille fois !<\/p>",
+            "author_name": "Sophie Benarab",
+            "author_title": "Directrice générale · Agence Made in"
+          }
+        },
+        "testimonial_HGVrjf": {
+          "type": "testimonial",
+          "settings": {
+            "is_featured": false,
+            "text": "<p><em>\"Il y a eu <\/em><em><strong>ma vie avant et ma vie après.<\/strong><\/em><em> Grace à Léa, certaines taches qui me prenaient du temps ont pu être automatisées, <\/em><em><strong>j’ai gagné en efficacité <\/strong><\/em><em>parce que tout était mieux organisé, fluide et lisible. <\/em><em><strong>J’ai pu me libérer du temps <\/strong><\/em><em>pour développer d’autres projets qui me tenait à cœur, <\/em><em><strong>j’ai gagné en énergie <\/strong><\/em><em>parce que je me suis concentrée sur ce qui me plaisait davantage et, surtout, <\/em><em><strong>j’ai pu prendre plus du temps pour moi et ma vie perso<\/strong><\/em><em>. Et ça, <\/em><em><strong>ça n’a pas de prix<\/strong><\/em><em>. \"<\/em><\/p>",
+            "author_name": "Mathilde Besset",
+            "author_title": "Psychologue clinicienne · co fondatrice Militanpsy"
+          }
+        },
+        "testimonial_rgdR9k": {
+          "type": "testimonial",
+          "settings": {
+            "is_featured": false,
+            "text": "<p>\"On croit qu’on est <strong>organisée<\/strong>… jusqu’à ce qu’on teste la <strong>méthode<\/strong> de Léa et qu’on réalise qu’en fait, on passait surtout notre temps à déplacer des tâches sur notre to-do! Ça fait quelques semaines que j’applique sa <strong>méthode d’organisation<\/strong> au quotidien et le changement est hyper concret <strong>(et très rapide)<\/strong> : je ne démarre plus mes journées en me demandant par quoi commencer, je sais exactement où va mon <strong>énergie<\/strong> et sur quoi me <strong>concentrer selon mes objectifs <\/strong>et mes projets. <br\/>Je suis encore en train de mettre toute la méthode en place de A à Z avec la formation Structurée, mais je sens que ça a déjà complètement changé ma manière de travailler : je me sens beaucoup <strong>moins submergée, <\/strong>j’avance plus vite et je gère mieux mes priorités. Vous ne trouverez pas mieux !\"<\/p>",
+            "author_name": "Mélanie Morand",
+            "author_title": "Co-fondatrice · Agence cream"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_tf3Ufj",
+        "testimonial_HGVrjf",
+        "testimonial_rgdR9k"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.testi-section-template--26053316116745__testimonials_grid_EDFFqE {padding-top: 40px; padding-bottom: 40px; }}"
+      ],
+      "name": "Testimonials Grid",
+      "settings": {
+        "subheading": "Elles témoignent",
+        "heading": "Ce qu'elles disent de l'accompagnement",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "cta_contact_box_LJQHmK": {
+      "type": "cta-contact-box",
+      "custom_css": [
+        "@media (max-width: 768px) {.cta-box-template--26053316116745__cta_contact_box_LJQHmK {padding: 20px; } a.cta-button-template--26053316116745__cta_contact_box_LJQHmK {width: 100%; } .cta-section-template--26053316116745__cta_contact_box_LJQHmK {padding-top: 8px; padding-bottom: 40px; }}"
+      ],
+      "name": "Contact CTA Box",
+      "settings": {
+        "sub_title": "Une question ?",
+        "title": "Parlons de ton projet",
+        "desc": "Tu as un projet particulier ou une demande spécifique ? N'hésite pas à me contacter directement.",
+        "btn_label": "Me contacter",
+        "btn_url": "shopify:\/\/pages\/contact",
+        "section_bg": "#fbf8f4",
+        "box_bg": "#ffffff",
+        "accent_color": "#e4032b",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_hero_GEtCz9",
+    "expert_profile_hL73Kj",
+    "pricing_cards_Af4J3i",
+    "testimonials_grid_EDFFqE",
+    "cta_contact_box_LJQHmK"
+  ]
+}
