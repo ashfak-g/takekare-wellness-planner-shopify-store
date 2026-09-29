@@ -1,0 +1,286 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-about-us",
+      "disabled": true,
+      "settings": {}
+    },
+    "about_hero_xL49Ly": {
+      "type": "about-hero",
+      "blocks": {
+        "stat_WTyEc9": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "1M",
+            "stat_label": "d'abonné·e·s"
+          }
+        },
+        "stat_C6HMgm": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "500+",
+            "stat_label": "FEMMES ACCOMPAGNEES"
+          }
+        },
+        "stat_UCL3Di": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "5 ans",
+            "stat_label": "D'EXPERTISE"
+          }
+        }
+      },
+      "block_order": [
+        "stat_WTyEc9",
+        "stat_C6HMgm",
+        "stat_UCL3Di"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.about-hero-content-wrapper {flex: 1 1 0%; display: flex; align-items: center; padding: 24px 20px 36px; } .stat-item {text-align: center; } a.btn-primary-custom {width: 100%; } a.btn-secondary-custom {width: 100%; }}"
+      ],
+      "name": "About Hero Section",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/LEA_5.jpg",
+        "subtitle": "La fondatrice de Take Kare",
+        "title": "<p>Salut, je suis Léa et je t’aide à reprendre le contrôle de ton quotidien.<\/p>",
+        "intro_line": "Je n'ai pas toujours eu tout sous contrôle.",
+        "description": "<p>Pendant des années, j'ai cru que le problème venait de moi. Que j'étais trop désorganisée, pas assez disciplinée, trop dispersée. Jusqu'à ce que je réalise que le vrai problème, c'était l'absence de système.<\/p><p>Aujourd'hui, j'ai accompagné des centaines de femmes à construire le leur. Et je suis convaincue que tu peux en faire autant.<\/p>",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "insta_label": "@takekare.co",
+        "insta_link": "https:\/\/instagram.com\/takekare.co",
+        "linkedin_label": "Léa Coffrant",
+        "linkedin_link": "https:\/\/www.linkedin.com\/in\/léa-coffrant-675396a3"
+      }
+    },
+    "about_story_ARCPcE": {
+      "type": "about-story",
+      "name": "About Story Section",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "background_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "image_1": "shopify:\/\/shop_images\/organisation-productivite.jpg",
+        "image_2": "shopify:\/\/shop_images\/photo_2026-03-30_12-03-53.jpg",
+        "sub_heading": "Un peu de mon histoire",
+        "heading": "J'ai commencé <em>là<\/em> où tu es.",
+        "content": "<p>Au début, j'avais des listes de partout, des projets abandonnés, une to-do list qui ne finissait jamais et la sensation permanente d'être en retard sur ma propre vie. Je cherchais des solutions dans tous les livres de productivité, toutes les applis, tous les podcasts tendances.<\/p><p>Ce qui a tout changé, c'est quand j'ai arrêté d'essayer d'adapter ma vie à une méthode parfaite et que j'ai commencé à construire un système adapté à ma vraie vie.<\/p><p>C'est exactement ce que je t'aide à faire aujourd'hui.<\/p>",
+        "quote": "Tu n'es pas désorganisée, tu manques d'un système pensé pour toi.",
+        "signature_text": "Léa"
+      }
+    },
+    "stats_counter_HJypqa": {
+      "type": "stats-counter",
+      "blocks": {
+        "stat_MaEQpN": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "+1M",
+            "stat_label": "D'abonné·e·s"
+          }
+        },
+        "stat_d6ikaA": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "500+",
+            "stat_label": "femmes accompagnées"
+          }
+        },
+        "stat_XQwnUG": {
+          "type": "stat",
+          "settings": {
+            "stat_number": "5 ans",
+            "stat_label": "d'expertise"
+          }
+        }
+      },
+      "block_order": [
+        "stat_MaEQpN",
+        "stat_d6ikaA",
+        "stat_XQwnUG"
+      ],
+      "name": "Stats Counter",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/stats-bg.png",
+        "overlay_opacity": 20,
+        "accent_color": "#e4032b",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "vertical_timeline_NR8LpK": {
+      "type": "vertical-timeline",
+      "blocks": {
+        "timeline_event_4UyBkb": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2013",
+            "title": "Les débuts",
+            "description": "À 17 ans, je me lance, je crée mon auto-entreprise. Je découvre l’envers du décor : l’administratif, les responsabilités, la gestion.\nTrès vite, je comprends que travailler pour soi, c’est aussi apprendre à gérer.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/IMG_5661.jpg"
+          }
+        },
+        "timeline_event_YqfgBw": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2018",
+            "title": "Une nouvelle réalité",
+            "description": "Je deviens maman à 22 ans. Une nouvelle casquette s’ajoute et avec elle, une charge mentale que je n’avais jamais connue. Tout s’accélère.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/IMG_9882.jpg"
+          }
+        },
+        "timeline_event_FV93ne": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2020",
+            "title": "Sous l’eau",
+            "description": "Je n’ai plus le temps pour moi, ni pour les autres. Je rate des moments importants, je n’arrive plus à prioriser. J’ai l’impression d’être partout et nulle part à la fois. Le Covid m’oblige à ralentir. Et à regarder la réalité en face.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/lea_coff_jnspj_notion.jpg"
+          }
+        },
+        "timeline_event_EnkeGG": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2021",
+            "title": "Le déclic",
+            "description": "Je découvre vraiment le potentiel de Notion.\nPour la première fois, tout devient plus clair, plus structuré, plus maîtrisable. Ce n’est plus juste de l’organisation c’est un système.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/LEA_COFF_NOTION_COACHING.jpg"
+          }
+        },
+        "timeline_event_HgUpBJ": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2025",
+            "title": "La Méthode Structurée",
+            "description": "Avec mon expérience, celle de mes clientes, et des années de tests, je formalise une méthode.\nUn système concret pour sortir de la surcharge et reprendre le contrôle de son quotidien.",
+            "tagline": "et maintenant cette méthode est à vous",
+            "image": "shopify:\/\/shop_images\/lea-accompagnement_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_event_4UyBkb",
+        "timeline_event_YqfgBw",
+        "timeline_event_FV93ne",
+        "timeline_event_EnkeGG",
+        "timeline_event_HgUpBJ"
+      ],
+      "custom_css": [],
+      "name": "Vertical Timeline",
+      "settings": {
+        "background_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "sub_heading": "Comment j'en suis arrivée là",
+        "heading": "Les moments qui ont tout changé"
+      }
+    },
+    "vertical_history_timeline_rmjGhc": {
+      "type": "vertical-history-timeline",
+      "blocks": {
+        "timeline_event_GBNigR": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2018",
+            "title": "Le déclic",
+            "description": "Je découvre le monde de la productivité et de l'organisation personnelle. Je réalise que je gère mal mon temps, mon énergie, mes projets — et que je ne suis clairement pas la seule.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/photo_2026-03-29_11-21-04.jpg"
+          }
+        },
+        "timeline_event_jjMRTg": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2020",
+            "title": "Take Kare naît",
+            "description": "Je lance Take Kare avec une conviction simple : les femmes ont besoin d'outils concrets, pas de tips vides. Le premier contenu fait 10x plus d'engagements que prévu.",
+            "tagline": "this is when it all changed",
+            "image": "shopify:\/\/shop_images\/photo_2026-03-29_11-21-50.jpg"
+          }
+        },
+        "timeline_event_cVV9Eg": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2022",
+            "title": "Le podcast dépasse 1M d'écoutes",
+            "description": "Le podcast Take Kare atteint le million d'écoutes. Les retours confirment ce que je pressentais : les femmes veulent du concret, du système, de la structure.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/photo_2026-03-29_11-21-53.jpg"
+          }
+        },
+        "timeline_event_4kBWNQ": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2024",
+            "title": "La Méthode Structurée",
+            "description": "Après 4 ans d'accompagnement, je formalise la Méthode Structurée : 6 piliers pour sortir de la saturation cognitive et reprendre le contrôle de son quotidien.",
+            "tagline": "tout s'est mis en place",
+            "image": "shopify:\/\/shop_images\/product-journal_1.webp"
+          }
+        },
+        "timeline_event_mLN3AR": {
+          "type": "timeline_event",
+          "settings": {
+            "year": "2026",
+            "title": "Le Coaching Structurée",
+            "description": "Lancement du programme coaching complet en ligne. 500+ femmes accompagnées. 3,5M d'écoutes de podcast. Et la certitude que le meilleur reste à venir.",
+            "tagline": "",
+            "image": "shopify:\/\/shop_images\/planner-mockup.png"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_event_GBNigR",
+        "timeline_event_jjMRTg",
+        "timeline_event_cVV9Eg",
+        "timeline_event_4kBWNQ",
+        "timeline_event_mLN3AR"
+      ],
+      "disabled": true,
+      "name": "Vertical History Timeline",
+      "settings": {
+        "background_color": "#fbf8f4",
+        "accent_color": "#c8021f",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "sub_heading": "Comment j'en suis arrivée là",
+        "heading": "Les moments qui ont tout changé"
+      }
+    },
+    "about_cta_section_hWUPFN": {
+      "type": "about-cta-section",
+      "custom_css": [
+        "@media (max-width: 768px) {.cta-section-template--26053471240457__about_cta_section_hWUPFN {padding-top: 44px; padding-bottom: 44px; background: #ffffff; }}"
+      ],
+      "name": "ABOUT CTA Section",
+      "settings": {
+        "bg_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "padding_top": 140,
+        "padding_bottom": 140,
+        "sub_heading": "Prête ?",
+        "heading": "Tu n’as pas besoin d’en faire plus. <br>Tu as besoin d’un <em>système<\/em> qui tient.",
+        "button_label": "Rejoindre la Méthode Structurée",
+        "button_link": "shopify:\/\/pages\/coaching-structuree",
+        "footer_text": "349€ · Accès immédiat · 6 modules vidéo"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_hero_xL49Ly",
+    "about_story_ARCPcE",
+    "stats_counter_HJypqa",
+    "vertical_timeline_NR8LpK",
+    "vertical_history_timeline_rmjGhc",
+    "about_cta_section_hWUPFN"
+  ]
+}

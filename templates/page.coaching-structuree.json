@@ -1,0 +1,578 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "coaching_signature_hero_TCmYq4": {
+      "type": "coaching-signature-hero",
+      "name": "Coaching Signature Hero",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/TAKEKARE_NEW_PRODUCTS_all_MATHILDE_VILLEMEJEANNE_PHOTOGRAPHE-309_5236da94-12ee-47f1-b6ba-95bfa361c545.jpg",
+        "bg_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "subtitle": "Programme Signature",
+        "title": "La Méthode <em>Structurée<\/em>",
+        "description": "La méthode d'organisation complète pour sortir de la saturation, t'organiser autrement et reprendre le contrôle de ton quotidien.",
+        "price": "349€",
+        "btn_label": "Rejoindre le programme",
+        "btn_link": "",
+        "product": "le-programme-structuree-by-take-kare",
+        "footer_text": "Paiement en 3 ou 4 fois possible.",
+        "badge_title": "+500 femmes",
+        "badge_desc": "ont déjà rejoint la méthode",
+        "padding_top": 48,
+        "padding_bottom": 120,
+        "padding_bottom_mobile": 42
+      }
+    },
+    "pillars_retreat_ttbaQF": {
+      "type": "pillars-retreat",
+      "blocks": {
+        "pillar_fnWEW4": {
+          "type": "pillar",
+          "settings": {
+            "number": "01",
+            "heading": "La productivité toxique",
+            "content": "L'injonction à faire toujours plus, être toujours disponible, optimiser chaque minute. Cette vision épuise sans jamais satisfaire."
+          }
+        },
+        "pillar_4hRBCi": {
+          "type": "pillar",
+          "settings": {
+            "number": "02",
+            "heading": "Le mythe de la motivation",
+            "content": "Si tu n'y arrives pas, c'est parce que tu ne veux pas assez. Faux. Le problème n'est pas ton manque de volonté — c'est l'absence de système."
+          }
+        },
+        "pillar_Xeqbp3": {
+          "type": "pillar",
+          "settings": {
+            "number": "03",
+            "heading": "La saturation cognitive",
+            "content": "Ton cerveau est devenu agenda + mémoire + rappel + planificateur + gestionnaire d'urgence. Il n'est pas fait pour ça."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_fnWEW4",
+        "pillar_4hRBCi",
+        "pillar_Xeqbp3"
+      ],
+      "disabled": true,
+      "name": "Pillars Retreat",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "card_bg": "#ffffff",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "subtitle": "Le diagnostic",
+        "title": "Ce contre quoi on se bat",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "diagnostic_grid_section_PpUfkT": {
+      "type": "diagnostic-grid-section",
+      "blocks": {
+        "card_qdAXy9": {
+          "type": "card",
+          "settings": {
+            "heading": "La productivité toxique",
+            "text": "Faire toujours plus, être dispo tout le temps, rentabiliser chaque minute. C'est épuisant, et ça ne mène nulle part. C'est exactement ce contre quoi on travaille."
+          }
+        },
+        "card_PB9CTy": {
+          "type": "card",
+          "settings": {
+            "heading": "Le mythe de la motivation",
+            "text": "Si ça ne tient pas, c'est pas parce que t'as pas assez de volonté. C'est parce que t'as pas de système fiable. La motivation, ça fluctue. Un bon système, non."
+          }
+        },
+        "card_wDzagJ": {
+          "type": "card",
+          "settings": {
+            "heading": "La saturation",
+            "text": "Ton cerveau essaie de tout tenir en même temps : les rappels, les urgences, les projets, les tâches du quotidien. Il n'est pas fait pour ça. Et quand il sature, c'est pas toi le problème, c'est la charge qu'on lui impose."
+          }
+        }
+      },
+      "block_order": [
+        "card_qdAXy9",
+        "card_PB9CTy",
+        "card_wDzagJ"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {section.tk-diagnostic-section {padding-top: 36px; padding-bottom: 36px; } .tk-header {text-align: center; margin-bottom: 24px; } .tk-card {border-radius: 12px; padding: 22px 20px; flex-direction: column; height: 100%; } .tk-subtitle {font-size: 17px; } h2 {font-size: 26px; } .tk-card-num {font-size: 36px; } h3 {font-size: 16px; } p {font-size: 13px; }}"
+      ],
+      "name": "Diagnostic Grid",
+      "settings": {
+        "subtitle": "Le diagnostic",
+        "title": "Ce contre quoi on se bat"
+      }
+    },
+    "solution_content_8BbWUd": {
+      "type": "solution-content",
+      "custom_css": [
+        "@media (max-width: 768px) {.img-wrapper-template--26054597968137__solution_content_8BbWUd {display: none; } .subtitle-template--26054597968137__solution_content_8BbWUd {font-size: 17px; } h2 {font-size: 26px; } .text-content-template--26054597968137__solution_content_8BbWUd {font-size: 14px; } .section-template--26054597968137__solution_content_8BbWUd {padding-top: 36px; padding-bottom: 36px; } .quote-box-template--26054597968137__solution_content_8BbWUd {padding: 22px 20px 22px 24px; }}"
+      ],
+      "name": "Solution Content Block",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/TAKEKARE_NEW_PRODUCTS_all_MATHILDE_VILLEMEJEANNE_PHOTOGRAPHE-239.jpg",
+        "bg_color": "#ffffff",
+        "quote_bg": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "La solution",
+        "title": "Un système d'organisation réaliste,<br>pensé pour ta vraie vie",
+        "paragraph_1": "Structurée est une méthode complète créée pour les femmes actives qui en ont assez de courir après leur temps sans jamais avoir l'impression d'en faire assez.",
+        "paragraph_2": "Je l'ai créée après avoir vécu moi-même : ce sentiment d'être débordée en permanence, même en travaillant beaucoup. J'ai compris que le problème n'était pas moi,c'était l'absence de système.",
+        "quote_text": "<em>Structurée n'est pas une méthode miracle.<br>C'est un système <\/em><span><em>personnalisable qui tient dans ta vraie vie<\/em><\/span><em> et te rend autonome dans ton organisation.<\/em>",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "timeline_program_DHUAPY": {
+      "type": "timeline-program",
+      "blocks": {
+        "module_rt7tq4": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Creme_et_noir_Moderne_minimal_Workbook_collection_mode_Publication_Instagram_Portrait_2_copie.png",
+            "tag": "Audit de la réalité",
+            "heading": "Voir clair",
+            "text": "Avant de changer quoi que ce soit, tu dois comprendre où va réellement ton temps, ton énergie et ton attention. On a créé un audit automatisé sur mesure pour partir de ta réalité."
+          }
+        },
+        "module_rjqd3q": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Design_sans_titre_75.png",
+            "tag": "Filtrer, trier, retirer",
+            "heading": "Alléger",
+            "text": "Avant de construire ton organisation, on libère ce qui n'est pas indispensable et on réparti ta charge. Tu as besoin de prendre conscience avant créer ton système."
+          }
+        },
+        "module_BHQY3J": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/photo_2026-03-29_11-21-53.jpg",
+            "tag": "La méthode T.A.P.P.",
+            "heading": "Structurer",
+            "text": "Tout ce qui existe dans ta tête doit être classé et priorisé. Avec le filtre TAPP, tu peux enfin terminer tes journées en ayant l'impression d'avoir avancer sur ce qui compte pour toi."
+          }
+        },
+        "module_rzVbdy": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/photo_2026-03-29_11-21-04.jpg",
+            "tag": "Rythme & capacité",
+            "heading": "Planifier",
+            "text": "Créer un emploi du temps réaliste basé sur ce que tu peux vraiment faire, qui respecte ton énergie, tes contraintes et ta réalité."
+          }
+        },
+        "module_pnnWtP": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ecom-edit-image-sJqI5jAgDktake_kare_jnspj__mathilde_villemejeanne-82-copie.jpg",
+            "tag": "Deep Work",
+            "heading": "Produire",
+            "text": "Apprendre à travailler moins longtemps, mais mieux. Protéger des créneaux sans interruptions ni dispersion."
+          }
+        },
+        "module_MzzK7r": {
+          "type": "module",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/TK_STYLOS__MATHILDE_VILLEMEJEANNE_PHOTOGRAPHE-14.jpg",
+            "tag": "Autonomie & maintenance",
+            "heading": "Ajuster",
+            "text": "La méthode doit évoluer avec toi. Tu apprends à la faire tenir dans ta vraie vie avec tes contraintes, ta réalité et tes ajustements."
+          }
+        }
+      },
+      "block_order": [
+        "module_rt7tq4",
+        "module_rjqd3q",
+        "module_BHQY3J",
+        "module_rzVbdy",
+        "module_pnnWtP",
+        "module_MzzK7r"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {h2 {font-size: 26px; } .timeline-content-side {background: rgb(251, 248, 244); border-radius: 10px; padding: 18px 16px; border: 1px solid rgba(0, 0, 0, 0.05); } .section-template--26054597968137__timeline_program_DHUAPY {padding-top: 24px; padding-bottom: 32px; } .timeline-header-template--26054597968137__timeline_program_DHUAPY {text-align: center; margin-bottom: 28px; }}"
+      ],
+      "name": "Timeline Program",
+      "settings": {
+        "bg_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "subtitle": "Le programme",
+        "title": "6 modules. Une transformation.",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "coaching_content_grid_fniKHT": {
+      "type": "coaching-content-grid",
+      "blocks": {
+        "item_6cz37F": {
+          "type": "item",
+          "settings": {
+            "icon": "📹",
+            "heading": "6 Modules Vidéo",
+            "subtext": "Un par pilier de la Méthode"
+          }
+        },
+        "item_cJyk4E": {
+          "type": "item",
+          "settings": {
+            "icon": "📄",
+            "heading": "Le workbook de la méthode",
+            "subtext": "Tous les exercices à compléter"
+          }
+        },
+        "item_gEWT3w": {
+          "type": "item",
+          "settings": {
+            "icon": "💌",
+            "heading": "Accès à la communauté",
+            "subtext": "Pour échanger en toute bienveillance"
+          }
+        },
+        "item_UrnFCm": {
+          "type": "item",
+          "settings": {
+            "icon": "💻",
+            "heading": "Des lives exclusifs",
+            "subtext": "Des lives thématiques inclus"
+          }
+        }
+      },
+      "block_order": [
+        "item_6cz37F",
+        "item_cJyk4E",
+        "item_gEWT3w",
+        "item_UrnFCm"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {h2 {font-size: 26px; } p {font-size: 13px; }}"
+      ],
+      "name": "Coaching Content Grid",
+      "settings": {
+        "background_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "accent_text": "Le contenu",
+        "title": "Ce que tu reçois",
+        "description": "En vidéos, exercices pratiques et workbook, tu construis ton système d'organisation personnalisé.",
+        "padding_top_desktop": 56,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 32
+      }
+    },
+    "before_after_comparison_PjQxkC": {
+      "type": "before-after-comparison",
+      "blocks": {
+        "before_item_FEaJhG": {
+          "type": "before_item",
+          "settings": {
+            "text": "Tu cours après ton temps sans jamais t'en sortir"
+          }
+        },
+        "before_item_DVXBnV": {
+          "type": "before_item",
+          "settings": {
+            "text": "Tu te sens coupable de ne pas en faire assez"
+          }
+        },
+        "before_item_izKWPw": {
+          "type": "before_item",
+          "settings": {
+            "text": "Tu testes des outils, rien ne tient"
+          }
+        },
+        "before_item_t3VhUx": {
+          "type": "before_item",
+          "settings": {
+            "text": "Ton cerveau tourne en permanence"
+          }
+        },
+        "before_item_tGPaQg": {
+          "type": "before_item",
+          "settings": {
+            "text": "Tu n'as plus de temps pour toi"
+          }
+        },
+        "after_item_Uarm8L": {
+          "type": "after_item",
+          "settings": {
+            "text": "Tu sais exactement où va ton temps"
+          }
+        },
+        "after_item_fFPr84": {
+          "type": "after_item",
+          "settings": {
+            "text": "Tu planifies de façon réaliste"
+          }
+        },
+        "after_item_3pGXLx": {
+          "type": "after_item",
+          "settings": {
+            "text": "Tu as un système qui tient dans ta vraie vie"
+          }
+        },
+        "after_item_gMgkqi": {
+          "type": "after_item",
+          "settings": {
+            "text": "Tes projets avancent enfin"
+          }
+        },
+        "after_item_F3RdXY": {
+          "type": "after_item",
+          "settings": {
+            "text": "Tu dégages du temps pour ce qui compte vraiment"
+          }
+        }
+      },
+      "block_order": [
+        "before_item_FEaJhG",
+        "before_item_DVXBnV",
+        "before_item_izKWPw",
+        "before_item_t3VhUx",
+        "before_item_tGPaQg",
+        "after_item_Uarm8L",
+        "after_item_fFPr84",
+        "after_item_3pGXLx",
+        "after_item_gMgkqi",
+        "after_item_F3RdXY"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.ba-accent {font-size: 17px; } .ba-title {font-size: 26px; } .ba-text-before {font-size: 13px; } .ba-text-after {font-size: 13px; } .ba-header {text-align: center; margin-bottom: 20px; }}"
+      ],
+      "name": "Before & After Comparison",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "accent_text": "La transformation",
+        "title": "Avant et après Structurée",
+        "label_before": "Avant",
+        "label_after": "Après",
+        "padding_top_desktop": 56,
+        "padding_bottom_desktop": 56,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32
+      }
+    },
+    "it_is_for_you_rQzir9": {
+      "type": "it-is-for-you",
+      "blocks": {
+        "item_jdEgRT": {
+          "type": "item",
+          "settings": {
+            "item_text": "Tu as l'impression de courir en permanence, même en travaillant beaucoup"
+          }
+        },
+        "item_Lm3cPt": {
+          "type": "item",
+          "settings": {
+            "item_text": "Tu te sens débordée malgré tous tes efforts"
+          }
+        },
+        "item_LNwW9R": {
+          "type": "item",
+          "settings": {
+            "item_text": "Tu as testé plein d'outils et d'applis qui n'ont jamais vraiment tenu"
+          }
+        },
+        "item_YnFBrn": {
+          "type": "item",
+          "settings": {
+            "item_text": "Tu veux reprendre le contrôle sur ton temps et tes priorités"
+          }
+        },
+        "item_Y34Bi4": {
+          "type": "item",
+          "settings": {
+            "item_text": "Tu cherches un système durable, pas une méthode miracle"
+          }
+        }
+      },
+      "block_order": [
+        "item_jdEgRT",
+        "item_Lm3cPt",
+        "item_LNwW9R",
+        "item_YnFBrn",
+        "item_Y34Bi4"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.list-template--26054597968137__it_is_for_you_rQzir9 {gap: 12px; margin: 0 0 24px 0; } .header-template--26054597968137__it_is_for_you_rQzir9 {margin-bottom: 20px; } .section-template--26054597968137__it_is_for_you_rQzir9 {padding-top: 35px; padding-bottom: 35px; }}"
+      ],
+      "name": "It is for you (Hero)",
+      "settings": {
+        "product": "the-structured-method",
+        "bg_image": "shopify:\/\/shop_images\/lea-working.png",
+        "bg_opacity": 75,
+        "padding_top": 65,
+        "padding_bottom": 55,
+        "subheading": "C'est pour toi si…",
+        "title": "Cette méthode est faite pour toi",
+        "btn_text": "Rejoindre la méthode — 349€"
+      }
+    },
+    "faq_retreat_TdL8r7": {
+      "type": "faq-retreat",
+      "blocks": {
+        "faq_item_wenrMT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Comment fonctionne le paiement en plusieurs fois ?",
+            "answer": "<p>Tu peux régler en 3 ou 4 fois directement au moment du paiement. L'option Scalapay s'affiche automatiquement dans ton panier.<\/p>"
+          }
+        },
+        "faq_item_T3dw79": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Combien de temps faut-il pour le suivre ?",
+            "answer": "<p>Il n'y a aucune règle, tu a accès au contenu à vie. Tu peux suivre la méthode à ton rythme. Certaines le font en 15 jours, d'autres plusieurs mois.<\/p>"
+          }
+        },
+        "faq_item_6MxmXr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce que ça s'adresse à tout le monde ?",
+            "answer": "<p>Le Coaching Structurée est conçu pour <strong>TOUTES<\/strong> les femmes actives qui souhaitent construire un système d'organisation durable.<\/p>"
+          }
+        },
+        "faq_item_dhaLLA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Y a-t-il un suivi personnalisé ?",
+            "answer": "<p>Le programme est en accès autonome. Pour un accompagnement personnalisé, découvre nos offres <a href=\"\/pages\/accompagnement\" target=\"_blank\" title=\"ACCOMPAGNEMENT\">d'accompagnement<\/a> sur mesure.<\/p>"
+          }
+        },
+        "faq_item_rJU78K": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Faut-il un outil ou une application particulière ?",
+            "answer": "<p>Pour suivre la méthode il te faut uniquement un accès à internet. Les outils présentés dans le programme sont complètements facultatifs et tu peux, si tu le souhaites, tout faire sur papier.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_wenrMT",
+        "faq_item_T3dw79",
+        "faq_item_6MxmXr",
+        "faq_item_dhaLLA",
+        "faq_item_rJU78K"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.section-template--26054597968137__faq_retreat_TdL8r7 {padding-top: 36px; padding-bottom: 50px; }}"
+      ],
+      "name": "Retreat FAQ",
+      "settings": {
+        "subtitle": "Questions fréquentes",
+        "title": "FAQ",
+        "bg_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "padding_top_desktop": 70,
+        "padding_bottom_desktop": 70,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "1775795568df1098d6": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_homepage_XFwq7K": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget_homepage\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "le-programme-structuree-by-take-kare",
+            "review_data": "real_data",
+            "max_width": 1200
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_homepage_XFwq7K"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "coaching_cta_buy_FqH4hQ": {
+      "type": "coaching-cta-buy",
+      "blocks": {
+        "badge_6JeYHa": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "Paiement sécurisé"
+          }
+        },
+        "badge_pQdbHW": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "Accès immédiat"
+          }
+        },
+        "badge_D6CBz8": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "À vie"
+          }
+        }
+      },
+      "block_order": [
+        "badge_6JeYHa",
+        "badge_pQdbHW",
+        "badge_D6CBz8"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {p {font-size: 13px; }}"
+      ],
+      "name": "Coaching CTA Buy",
+      "settings": {
+        "anchor_id": "buy",
+        "product_to_add": "le-programme-structuree-by-take-kare",
+        "image": "shopify:\/\/shop_images\/lea-phone.png",
+        "overlay_color": "#0a0604",
+        "overlay_opacity": 38,
+        "accent_color": "#e4032b",
+        "accent_text": "Prête ?",
+        "title": "Reprends le contrôle \n<br>de ton quotidien",
+        "description": "Le système qui va changer ta façon de gérer ton temps est à un clic.",
+        "price": "349€",
+        "button_text": "Rejoindre pour 349€",
+        "padding_top_desktop": 56,
+        "padding_bottom_desktop": 56,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "coaching_signature_hero_TCmYq4",
+    "pillars_retreat_ttbaQF",
+    "diagnostic_grid_section_PpUfkT",
+    "solution_content_8BbWUd",
+    "timeline_program_DHUAPY",
+    "coaching_content_grid_fniKHT",
+    "before_after_comparison_PjQxkC",
+    "it_is_for_you_rQzir9",
+    "faq_retreat_TdL8r7",
+    "1775795568df1098d6",
+    "coaching_cta_buy_FqH4hQ"
+  ]
+}
