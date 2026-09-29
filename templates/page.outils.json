@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_hero_VtTzjV": {
+      "type": "custom-hero",
+      "name": "Custom Hero Section",
+      "settings": {
+        "sub_title": "La boutique",
+        "title_main": "Les Outils de la",
+        "title_italic": "Méthode",
+        "desc": "Shop les produits et outils digitaux pour appliquer la Méthode Structurée au quotidien.",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "custom_planner_tools_Txw9a8": {
+      "type": "custom-planner-tools",
+      "name": "Featured Products Tabs",
+      "settings": {
+        "tab_1_label": "Produits physiques",
+        "tab_2_label": "Produits digitaux",
+        "hero_product": "daily-planner",
+        "hero_badge": "L'incontournable",
+        "availability": "Convient à la méthode TAPP - Validé par la méthode Structurée.",
+        "physical_col": "physical-products",
+        "digital_col": "produits-digitaux"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_hero_VtTzjV",
+    "custom_planner_tools_Txw9a8"
+  ]
+}

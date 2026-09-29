@@ -1,0 +1,605 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "hero_retreat_split_Ytjh7w": {
+      "type": "hero-retreat-split",
+      "blocks": {
+        "tag_9PwpQw": {
+          "type": "tag",
+          "settings": {
+            "icon": "📍",
+            "text": "Sud de la France"
+          }
+        },
+        "tag_CWKXKz": {
+          "type": "tag",
+          "settings": {
+            "icon": "📅",
+            "text": "Printemps 2027"
+          }
+        },
+        "tag_3XxLB3": {
+          "type": "tag",
+          "settings": {
+            "icon": "👥",
+            "text": "20 places max"
+          }
+        }
+      },
+      "block_order": [
+        "tag_9PwpQw",
+        "tag_CWKXKz",
+        "tag_3XxLB3"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.btn-primary {width: 100%; } .btn-secondary {width: 100%; }}"
+      ],
+      "name": "Hero Retreat Split",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Capture_d_ecran_2026-04-20_a_13.00.25.png",
+        "image_position": "center top",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "subtitle": "La Retraite Take Kare",
+        "title": "4 jours pour enfin prendre <br> <em>ce temps pour toi.<\/em>",
+        "description": "La retraite Take Kare, c’est une invitation à déconnecter pour se reconnecter. 4 jours pour ralentir, respirer, et surtout, te remettre au centre de ta propre vie.",
+        "price": "890€",
+        "price_info": "tout inclus (hébergement + repas + ateliers)",
+        "btn_1_text": "Prévenez-moi pour la prochaine",
+        "btn_1_link": "#shopify-section-template--26052732453129__reservation_cta_3jWx8j",
+        "btn_2_text": "",
+        "btn_2_link": "shopify:\/\/pages\/retraite",
+        "footer_text": "✓ Paiement en plusieurs fois possible",
+        "min_height": 50,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "features_retreat_tCf4QW": {
+      "type": "features-retreat",
+      "blocks": {
+        "feature_B3wkWM": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌿",
+            "item_title": "Un vrai temps pour toi",
+            "item_text": "Un cadre apaisant pour décrocher, te reposer et te reconnecter à toi."
+          }
+        },
+        "feature_qTEDaG": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛠",
+            "item_title": "Des ateliers concrets",
+            "item_text": "Tu fais le tri, tu comprends ce qui te surcharge et tu construis un système qui te soutient vraiment."
+          }
+        },
+        "feature_W6dxNP": {
+          "type": "feature",
+          "settings": {
+            "icon": "🤝🏻",
+            "item_title": "Un groupe de femmes",
+            "item_text": "Petit groupe de participantes. Une vraie dynamique de soutien et de bienveillance."
+          }
+        }
+      },
+      "block_order": [
+        "feature_B3wkWM",
+        "feature_qTEDaG",
+        "feature_W6dxNP"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.feat-grid-template--26052732453129__features_retreat_tCf4QW {margin-top: 28px; }}"
+      ],
+      "name": "Features Retreat",
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "subtitle": "Ce qui t'attend",
+        "title": "Tu connais ce sentiment d'être <br><em>débordée mais immobile.<\/em>",
+        "desc_1": "Tu fais beaucoup, mais rien n’avance vraiment.\nDes listes interminables, des projets que tu procrastines.\nUne to-do qui grossit plus vite qu’elle ne se vide.",
+        "desc_2": "La retraite Take Kare, c’est 4 jours pour ralentir, souffler, prendre soin de toi, et remettre de la clarté dans ton quotidien.",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 35,
+        "padding_bottom_mobile": 30
+      }
+    },
+    "retreat_who_is_it_for_JP4qNg": {
+      "type": "retreat-who-is-it-for",
+      "blocks": {
+        "benefit_9wPLUb": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu as l'impression de courir après le temps sans jamais te poser vraiment"
+          }
+        },
+        "benefit_dNNzaG": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu as essayé plein de méthodes, mais rien ne tient sur la durée"
+          }
+        },
+        "benefit_AwK9eH": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu veux passer à l'action mais tu ne sais pas par où commencer"
+          }
+        },
+        "benefit_in4RM8": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu as besoin d'un vrai temps pour toi, loin des urgences du quotidien"
+          }
+        },
+        "benefit_gQTTWb": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu cherches un groupe de femmes qui partagent les mêmes besoins"
+          }
+        },
+        "benefit_WmMnzL": {
+          "type": "benefit",
+          "settings": {
+            "item_text": "Tu veux repartir avec un système adapté à ta réalité"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_9wPLUb",
+        "benefit_dNNzaG",
+        "benefit_AwK9eH",
+        "benefit_in4RM8",
+        "benefit_gQTTWb",
+        "benefit_WmMnzL"
+      ],
+      "custom_css": [
+        "h2 {color: #ffffff;}"
+      ],
+      "name": "Retreat Who Is It For",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "bg_color": "#1c1610",
+        "accent_color": "#e4032b",
+        "image": "shopify:\/\/shop_images\/pour-qui-bg.png",
+        "image_opacity": 55,
+        "subtitle": "Pour qui",
+        "title": "Cette retraite est faite pour toi si…",
+        "footer_text": "Cette retraite n'est pas pour toi si tu cherches uniquement un week-end de détente ou une retraite spirituelle."
+      }
+    },
+    "pillars_retreat_ttbaQF": {
+      "type": "pillars-retreat",
+      "blocks": {
+        "pillar_fnWEW4": {
+          "type": "pillar",
+          "settings": {
+            "number": "01",
+            "heading": "Se recentrer",
+            "content": "Ralentir, respirer, sortir du bruit. Revenir à toi, à ce que tu ressens vraiment, loin des injonctions et du quotidien qui t’épuise."
+          }
+        },
+        "pillar_4hRBCi": {
+          "type": "pillar",
+          "settings": {
+            "number": "02",
+            "heading": "Structurer",
+            "content": "Mettre de la clarté là où tout est flou. Comprendre ce qui te surcharge et construire un système simple, adapté à ta vraie vie."
+          }
+        },
+        "pillar_Xeqbp3": {
+          "type": "pillar",
+          "settings": {
+            "number": "03",
+            "heading": "S'ancrer",
+            "content": "Repartir alignée, reposée, inspirée. Avec des bases concrètes pour tenir dans le temps."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_fnWEW4",
+        "pillar_4hRBCi",
+        "pillar_Xeqbp3"
+      ],
+      "name": "Pillars Retreat",
+      "settings": {
+        "bg_color": "#fbf8f4",
+        "card_bg": "#ffffff",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "subtitle": "La proposition de valeur",
+        "title": "Les 3 piliers de la retraite",
+        "padding_top_desktop": 140,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 35,
+        "padding_bottom_mobile": 30
+      }
+    },
+    "take_kare_team_YnN366": {
+      "type": "take-kare-team",
+      "blocks": {
+        "member_Jpfqx9": {
+          "type": "member",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/LEA_COFF_JNSPJ_RETRAITE_6e6fbf03-498d-4405-9cdc-07b7ff3cb512.png",
+            "role": "Fondatrice de Take Kare",
+            "name": "Léa Coffrant",
+            "bio": "Créatrice de la Méthode Structurée, Léa accompagne les femmes depuis 5 ans à reprendre le contrôle de leur organisation et de leur quotidien. Plus de 500 femmes accompagnées. Elle animera les ateliers principaux."
+          }
+        },
+        "member_FBaqRf": {
+          "type": "member",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/TAKE_KARE_PAOLA_YOGA_5.jpg",
+            "role": "CEO L'intuitive - Professeure de Yoga",
+            "name": "Paola Medard",
+            "bio": "Paola enseigne un yoga accessible, intuitif et profondément ancré dans le corps.\n\nPendant la retraite, elle guidera les temps de pratique, de respiration et d’ancrage pour t’aider à ralentir, relâcher et te reconnecter à toi."
+          }
+        }
+      },
+      "block_order": [
+        "member_Jpfqx9",
+        "member_FBaqRf"
+      ],
+      "custom_css": [],
+      "name": "Take Kare Team",
+      "settings": {
+        "sub_heading": "Tes intervenantes",
+        "heading": "Qui t'accompagne",
+        "accent_color": "#e4032b",
+        "bg_color": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "second_hero_slider_rGBUPG": {
+      "type": "second-hero-slider",
+      "blocks": {
+        "slide_HGeHME": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Capture_d_ecran_2026-04-20_a_12.44.41.png",
+            "badge": "Des lieux d'exception",
+            "title": "Des lieux choisi pour leur cadre apaisant et esthétique - © La Bélonie"
+          }
+        },
+        "slide_tQFqGe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Design_sans_titre_70.png",
+            "badge": "De la cuisine généreuse",
+            "title": "Des repas végétariens et gourmands"
+          }
+        },
+        "slide_C7ddrt": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Design_sans_titre_71.png",
+            "badge": "Une connexion au corps",
+            "title": "Du yoga adapté à tous les corps et tous les niveaux"
+          }
+        },
+        "slide_BtEWxh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Design_sans_titre_73.png",
+            "badge": "Des ateliers concrets",
+            "title": "Pour travailler efficacement et repartir avec les clés dont vous avez besoin"
+          }
+        }
+      },
+      "block_order": [
+        "slide_HGeHME",
+        "slide_tQFqGe",
+        "slide_C7ddrt",
+        "slide_BtEWxh"
+      ],
+      "name": "Hero Moodboard Slider",
+      "settings": {
+        "bg_color": "#1c1610",
+        "accent_color": "#e4032b"
+      }
+    },
+    "retreat_programme_kTAJyK": {
+      "type": "retreat-programme",
+      "blocks": {
+        "day_87dc9D": {
+          "type": "day",
+          "settings": {
+            "day_label": "Jour 1",
+            "day_title": "Arrivée & immersion",
+            "activities": "Arrivée des participantes & installation\nAccueil & introduction à la retraite\nPremiers échanges en groupe\nDîner collectif\nTemps d’ancrage (yoga \/ intention)\nTemps libre & repos"
+          }
+        },
+        "day_zwmVQr": {
+          "type": "day",
+          "settings": {
+            "day_label": "Jour 2",
+            "day_title": "Prendre conscience & construire",
+            "activities": "Réveil en douceur\nMatinée bien-être\nAtelier « Prendre conscience de sa charge réelle »\nAccompagnement personnalisé\nDéjeuner collectif\nAtelier « Créer une organisation adaptée et durable »\nTemps pour intégrer (échanges 1:1)\nDîner collectif\nAtelier ou activité créative\nTemps libre"
+          }
+        },
+        "day_KcTgbn": {
+          "type": "day",
+          "settings": {
+            "day_label": "Jour 3",
+            "day_title": "Structurer & libérer",
+            "activities": "Réveil en douceur\nMatinée mobilité\nAtelier \"Structurer son organisation\"\nAccompagnement personnalisé\nDéjeuner collectif\nAtelier \"Déléguer, simplifier, libérer\"\nTemps pour intégrer (échanges 1:1)\nDîner collectif\nRelaxation et Yoga\nTemps libre"
+          }
+        },
+        "day_GiGj4e": {
+          "type": "day",
+          "settings": {
+            "day_label": "Jour 4",
+            "day_title": "Ancrer & repartir",
+            "activities": "Réveil en douceur\nMatinée bien-être\nAtelier \"IA & automatisation\"\nBrunch collectif\nCercle de clôture\nDépart"
+          }
+        }
+      },
+      "block_order": [
+        "day_87dc9D",
+        "day_zwmVQr",
+        "day_KcTgbn",
+        "day_GiGj4e"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.section-template--26052732453129__retreat_programme_kTAJyK {padding-bottom: 40px; }}"
+      ],
+      "name": "Retreat Programme",
+      "settings": {
+        "subtitle": "Le programme",
+        "title": "4 jours \"Take it Slow\"",
+        "footer_text": "Le programme varie selon les éditions, le lieu et les intervenantes.\nChaque retraite est pensée comme une expérience unique.",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 35,
+        "padding_bottom_mobile": 35
+      }
+    },
+    "video_reveal_PKG3Um": {
+      "type": "video-reveal",
+      "custom_css": [
+        "@media (max-width: 768px) {.video-section-template--26052732453129__video_reveal_PKG3Um {padding: 36px 0 24px; }}"
+      ],
+      "name": "Video Reveal Banner",
+      "settings": {
+        "badge": "Éditions précédentes",
+        "title": "Ce que vivent les participantes",
+        "button_text": "",
+        "thumbnail": "shopify:\/\/shop_images\/Capture_d_ecran_2026-04-20_a_12.34.33.png",
+        "video_url": "https:\/\/youtu.be\/zXnl_3t2I0o",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "accent_color": "#e4032b"
+      }
+    },
+    "testimonial_grid_C3P9dx": {
+      "type": "testimonial-grid",
+      "blocks": {
+        "testimonial_QUxHgn": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Honnêtement au vue du manque de sororité dans la vie de tous les jours je ne pensais pas qu’une telle alchimie allait se passer. Léa, Mathilde et Paola, vous apportez toutes une touche différente mais complémentaire dans cette expérience. Léa de par tes enseignements, Mathilde par ton enthousiasme tellement communicatif, Paola par ton écoute active, ta douceur et ta compréhension. Je sors de cette expérience grandie alors MERCI !",
+            "author": "Eva",
+            "sub_info": "Participante - 3ème Édition"
+          }
+        },
+        "testimonial_qAdtbB": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Merci pour ce week-end hors du quotidien et pourtant tellement nécessaire. Une super organisation, des profils différents mais complémentaires. Je recommande à tout le monde de faire une retraite de ce type au moins une fois dans sa vie !",
+            "author": "Mélanie",
+            "sub_info": "Participante - 2ème Édition"
+          }
+        },
+        "testimonial_KKEwGF": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Je suis arrivée avec aucune attente particulières si ce n’est de prendre soin de moi. Et j’ai gagné tellement plus que ça ! J’ai rencontré des nanas incroyables aux histoires et parcours incroyable !! J’ai adoré chaque seconde. J’ai eu l’espace d’être pleinement moi, d’aller à mon rythme. J’ai adoré le yoga, les ateliers, les moments de partage au coin du feu ! C’était doux, c’était fort, c’était riche ! Merci mille fois ! Et à bientôt pour une prochaine retraite j’espère !",
+            "author": "Sophie",
+            "sub_info": "Participante - 1ère édition"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_QUxHgn",
+        "testimonial_qAdtbB",
+        "testimonial_KKEwGF"
+      ],
+      "custom_css": [
+        "@media (max-width: 768 px) {.section-template--26052732453129__testimonial_grid_C3P9dx {padding: 28px 0 36px; }}"
+      ],
+      "name": "Testimonial Grid",
+      "settings": {
+        "subtitle": "Elles y étaient",
+        "title": "Ce qu'elles en disent",
+        "bg_color": "#ffffff",
+        "card_bg": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 56,
+        "padding_bottom": 84
+      }
+    },
+    "info_grid_wUF9gD": {
+      "type": "info-grid",
+      "blocks": {
+        "info_item_n3mHDx": {
+          "type": "info_item",
+          "settings": {
+            "icon": "📅",
+            "heading": "Dates",
+            "content": "Printemps 2027\nDu vendredi 17h au dimanche 14h\nLes dates exactes confirmées à l'inscription"
+          }
+        },
+        "info_item_gPLe4f": {
+          "type": "info_item",
+          "settings": {
+            "icon": "📍",
+            "heading": "Lieu",
+            "content": "France — lieu de caractère et de nature\nAdresse communiquée 3 semaines avant\nAccessible en voiture ou train"
+          }
+        },
+        "info_item_LntPx7": {
+          "type": "info_item",
+          "settings": {
+            "icon": "🏡",
+            "heading": "Hébergement",
+            "content": "Chambre individuelle incluse\nLiterie et serviettes fournies\nEspaces communs chaleureux"
+          }
+        },
+        "info_item_zpTrDx": {
+          "type": "info_item",
+          "settings": {
+            "icon": "🍽",
+            "heading": "Repas",
+            "content": "Tous les repas inclus\nCuisine fait-maison, produits locaux\nRégimes alimentaires pris en compte"
+          }
+        },
+        "info_item_DwjpfX": {
+          "type": "info_item",
+          "settings": {
+            "icon": "📚",
+            "heading": "Matériel inclus",
+            "content": "Support de travail complet\nAccès à vie aux ressources numériques\nCarnet Méthode Structurée offert"
+          }
+        },
+        "info_item_6REhkA": {
+          "type": "info_item",
+          "settings": {
+            "icon": "💰",
+            "heading": "Tarif",
+            "content": "1 490€ tout inclus\nAcompte 490€ à la réservation\nSolde à 30 jours avant la retraite"
+          }
+        }
+      },
+      "block_order": [
+        "info_item_n3mHDx",
+        "info_item_gPLe4f",
+        "info_item_LntPx7",
+        "info_item_zpTrDx",
+        "info_item_DwjpfX",
+        "info_item_6REhkA"
+      ],
+      "disabled": true,
+      "name": "Info Grid Custom",
+      "settings": {
+        "subtitle": "Les détails",
+        "title": "Infos pratiques",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "faq_retreat_TdL8r7": {
+      "type": "faq-retreat",
+      "blocks": {
+        "faq_item_wenrMT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Combien de participantes maximum ?",
+            "answer": "<p>Les retraites sont limitées pour garantir un suivi personnalisé et une vraie dynamique de groupe.<\/p>"
+          }
+        },
+        "faq_item_T3dw79": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Que comprend le prix ?",
+            "answer": "<p>Le prix inclut l'hébergement (chambre double), tous les repas du vendredi soir au dimanche, les ateliers, cours de yoga et supports.<\/p>"
+          }
+        },
+        "faq_item_6MxmXr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Faut-il avoir fait du yoga auparavant ?",
+            "answer": "<p>Non. La retraite est accessible à toutes, que tu sois déjà une yogi aguerrie ou complètement débutante. Paola s'adapte à chacune d'entre vous.<\/p>"
+          }
+        },
+        "faq_item_dhaLLA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Peut-on venir seule ?",
+            "answer": "<p>Absolument. La majorité des participantes viennent seules. Le format groupe crée des liens très forts.<\/p>"
+          }
+        },
+        "faq_item_rJU78K": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Y a-t-il une politique d'annulation ?",
+            "answer": "<p>Annulation jusqu'à 30 jours avant : remboursement intégral. Moins de 30 jours : non remboursable sauf cas de force majeur.<\/p>"
+          }
+        },
+        "faq_item_wHDkHa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce qu’on est obligée de participer à tout ?",
+            "answer": "<p><strong>Non, absolument pas.<\/strong><br\/>Cette retraite est un espace pour toi, tu es libre de participer aux ateliers, de prendre du temps seule, de te reposer ou de t’écouter si tu en ressens le besoin.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_wenrMT",
+        "faq_item_T3dw79",
+        "faq_item_6MxmXr",
+        "faq_item_dhaLLA",
+        "faq_item_rJU78K",
+        "faq_item_wHDkHa"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.section-template--26052732453129__faq_retreat_TdL8r7 {padding-top: 46px; padding-bottom: 40px; }}"
+      ],
+      "name": "Retreat FAQ",
+      "settings": {
+        "subtitle": "Questions fréquentes",
+        "title": "FAQ",
+        "bg_color": "#ffffff",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "reservation_cta_3jWx8j": {
+      "type": "reservation-cta",
+      "name": "Reservation CTA",
+      "settings": {
+        "badge": "Informations",
+        "title": "Prochaine édition<br>\n[Printemps 2027]",
+        "description": "Tu as envie de t’offrir un vrai temps pour toi ?",
+        "button_text": "Pré-inscriptions",
+        "button_link": "https:\/\/form.typeform.com\/to\/RHqcpZKF",
+        "footer_text": "Paiement en plusieurs fois possible · Places limitées",
+        "bg_image": "shopify:\/\/shop_images\/cta-bg.png",
+        "image_opacity": 60,
+        "bg_color": "#1c1610",
+        "accent_color": "#e4032b"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_retreat_split_Ytjh7w",
+    "features_retreat_tCf4QW",
+    "retreat_who_is_it_for_JP4qNg",
+    "pillars_retreat_ttbaQF",
+    "take_kare_team_YnN366",
+    "second_hero_slider_rGBUPG",
+    "retreat_programme_kTAJyK",
+    "video_reveal_PKG3Um",
+    "testimonial_grid_C3P9dx",
+    "info_grid_wUF9gD",
+    "faq_retreat_TdL8r7",
+    "reservation_cta_3jWx8j"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_hero_VtTzjV": {
+      "type": "custom-hero",
+      "name": "Custom Hero Section",
+      "settings": {
+        "sub_title": "La boutique",
+        "title_main": "Les Outils de la",
+        "title_italic": "Méthode",
+        "desc": "Shop les produits et outils digitaux pour appliquer la Méthode Structurée au quotidien.",
+        "bg_color": "#fbf8f4",
+        "accent_color": "#e4032b",
+        "text_color": "#0a0a0a",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "custom_hero_tools_ADmApn": {
+      "type": "custom-hero-tools",
+      "name": "Custom Tools Hero",
+      "settings": {
+        "subtitle": "La boutique",
+        "title": "Les Outils de la <em>Méthode<\/em>",
+        "description": "Shop les produits et outils digitaux pour appliquer la Méthode Structurée au quotidien.",
+        "bg_color": "#fbf8f4",
+        "padding_top": 132,
+        "padding_bottom": 80
+      }
+    },
+    "17748597279e858abd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1905ed1_rUgfRQ": {
+          "type": "ai_gen_block_1905ed1",
+          "settings": {
+            "section_heading": "",
+            "section_subheading": "",
+            "container_width": "page",
+            "padding_top": 30,
+            "padding_bottom": 50,
+            "background_color": "#ffffff",
+            "enable_shadows": true,
+            "border_radius": 8,
+            "enable_animations": true,
+            "tab_1_label": "Physical Products",
+            "tab_1_collection": "physical-products",
+            "tab_1_max_products": 5,
+            "tab_1_badge_text": "New",
+            "tab_1_cta_label": "Shop now",
+            "tab_1_cta_link": "",
+            "tab_2_label": "Digital Products",
+            "tab_2_collection": "digital-products",
+            "tab_2_max_products": 5,
+            "tab_2_badge_text": "Popular",
+            "tab_2_cta_label": "Shop now",
+            "tab_2_cta_link": "",
+            "tab_3_label": "Sale",
+            "tab_3_collection": "",
+            "tab_3_max_products": 5,
+            "tab_3_badge_text": "Sale",
+            "tab_3_cta_label": "Shop now",
+            "tab_3_cta_link": "",
+            "tab_4_label": "",
+            "tab_4_collection": "",
+            "tab_4_max_products": 5,
+            "tab_4_badge_text": "",
+            "tab_4_cta_label": "Shop now",
+            "tab_4_cta_link": "",
+            "tab_5_label": "",
+            "tab_5_collection": "",
+            "tab_5_max_products": 5,
+            "tab_5_badge_text": "",
+            "tab_5_cta_label": "Shop now",
+            "tab_5_cta_link": "",
+            "tab_6_label": "",
+            "tab_6_collection": "",
+            "tab_6_max_products": 5,
+            "tab_6_badge_text": "",
+            "tab_6_cta_label": "Shop now",
+            "tab_6_cta_link": "",
+            "show_featured_badge": true,
+            "show_featured_description": true,
+            "featured_description_length": 150,
+            "featured_image_ratio": "square",
+            "featured_image_position": "left",
+            "enable_secondary_image": true,
+            "show_card_image": true,
+            "show_card_title": true,
+            "show_card_price": true,
+            "show_card_description": true,
+            "card_description_length": 80,
+            "show_card_button": true,
+            "button_style": "filled",
+            "card_image_ratio": "square",
+            "enable_hover_effect": true,
+            "button_color": "#fadadd",
+            "button_text_color": "#e4032b",
+            "button_hover_color": "#f5c4c9",
+            "button_border_radius": 4,
+            "button_font_size": 14,
+            "tab_alignment": "center",
+            "tab_style": "underline",
+            "active_tab_color": "#000000",
+            "inactive_tab_color": "#666666"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1905ed1_rUgfRQ"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "custom_hero_VtTzjV",
+    "custom_hero_tools_ADmApn",
+    "17748597279e858abd"
+  ]
+}
