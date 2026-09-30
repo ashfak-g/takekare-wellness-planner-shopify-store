@@ -1,0 +1,79 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart-template",
+      "settings": {}
+    },
+    "1776330800d37a66ca": {
+      "type": "apps",
+      "blocks": {
+        "scalapay_on_site_messaging_widget_block_AmzMNb": {
+          "type": "shopify:\/\/apps\/scalapay-on-site-messaging\/blocks\/widget-block\/3be66716-9837-4466-bbb5-839858e44339",
+          "settings": {
+            "merchant_token": "",
+            "amount_selectors": "",
+            "position_selector": "",
+            "countries": "AT,BE,FI,FR,DE,IT,NL,PT,ES,YT,RE,GF,GP,MQ",
+            "min_amount": 5,
+            "max_amount": 1500,
+            "currency_position": "after",
+            "currency_display": "symbol",
+            "amount_separator": "",
+            "dark_mode": "never",
+            "alignment": "left",
+            "hide_installments": "false",
+            "hide_learn_more": "false",
+            "style": ""
+          }
+        }
+      },
+      "block_order": [
+        "scalapay_on_site_messaging_widget_block_AmzMNb"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "recent-viewed-products": {
+      "type": "recent-viewed-products",
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "heading": "Vous allez aussi aimer...",
+        "heading_size": "h3",
+        "text_align": "left",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": false,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "item_gap_mobile": 16,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1776330800d37a66ca",
+    "recent-viewed-products"
+  ]
+}
